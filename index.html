@@ -93,7 +93,31 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p><strong>ajax使用的优点</strong></p>
+<p>网页应用能够快速地将增量更新呈现在用户界面上，使用局部刷新，而不需要重载(刷新)整个页面，这使得程序可以更快地回应用户地操作。</p>
+<p>ajax的实现原理</p>
+<ol>
+<li><p>创建Ajax对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var xhr=new XMLHttpRequest()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>传入请求方式和请求地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&#x27;get&#x27;,&#x27;http://127.0.0.1:3000/getData&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>发送请求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>获取服务器与客户端的响应数据,回调函数</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xhr.onload=function()&#123;</span><br><span class="line">//容易出现跨域问题</span><br><span class="line">console.log(xhr.reponseText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     <footer class="article-footer">
