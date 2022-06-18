@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="深拷贝和浅拷贝js的数据类型 基本数据类型： string,number,boolean,null,undefined 引用数据类型 object(Array,Object,Function,Map,Set) 堆内存： 在堆内存中开辟一块空间专门存放引用数据类型具体的值 12340x123&#x3D;&gt;&amp;#123;name:&amp;#x27;&amp;#x27;,age:&amp;#x27;&amp;#x27;&amp;#125;  栈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="深拷贝和浅拷贝js的数据类型 基本数据类型： string,number,boolean,null,undefined 引用数据类型 object(Array,Object,Function,Map,Set) 堆内存： 在堆内存中开辟一块空间专门存放引用数据类型具体的值 12340x123&#x3D;&gt;&amp;#123;name:&amp;#x27;&amp;#x27;,age:&amp;#x27;&amp;#x27;&amp;#125;  栈">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-18T10:31:51.501Z">
+<meta property="article:modified_time" content="2022-06-18T12:05:12.488Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-深拷贝和浅拷贝" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T10:31:51.501Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p><strong>js的数据类型</strong></p>
+<p>基本数据类型：</p>
+<p>string,number,boolean,null,undefined</p>
+<p>引用数据类型</p>
+<p>object(Array,Object,Function,Map,Set)</p>
+<p>堆内存：</p>
+<p>在堆内存中开辟一块空间专门存放引用数据类型具体的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0x123=&gt;&#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>栈内存：</p>
+<p>基本数据类型存在栈内存中，变量：a  值： 1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a=1</span><br></pre></td></tr></table></figure>
+
+<p>引用数据类型的变量名存放在栈内存中，变量：obj  值：0x123(地址)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj= &#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>深浅拷贝的实现</strong></p>
+<p>浅拷贝指挥拷贝引用数据类型的地址，当某个数据被修改以后，也会影响到另一个拷贝的数据</p>
+<p>实例：obj和obj1都指向同一个堆内存内的地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=obj</span><br><span class="line">obj1.name=&#x27;ls&#x27;</span><br><span class="line">console.log(obj.name)</span><br><span class="line">console.log(obj1.name)</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">ls</span><br><span class="line">ls</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<p>深拷贝会拷贝多层，对于每一级数据都会拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=&#123;&#125;</span><br><span class="line">for(var i in obj)&#123;</span><br><span class="line">obj1[i]=pbj[i]</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>实现深拷贝的库</strong></p>
+<p>lodash库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var deep=_.cloneDeep(obj1)</span><br><span class="line">console.log(deep===obj1)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="cl4ju2jzk0000jwfodjd0eufq" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/18/%E9%97%AD%E5%8C%85/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/18/%E9%97%AD%E5%8C%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">作用域链</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

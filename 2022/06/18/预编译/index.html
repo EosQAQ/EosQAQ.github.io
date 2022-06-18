@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="预编译上下文创建后，会生成变量对象VO，VO首先寻找变量声明，将var声明的变量作为VO对象的属性名，值为undefined，然后寻找函数声明，如果函数名和变量名冲突，函数声明会将变量名覆盖。js代码执行前的一段时期，在这个时期，会对js代码进行预处理 全局预编译 123456789101112console.log(a)var a &#x3D;100function a()&amp;#123;&amp;#125;con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="预编译上下文创建后，会生成变量对象VO，VO首先寻找变量声明，将var声明的变量作为VO对象的属性名，值为undefined，然后寻找函数声明，如果函数名和变量名冲突，函数声明会将变量名覆盖。js代码执行前的一段时期，在这个时期，会对js代码进行预处理 全局预编译 123456789101112console.log(a)var a &#x3D;100function a()&amp;#123;&amp;#125;con">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-18T08:35:14.743Z">
+<meta property="article:modified_time" content="2022-06-18T12:05:01.083Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-预编译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T08:35:14.743Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="预编译"><a href="#预编译" class="headerlink" title="预编译"></a>预编译</h2><p>上下文创建后，会生成变量对象VO，VO首先寻找变量声明，将var声明的变量作为VO对象的属性名，值为undefined，然后寻找函数声明，如果函数名和变量名冲突，函数声明会将变量名覆盖。js代码执行前的一段时期，在这个时期，会对js代码进行预处理</p>
+<p><strong>全局预编译</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">console.log(a)</span><br><span class="line">var a =100</span><br><span class="line">function a()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(a)</span><br><span class="line">//VO&#123;</span><br><span class="line">//a:undefined</span><br><span class="line">  a:funcA </span><br><span class="line">  a:100</span><br><span class="line">  //函数声明会覆盖变量声明</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>函数预编译</strong></p>
+<p>函数上下文创建以后会生成变量对象AO</p>
+<ol>
+<li>寻找变量声明，变量名作为AO对象的属性名，属性值为undefined</li>
+<li>寻找形参，形参名作为AO对象的属性名，属性值为undefined</li>
+<li>将实参的值赋给形参，函数名作为AO对象的属性名，属性值为函数本身，如果不冲突的话，变量还是undefined，只有在函数声明以后才会被赋值</li>
+<li>如果函数名和变量名冲突，那么函数声明将会覆盖变量声明</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function a(b,c)&#123;</span><br><span class="line">console.log(b)</span><br><span class="line">var b=0</span><br><span class="line">console.log(b)</span><br><span class="line">var b=function()&#123;</span><br><span class="line">console.log(&#x27;bbbb&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">console.log(c)</span><br><span class="line">console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">a(1)</span><br><span class="line">---</span><br><span class="line">VO&#123;</span><br><span class="line">b:undefined =&gt; 1</span><br><span class="line">c:undefined</span><br><span class="line">&#125;</span><br><span class="line">执行结果：</span><br><span class="line">1</span><br><span class="line">0</span><br><span class="line">undefined</span><br><span class="line">function()&#123;</span><br><span class="line">console.log(&#x27;bbbb&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" data-id="cl4ju2jzq0002jwfodenjed37" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">作用域链</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/18/%E9%97%AD%E5%8C%85/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">作用域链</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/">作用域</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
