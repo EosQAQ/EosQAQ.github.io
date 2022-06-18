@@ -71,6 +71,118 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-作用域链" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T07:32:01.177Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中</p>
+<p>当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a =1</span><br><span class="line">function fn()&#123;</span><br><span class="line">var b=a+1</span><br><span class="line">console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">console.dir(fn)</span><br><span class="line">//&#123;&#123;Scopes&#125;&#125;:Scopes[1] 0:Global</span><br><span class="line">fn()</span><br><span class="line">//b=2</span><br></pre></td></tr></table></figure>
+
+<p>在JavaScript中,当一个函数被调用的时候,就会产生一个特殊的对象:活动对象。这个对象中包含了参数列表和arguments对象等属性。由于活动对象是变量对象的特例,因此它包含变量对象所有的属性如变量定义,函数定义等。</p>
+<p>假设在全局环境下定义了函数pub（）和变量pubvar：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pubvar = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pub</span> () &#123;</span><br><span class="line">  <span class="keyword">var</span> pravar = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> pubvar + pravar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="title function_">pub</span>(<span class="number">2</span>));     <span class="comment">//调用pub()函数</span></span><br></pre></td></tr></table></figure>
+
+<p>此时后台会创建一个作用域链（scope chain），这个作用域链包含了全局环境的变量对象并被保存在pub（）函数内部的scope属性中。<strong>但是，当我们打开浏览器的时候已经存在了一个全局的执行环境，这个全局的执行环境属于浏览器，JS里浏览器被称为window对象，我们把这个环境叫做A环境，只要没有关闭浏览器，A环境会一直存在</strong>下面会提到执行环境什么时候会被创建。</p>
+<p>我们用色块表示执行环境，链条表示作用域链，作用域链上半部分是活动对象区域，下半部分是变量对象区域，如下图：</p>
+<p><img src="https://pic3.zhimg.com/50/f20a5f2137716e4936490704018ddd27_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>当我们要调用pub（）函数的时候，<strong>又会创建一个执行环境B</strong>，没错，执行环境如其名是在运行和执行代码的时候才存在的，所以我们运行浏览器的时候会创建全局的执行环境。这个时候根据pub（）函数scope属性中的作用域链把pub（）函数内的变量对象放入新的B环境中，作用域链也得到更新，如下图：</p>
+<p><img src="https://pica.zhimg.com/50/32541193ee5c7900e5137c245f4dfe32_720w.jpg?source=1940ef5c" alt="img"></p>
+<p><strong>上图的虚线表示正在执行，全局变量对象此时处于作用域链的第二位，所以标号变成了1。****你可能也注意到那个arguments对象，它是在函数被创建的时候就一直存在的，无需用户创建。arguments对象保存的是函数圆括号内定义的参数，准确来说保存的是参数的值，因这里我们没有设置参数，所以显示未定义。</strong></p>
+<p><strong>此时我们把属于B环境的变量对象（也就是pub（）函数中的所有函数和变量）叫做活动对象。</strong></p>
+<p><strong>因此我们可以说变量对象包含了活动对象，活动对象就是作用域链上正在被执行和引用的变量对象。我们从活动对象的名称中也能看出 “执行、运行、激活” 等意味。你可以这样理解，整个代码的运行总有一个起始的对象吧，不管这个起始是变量还是函数，总要有一个称呼，虽然我们把执行环境中的变量和函数的总称叫做变量对象，但这不能反映代码的动态性，为了区别于普通的变量对象，我们创造了活动对象的概念。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" data-id="cl4jmii490001bcfo4pmhcxst" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-作用域" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T07:28:23.579Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>执行环境中变量或者函数的作用范围，左右与定义了函数有权访问其他数据，作用域都有一个变量对象（预编译）</p>
+<p><strong>全局作用域</strong></p>
+<ol>
+<li><p>在页面打开时被创建，页面关闭时被销毁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(window)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>编写script标签中的变量和函数时，在页面的任意位置都可以访问</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> a=<span class="number">0</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> b=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        </span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">window</span>)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>全局作用域可以认为是window，因为所有全局变量和函数都是作为window对象的属性和方法的</p>
+<p><strong>局部作用域</strong></p>
+<ol>
+<li><p>函数调用时，函数作用域就会被创建，在执行完毕后，函数作用域就会被销毁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">//函数作用域内部的变量，对外就是不可访问的</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>每调用一次函数就会创建一个新的函数作用域，他们之间是互相独立的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">var a=1</span><br><span class="line">a=a+1</span><br><span class="line">console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br><span class="line">fn()</span><br><span class="line">//结果是2，2，作用域重新被创建，里面所有的变量都被重置</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>函数作用域可以访问上层作用域，但是相邻作用域是相互独立的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var b=1</span><br><span class="line">function fn()&#123;</span><br><span class="line">var a=1</span><br><span class="line">a=a+b</span><br><span class="line">console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">//结果是2，可以获取b</span><br><span class="line">function fn1()&#123;</span><br><span class="line">console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br><span class="line">fn1()</span><br><span class="line">//打印不出来a</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>es6之前是没有块级作用域的</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">if(true)&#123;</span><br><span class="line">//相当于全局创建了a</span><br><span class="line">var a=1</span><br><span class="line">&#125;</span><br><span class="line">console.log(a)</span><br><span class="line">//a=1</span><br><span class="line"></span><br><span class="line">function fn()&#123;</span><br><span class="line">if(true)&#123;</span><br><span class="line">var b=1</span><br><span class="line">&#125;</span><br><span class="line">console.log(b)</span><br><span class="line">//b=1</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
+
+<p><strong>es6中的块级作用域</strong></p>
+<p>可以通过let和const形成块级作用域，对外是不可见的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(true)&#123;</span><br><span class="line">let a=1</span><br><span class="line">&#125;</span><br><span class="line">console.log(a)</span><br><span class="line">//a=undefined</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let funcA=function()&#123;</span><br><span class="line">//打印funcA这个对象</span><br><span class="line">console.dir(funcA)</span><br><span class="line">&#125;</span><br><span class="line">//funcA:&#123;</span><br><span class="line">scopes[2]:作用域链</span><br><span class="line">0:Script&#123;let所声明的块级作用域funcA&#125;</span><br><span class="line">1:Global&#123;全局&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/" data-id="cl4jmii450000bcfo1incgk8x" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-我的第一篇博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
@@ -188,6 +300,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2022/06/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">(no title)</a>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="作用域链创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中 当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="作用域链创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中 当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic3.zhimg.com/50/f20a5f2137716e4936490704018ddd27_720w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://pica.zhimg.com/50/32541193ee5c7900e5137c245f4dfe32_720w.jpg?source=1940ef5c">
+<meta property="article:published_time" content="2022-06-18T07:32:01.177Z">
+<meta property="article:modified_time" content="2022-06-18T07:42:32.359Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic3.zhimg.com/50/f20a5f2137716e4936490704018ddd27_720w.jpg?source=1940ef5c">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-作用域链" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T07:32:01.177Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中</p>
+<p>当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a =1</span><br><span class="line">function fn()&#123;</span><br><span class="line">var b=a+1</span><br><span class="line">console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">console.dir(fn)</span><br><span class="line">//&#123;&#123;Scopes&#125;&#125;:Scopes[1] 0:Global</span><br><span class="line">fn()</span><br><span class="line">//b=2</span><br></pre></td></tr></table></figure>
+
+<p>在JavaScript中,当一个函数被调用的时候,就会产生一个特殊的对象:活动对象。这个对象中包含了参数列表和arguments对象等属性。由于活动对象是变量对象的特例,因此它包含变量对象所有的属性如变量定义,函数定义等。</p>
+<p>假设在全局环境下定义了函数pub（）和变量pubvar：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pubvar = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pub</span> () &#123;</span><br><span class="line">  <span class="keyword">var</span> pravar = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> pubvar + pravar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="title function_">pub</span>(<span class="number">2</span>));     <span class="comment">//调用pub()函数</span></span><br></pre></td></tr></table></figure>
+
+<p>此时后台会创建一个作用域链（scope chain），这个作用域链包含了全局环境的变量对象并被保存在pub（）函数内部的scope属性中。<strong>但是，当我们打开浏览器的时候已经存在了一个全局的执行环境，这个全局的执行环境属于浏览器，JS里浏览器被称为window对象，我们把这个环境叫做A环境，只要没有关闭浏览器，A环境会一直存在</strong>下面会提到执行环境什么时候会被创建。</p>
+<p>我们用色块表示执行环境，链条表示作用域链，作用域链上半部分是活动对象区域，下半部分是变量对象区域，如下图：</p>
+<p><img src="https://pic3.zhimg.com/50/f20a5f2137716e4936490704018ddd27_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>当我们要调用pub（）函数的时候，<strong>又会创建一个执行环境B</strong>，没错，执行环境如其名是在运行和执行代码的时候才存在的，所以我们运行浏览器的时候会创建全局的执行环境。这个时候根据pub（）函数scope属性中的作用域链把pub（）函数内的变量对象放入新的B环境中，作用域链也得到更新，如下图：</p>
+<p><img src="https://pica.zhimg.com/50/32541193ee5c7900e5137c245f4dfe32_720w.jpg?source=1940ef5c" alt="img"></p>
+<p><strong>上图的虚线表示正在执行，全局变量对象此时处于作用域链的第二位，所以标号变成了1。****你可能也注意到那个arguments对象，它是在函数被创建的时候就一直存在的，无需用户创建。arguments对象保存的是函数圆括号内定义的参数，准确来说保存的是参数的值，因这里我们没有设置参数，所以显示未定义。</strong></p>
+<p><strong>此时我们把属于B环境的变量对象（也就是pub（）函数中的所有函数和变量）叫做活动对象。</strong></p>
+<p><strong>因此我们可以说变量对象包含了活动对象，活动对象就是作用域链上正在被执行和引用的变量对象。我们从活动对象的名称中也能看出 “执行、运行、激活” 等意味。你可以这样理解，整个代码的运行总有一个起始的对象吧，不管这个起始是变量还是函数，总要有一个称呼，虽然我们把执行环境中的变量和函数的总称叫做变量对象，但这不能反映代码的动态性，为了区别于普通的变量对象，我们创造了活动对象的概念。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" data-id="cl4jmii490001bcfo4pmhcxst" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/18/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
