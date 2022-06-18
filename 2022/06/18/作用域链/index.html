@@ -6,17 +6,17 @@
   
   <title>作用域链 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="作用域链创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中 当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global">
+  <meta name="description" content="创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中 当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global 1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="作用域链">
 <meta property="og:url" content="http://example.com/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="作用域链创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中 当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global">
+<meta property="og:description" content="创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中 当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global 1234">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://pic3.zhimg.com/50/f20a5f2137716e4936490704018ddd27_720w.jpg?source=1940ef5c">
 <meta property="og:image" content="https://pica.zhimg.com/50/32541193ee5c7900e5137c245f4dfe32_720w.jpg?source=1940ef5c">
 <meta property="article:published_time" content="2022-06-18T07:32:01.177Z">
-<meta property="article:modified_time" content="2022-06-18T10:04:47.179Z">
+<meta property="article:modified_time" content="2022-06-18T10:10:51.548Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://pic3.zhimg.com/50/f20a5f2137716e4936490704018ddd27_720w.jpg?source=1940ef5c">
@@ -98,7 +98,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中</p>
+        <p>创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中</p>
 <p>当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a =1</span><br><span class="line">function fn()&#123;</span><br><span class="line">var b=a+1</span><br><span class="line">console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">console.dir(fn)</span><br><span class="line">//&#123;&#123;Scopes&#125;&#125;:Scopes[1] 0:Global</span><br><span class="line">fn()</span><br><span class="line">//b=2</span><br></pre></td></tr></table></figure>
 
