@@ -14,7 +14,7 @@
 <meta property="og:description" content="js的数据类型 基本数据类型： string,number,boolean,null,undefined 引用数据类型 object(Array,Object,Function,Map,Set) 堆内存： 在堆内存中开辟一块空间专门存放引用数据类型具体的值 12340x123&#x3D;&gt;&amp;#123;name:&amp;#x27;&amp;#x27;,age:&amp;#x27;&amp;#x27;&amp;#125;  栈内存： 基本数据">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-18T10:31:51.501Z">
-<meta property="article:modified_time" content="2022-06-18T12:08:34.353Z">
+<meta property="article:modified_time" content="2022-06-19T14:24:47.895Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -126,6 +126,11 @@
 <p><strong>实现深拷贝的库</strong></p>
 <p>lodash库</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var deep=_.cloneDeep(obj1)</span><br><span class="line">console.log(deep===obj1)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用js原生写深拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json.parse(json.stringfy.parse(obj))</span><br></pre></td></tr></table></figure>
 
 
       

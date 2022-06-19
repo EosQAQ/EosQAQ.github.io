@@ -292,7 +292,17 @@
 <p>prototype &#x3D;&gt; 函数的一个属性：对象{}</p>
 <p><strong><strong>proto</strong></strong>&#x3D;&gt;对象object的一个属性：对象{}</p>
 <p>对象的____proto____保存着该对象的构造函数的prototype</p>
+<p>fn构造函数的prototype就是fn的原型对象，fn.protorype的constructor就是fn构造函数</p>
+<p>fn的实例就是var obj&#x3D;new fn()，实例对象obj的constructor就是fn构造函数</p>
+<p>f1&#x3D;fn.prototype</p>
+<p>fn.prototype.constructor&#x3D;&#x3D;&#x3D;fn</p>
+<p>var obj&#x3D;new fn()</p>
+<p>obj.constructor&#x3D;&#x3D;&#x3D;fn</p>
+<p>obj.<strong><strong>proto</strong></strong>&#x3D;&#x3D;&#x3D;fn.prototype</p>
+<p>fn.protorype.<strong><strong>proto</strong></strong>&#x3D;Object.protorype</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function Test()&#123;&#125;</span><br><span class="line">console.log(Test.prototype)</span><br><span class="line">const test=new Test()</span><br><span class="line">console.log(test.__proto__)</span><br><span class="line">console.log(test.__proto__===Test.prototype)</span><br><span class="line">//true</span><br><span class="line">console.log(Test.prototype.__proto__===Object.prototype)</span><br><span class="line">//true</span><br><span class="line">console.log(Object.prototype.__proto__)</span><br><span class="line">//null</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">test=&#123;</span><br><span class="line">a:1</span><br><span class="line">__proto__:Test.prototype=&#123;</span><br><span class="line">b:2</span><br><span class="line">__proto__:Object.prototype=&#123;</span><br><span class="line">c:3</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">test.a.b.c都是可以直接访问的</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+
 
 <p>公共的属性和方法可以写在prototype里面</p>
 <p>只要有相同的prototype，那么就可以继承prototype上所带有的方法</p>
@@ -702,6 +712,11 @@
 <p><strong>实现深拷贝的库</strong></p>
 <p>lodash库</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var deep=_.cloneDeep(obj1)</span><br><span class="line">console.log(deep===obj1)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用js原生写深拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json.parse(json.stringfy.parse(obj))</span><br></pre></td></tr></table></figure>
 
 
       
