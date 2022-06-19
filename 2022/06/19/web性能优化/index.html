@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Ajax | Hexo</title>
+  <title>web性能优化 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="ajax使用的优点 网页应用能够快速地将增量更新呈现在用户界面上，使用局部刷新，而不需要重载(刷新)整个页面，这使得程序可以更快地回应用户地操作。 ajax的实现原理  创建Ajax对象 1var xhr&#x3D;new XMLHttpRequest()    传入请求方式和请求地址 1xhr.open(&amp;#x27;get&amp;#x27;,&amp;#x27;http:&#x2F;&#x2F;127.0.0.1:3000&#x2F;getData">
+  <meta name="description" content="web性能有哪些： 用户对加载时间和运行时的直观体验 页面加载到可交互和可响应所消耗的时间，页面在交互的时候的流畅度。 如何进行Web性能优化  了解性能指标 专业的工具可量化的评估出网站和应用的性能表现 从网站页面响应的声明周期，分析出造成较差性能表现的原因 进行技术改造，可行性分析等具体的优化实施 迭代优化  web性能报告 Lighthouse插件分析web应用和web页面，生成评估页面。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ajax">
-<meta property="og:url" content="http://example.com/2022/06/18/Ajax/index.html">
+<meta property="og:title" content="web性能优化">
+<meta property="og:url" content="http://example.com/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="ajax使用的优点 网页应用能够快速地将增量更新呈现在用户界面上，使用局部刷新，而不需要重载(刷新)整个页面，这使得程序可以更快地回应用户地操作。 ajax的实现原理  创建Ajax对象 1var xhr&#x3D;new XMLHttpRequest()    传入请求方式和请求地址 1xhr.open(&amp;#x27;get&amp;#x27;,&amp;#x27;http:&#x2F;&#x2F;127.0.0.1:3000&#x2F;getData">
+<meta property="og:description" content="web性能有哪些： 用户对加载时间和运行时的直观体验 页面加载到可交互和可响应所消耗的时间，页面在交互的时候的流畅度。 如何进行Web性能优化  了解性能指标 专业的工具可量化的评估出网站和应用的性能表现 从网站页面响应的声明周期，分析出造成较差性能表现的原因 进行技术改造，可行性分析等具体的优化实施 迭代优化  web性能报告 Lighthouse插件分析web应用和web页面，生成评估页面。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-18T14:26:06.000Z">
-<meta property="article:modified_time" content="2022-06-18T15:43:00.361Z">
+<meta property="article:published_time" content="2022-06-19T12:27:45.000Z">
+<meta property="article:modified_time" content="2022-06-19T13:24:39.211Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-Ajax" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-web性能优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/06/18/Ajax/" class="article-date">
-  <time class="dt-published" datetime="2022-06-18T14:26:06.000Z" itemprop="datePublished">2022-06-18</time>
+    <a href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2022-06-19T12:27:45.000Z" itemprop="datePublished">2022-06-19</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Ajax
+      web性能优化
     </h1>
   
 
@@ -95,35 +95,32 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><strong>ajax使用的优点</strong></p>
-<p>网页应用能够快速地将增量更新呈现在用户界面上，使用局部刷新，而不需要重载(刷新)整个页面，这使得程序可以更快地回应用户地操作。</p>
-<p>ajax的实现原理</p>
+        <p><strong>web性能有哪些：</strong></p>
+<p>用户对加载时间和运行时的直观体验</p>
+<p>页面加载到可交互和可响应所消耗的时间，页面在交互的时候的流畅度。</p>
+<p><strong>如何进行Web性能优化</strong></p>
 <ol>
-<li><p>创建Ajax对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var xhr=new XMLHttpRequest()</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>传入请求方式和请求地址</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&#x27;get&#x27;,&#x27;http://127.0.0.1:3000/getData&#x27;)</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>发送请求</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>获取服务器与客户端的响应数据,回调函数</p>
-</li>
+<li>了解性能指标</li>
+<li>专业的工具可量化的评估出网站和应用的性能表现</li>
+<li>从网站页面响应的声明周期，分析出造成较差性能表现的原因</li>
+<li>进行技术改造，可行性分析等具体的优化实施</li>
+<li>迭代优化</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xhr.onload=function()&#123;</span><br><span class="line">//容易出现跨域问题</span><br><span class="line">console.log(xhr.reponseText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p><strong>web性能报告</strong></p>
+<p>Lighthouse插件分析web应用和web页面，生成评估页面。</p>
+<p>五个打分维度：检测得分，性能指标，优化建议，诊断结果，已通过的性能</p>
+<p>优化建议</p>
+<ol>
+<li>移除阻塞渲染的资源：js教本和css没有请求回来导致的白屏，一般解决方法是内嵌进入本地而非在网上请求</li>
+<li>预链接所需要请求的源，提前建立与所需要访问的资源之间的网络连接，link rel&#x3D;”preconnect”,link rel &#x3D; “dns-prefetch”DNS预解析</li>
+<li>降低服务端的响应时间，网络请求资源收到服务器内核，带宽，内存三个因素影响。</li>
+<li>适当调整图片大小&#x3D;&gt;小图片可以转化base64位编码、大图片可以压缩到可以接受为止</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/18/Ajax/" data-id="cl4jz4h6x00005gfode8k6r7x" data-title="Ajax" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="cl4lccg0k00009cfogqaf1owc" data-title="web性能优化" class="article-share-link">Share</a>
       
       
       
@@ -133,19 +130,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/06/19/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          同源策略
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/06/18/Event-Loop/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Event Loop事件循环</div>
+      <div class="article-nav-title">防抖节流函数</div>
     </a>
   
 </nav>

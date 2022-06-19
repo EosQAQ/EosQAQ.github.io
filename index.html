@@ -71,6 +71,114 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-web性能优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2022-06-19T12:27:45.000Z" itemprop="datePublished">2022-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">web性能优化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>web性能有哪些：</strong></p>
+<p>用户对加载时间和运行时的直观体验</p>
+<p>页面加载到可交互和可响应所消耗的时间，页面在交互的时候的流畅度。</p>
+<p><strong>如何进行Web性能优化</strong></p>
+<ol>
+<li>了解性能指标</li>
+<li>专业的工具可量化的评估出网站和应用的性能表现</li>
+<li>从网站页面响应的声明周期，分析出造成较差性能表现的原因</li>
+<li>进行技术改造，可行性分析等具体的优化实施</li>
+<li>迭代优化</li>
+</ol>
+<p><strong>web性能报告</strong></p>
+<p>Lighthouse插件分析web应用和web页面，生成评估页面。</p>
+<p>五个打分维度：检测得分，性能指标，优化建议，诊断结果，已通过的性能</p>
+<p>优化建议</p>
+<ol>
+<li>移除阻塞渲染的资源：js教本和css没有请求回来导致的白屏，一般解决方法是内嵌进入本地而非在网上请求</li>
+<li>预链接所需要请求的源，提前建立与所需要访问的资源之间的网络连接，link rel&#x3D;”preconnect”,link rel &#x3D; “dns-prefetch”DNS预解析</li>
+<li>降低服务端的响应时间，网络请求资源收到服务器内核，带宽，内存三个因素影响。</li>
+<li>适当调整图片大小&#x3D;&gt;小图片可以转化base64位编码、大图片可以压缩到可以接受为止</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="cl4lccg0k00009cfogqaf1owc" data-title="web性能优化" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-防抖节流函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-06-19T11:52:25.000Z" itemprop="datePublished">2022-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">防抖节流函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>防抖函数的概念：</p>
+<p>函数防抖：就是指在触发事件后，在n秒内函数只能调用一次，如果触发事件后在n秒内又触发了事件，那么会重新计算函数延执行的时间。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">func,wait</span>)&#123;</span><br><span class="line"><span class="comment">//timer是定时器</span></span><br><span class="line"><span class="keyword">var</span> timer = <span class="literal">null</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(timer) &#123;</span><br><span class="line">       <span class="built_in">clearTimeout</span>(timer)</span><br><span class="line">       &#125;</span><br><span class="line">    timer=<span class="built_in">setTimeout</span>(func,wait)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>节流：当持续触发事件时，保证在一定时间内只调用一次事件处理函数，假设用户一直触发这个函数，且每一次触发这个函数都小于既定值，函数节流会每隔这个时间调用一次。 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span> (func,deplay)&#123;</span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!timer)&#123;</span><br><span class="line">            timer = <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="title function_">func</span>()</span><br><span class="line">                timer = <span class="literal">null</span></span><br><span class="line">            &#125;,deplay)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>var timer &#x3D; null</em></p>
+<p><em>!timer&#x3D;&#x3D;&#x3D;true</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/" data-id="cl4lccg0n00019cfogv4yghkf" data-title="防抖节流函数" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-创建js对象的几种方式和区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/19/%E5%88%9B%E5%BB%BAjs%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%92%8C%E5%8C%BA%E5%88%AB/" class="article-date">
@@ -611,112 +719,6 @@
 
 
   
-    <article id="post-预编译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" class="article-date">
-  <time class="dt-published" datetime="2022-06-18T08:35:14.743Z" itemprop="datePublished">2022-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/">预编译</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>上下文创建后，会生成变量对象VO，VO首先寻找变量声明，将var声明的变量作为VO对象的属性名，值为undefined，然后寻找函数声明，如果函数名和变量名冲突，函数声明会将变量名覆盖。js代码执行前的一段时期，在这个时期，会对js代码进行预处理</p>
-<p><strong>全局预编译</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">console.log(a)</span><br><span class="line">var a =100</span><br><span class="line">function a()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(a)</span><br><span class="line">//VO&#123;</span><br><span class="line">//a:undefined</span><br><span class="line">  a:funcA </span><br><span class="line">  a:100</span><br><span class="line">  //函数声明会覆盖变量声明</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>函数预编译</strong></p>
-<p>函数上下文创建以后会生成变量对象AO</p>
-<ol>
-<li>寻找变量声明，变量名作为AO对象的属性名，属性值为undefined</li>
-<li>寻找形参，形参名作为AO对象的属性名，属性值为undefined</li>
-<li>将实参的值赋给形参，函数名作为AO对象的属性名，属性值为函数本身，如果不冲突的话，变量还是undefined，只有在函数声明以后才会被赋值</li>
-<li>如果函数名和变量名冲突，那么函数声明将会覆盖变量声明</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function a(b,c)&#123;</span><br><span class="line">console.log(b)</span><br><span class="line">var b=0</span><br><span class="line">console.log(b)</span><br><span class="line">var b=function()&#123;</span><br><span class="line">console.log(&#x27;bbbb&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">console.log(c)</span><br><span class="line">console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">a(1)</span><br><span class="line">---</span><br><span class="line">VO&#123;</span><br><span class="line">b:undefined =&gt; 1</span><br><span class="line">c:undefined</span><br><span class="line">&#125;</span><br><span class="line">执行结果：</span><br><span class="line">1</span><br><span class="line">0</span><br><span class="line">undefined</span><br><span class="line">function()&#123;</span><br><span class="line">console.log(&#x27;bbbb&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" data-id="cl4ju2jzq0002jwfodenjed37" data-title="预编译" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-作用域链" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="article-date">
-  <time class="dt-published" datetime="2022-06-18T07:32:01.177Z" itemprop="datePublished">2022-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">作用域链</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中</p>
-<p>当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a =1</span><br><span class="line">function fn()&#123;</span><br><span class="line">var b=a+1</span><br><span class="line">console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">console.dir(fn)</span><br><span class="line">//&#123;&#123;Scopes&#125;&#125;:Scopes[1] 0:Global</span><br><span class="line">fn()</span><br><span class="line">//b=2</span><br></pre></td></tr></table></figure>
-
-<p>在JavaScript中,当一个函数被调用的时候,就会产生一个特殊的对象:活动对象。这个对象中包含了参数列表和arguments对象等属性。由于活动对象是变量对象的特例,因此它包含变量对象所有的属性如变量定义,函数定义等。</p>
-<p>假设在全局环境下定义了函数pub（）和变量pubvar：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pubvar = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pub</span> () &#123;</span><br><span class="line">  <span class="keyword">var</span> pravar = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> pubvar + pravar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="title function_">pub</span>(<span class="number">2</span>));     <span class="comment">//调用pub()函数</span></span><br></pre></td></tr></table></figure>
-
-<p>此时后台会创建一个作用域链（scope chain），这个作用域链包含了全局环境的变量对象并被保存在pub（）函数内部的scope属性中。<strong>但是，当我们打开浏览器的时候已经存在了一个全局的执行环境，这个全局的执行环境属于浏览器，JS里浏览器被称为window对象，我们把这个环境叫做A环境，只要没有关闭浏览器，A环境会一直存在</strong>下面会提到执行环境什么时候会被创建。</p>
-<p>我们用色块表示执行环境，链条表示作用域链，作用域链上半部分是活动对象区域，下半部分是变量对象区域，如下图：</p>
-<p><img src="https://pic3.zhimg.com/50/f20a5f2137716e4936490704018ddd27_720w.jpg?source=1940ef5c" alt="img"></p>
-<p>当我们要调用pub（）函数的时候，<strong>又会创建一个执行环境B</strong>，没错，执行环境如其名是在运行和执行代码的时候才存在的，所以我们运行浏览器的时候会创建全局的执行环境。这个时候根据pub（）函数scope属性中的作用域链把pub（）函数内的变量对象放入新的B环境中，作用域链也得到更新，如下图：</p>
-<p><img src="https://pica.zhimg.com/50/32541193ee5c7900e5137c245f4dfe32_720w.jpg?source=1940ef5c" alt="img"></p>
-<p><strong>上图的虚线表示正在执行，全局变量对象此时处于作用域链的第二位，所以标号变成了1。****你可能也注意到那个arguments对象，它是在函数被创建的时候就一直存在的，无需用户创建。arguments对象保存的是函数圆括号内定义的参数，准确来说保存的是参数的值，因这里我们没有设置参数，所以显示未定义。</strong></p>
-<p><strong>此时我们把属于B环境的变量对象（也就是pub（）函数中的所有函数和变量）叫做活动对象。</strong></p>
-<p><strong>因此我们可以说变量对象包含了活动对象，活动对象就是作用域链上正在被执行和引用的变量对象。我们从活动对象的名称中也能看出 “执行、运行、激活” 等意味。你可以这样理解，整个代码的运行总有一个起始的对象吧，不管这个起始是变量还是函数，总要有一个称呼，虽然我们把执行环境中的变量和函数的总称叫做变量对象，但这不能反映代码的动态性，为了区别于普通的变量对象，我们创造了活动对象的概念。</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" data-id="cl4jmii490001bcfo4pmhcxst" data-title="作用域链" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -753,6 +755,14 @@
       <ul>
         
           <li>
+            <a href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">web性能优化</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">防抖节流函数</a>
+          </li>
+        
+          <li>
             <a href="/2022/06/19/%E5%88%9B%E5%BB%BAjs%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%92%8C%E5%8C%BA%E5%88%AB/">创建js对象的几种方式和区别</a>
           </li>
         
@@ -762,14 +772,6 @@
         
           <li>
             <a href="/2022/06/19/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/">同源策略</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/18/Ajax/">Ajax</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/18/Event-Loop/">Event Loop事件循环</a>
           </li>
         
       </ul>
