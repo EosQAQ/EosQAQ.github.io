@@ -71,6 +71,311 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Ajax" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/Ajax/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T14:26:06.000Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/Ajax/">Ajax</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>ajax使用的优点</strong></p>
+<p>网页应用能够快速地将增量更新呈现在用户界面上，使用局部刷新，而不需要重载(刷新)整个页面，这使得程序可以更快地回应用户地操作。</p>
+<p>ajax的实现原理</p>
+<ol>
+<li><p>创建Ajax对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var xhr=new XMLHttpRequest()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>传入请求方式和请求地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&#x27;get&#x27;,&#x27;http://127.0.0.1:3000/getData&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>发送请求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>获取服务器与客户端的响应数据,回调函数</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xhr.onload=function()&#123;</span><br><span class="line">//容易出现跨域问题</span><br><span class="line">console.log(xhr.reponseText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/Ajax/" data-id="cl4jz4h6x00005gfode8k6r7x" data-title="Ajax" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Event-Loop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/Event-Loop/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T12:41:02.000Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/Event-Loop/">Event Loop事件循环</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>js是一门单线程解释型编程语言，它的异步和多线程是通过EventLoop实现的</p>
+<p>创建执行上下文&#x3D;&gt;创建作用域&#x3D;&gt;创建变量对象和活动对象&#x3D;&gt;预编译&#x3D;&gt;执行代码</p>
+<p><strong>js的执行上下文</strong></p>
+<ol>
+<li>全局执行上下文</li>
+<li>函数执行上下文</li>
+<li>eval函数创建的执行上下文</li>
+</ol>
+<p><strong>宏任务和微任务</strong></p>
+<p>宏任务：setTimeout,setInterval,Ajax,Dom事件</p>
+<p>微任务：Promise</p>
+<p>微任务的优先级是大于宏任务的</p>
+<p>执行栈全部完成以后，先看微任务队列，微任务队列完成以后看消息队列即宏任务</p>
+<p><strong>事件循环概念</strong></p>
+<p>在主线程中碰到异步任务时，会以task的形式存在于事件循环中，当所有同步任务完成以后，异步任务会放入主线程中同步执行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/Event-Loop/" data-id="cl4jwg0e10000nwfo1g069uy3" data-title="Event Loop事件循环" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-this" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/this/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T12:21:36.000Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/this/">this</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>this的使用场景</strong></p>
+<ol>
+<li><p>在一般的函数中(没有实例来调用这个函数)，this指向的时window</p>
+</li>
+<li><p>在构造函数中，this指向的是实例化的对象</p>
+</li>
+<li><p>作为对象方法调用，this指向调用对象</p>
+</li>
+<li><p>call和apply的调用，this指向第一个调用的对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var x=2</span><br><span class="line">function fn()&#123;</span><br><span class="line">console.log(this.x)</span><br><span class="line">&#125;</span><br><span class="line">var obj1=&#123;</span><br><span class="line">x:1</span><br><span class="line">&#125;</span><br><span class="line">var obj2=&#123;&#125;</span><br><span class="line">obj2.fn=fn</span><br><span class="line">obj2.fn.apply()</span><br><span class="line">---</span><br><span class="line">2</span><br><span class="line">//这里this指向了window</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>js中的apply和call方法</strong></p>
+<p>每个函数都包含两个非继承而来的方法：call()方法和apply()方法。</p>
+<p> 相同点： 这两个方法的作用是一样的。</p>
+<p>都是在特定的作用域中调用函数，等于设置函数体内this对象的值，以扩充函数赖以运行的作用域。</p>
+<p>一般来说，this总是指向调用某个方法的对象，但是使用call()和apply()方法时，就会改变this的指向。</p>
+<p>不同点： 接收参数的方式不同。<br>apply()方法 接收两个参数，一个是函数运行的作用域（this），另一个是参数数组。<br>语法：apply([thisObj [,argArray] ]);，调用一个对象的一个方法，2另一个对象替换当前对象。</p>
+<p>说明：如果argArray不是一个有效数组或不是arguments对象，那么将导致一个<br>TypeError，如果没有提供argArray和thisObj任何一个参数，那么Global对象将用作thisObj。</p>
+<p>call()方法 第一个参数和apply()方法的一样，但是传递给函数的参数必须列举出来。<br>语法：call([thisObject[,arg1 [,arg2 [,…,argn]]]]);，应用某一对象的一个方法，用另一个对象替换当前对象。</p>
+<p>说明： call方法可以用来代替另一个对象调用一个方法，call方法可以将一个函数的对象上下文从初始的上下文改变为thisObj指定的新对象，如果没有提供thisObj参数，那么Global对象被用于thisObj。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function add(c,d)&#123;</span><br><span class="line"> 	return this.a + this.b + c + d;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> var s = &#123;a:1, b:2 &#125;;</span><br><span class="line"> console.log(add.call(s,3,4)); // 1+2+3+4 = 10</span><br><span class="line"> console.log(add.apply(s,[5,6])); // 1+2+5+6 = 14 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/this/" data-id="cl4jwhzfy0000ssfo2hqu5gkn" data-title="this" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-闭包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E9%97%AD%E5%8C%85/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T12:00:36.229Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/%E9%97%AD%E5%8C%85/">闭包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>能够访问到其他函数作用域中的对象的函数统称为闭包</p>
+<p>嵌套</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">var a=1</span><br><span class="line">function fn1()&#123;</span><br><span class="line">console.log(a+1)</span><br><span class="line">&#125;</span><br><span class="line">fn1()</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br><span class="line">---</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>callback回调函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn(cb)&#123;</span><br><span class="line">var a=1</span><br><span class="line">cb(a)</span><br><span class="line">&#125;</span><br><span class="line">function callback()&#123;</span><br><span class="line">console.log(a+1)</span><br><span class="line">&#125;</span><br><span class="line">fn(callback)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>底层原理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function books()&#123;</span><br><span class="line">var book = &#x27;书包里面的书本&#x27;</span><br><span class="line">return function()&#123;</span><br><span class="line">console.log(book)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">//bag这里拿到的是一个匿名函数</span><br><span class="line">var bag=books()</span><br><span class="line">//对匿名函数的一个调用</span><br><span class="line">bag()</span><br><span class="line">---</span><br><span class="line">书包里面的书本</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>全局执行上下文创建作用域链的时候，作用域链里面包含了全局变量对象：[作用域链]:[全局变量对象]</li>
+<li>books函数调用时创建作用域链，具体操作为先复制全局作用域，然后创建活动对象AO推入当前作用域的顶端，[作用域链:[books活动变量，全局变量对象]]，books函数执行完毕以后当前作用域会被销毁  <em>属于books环境的变量对象(也就是pub()函数中所有的函数和变量)叫做活动对象</em></li>
+<li>bag函数调用创建作用域的时候，首先复制上层作用域，然后创建AO推入当前作用域的顶端[作用域链：[匿名函数func，books活动变量，全局变量对象]]，bag函数执行完毕以后当前作用域就会被销毁</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E9%97%AD%E5%8C%85/" data-id="cl4ju2jzo0001jwfoe6t3a7it" data-title="闭包" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-深拷贝和浅拷贝" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T10:31:51.501Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">深拷贝和浅拷贝</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>js的数据类型</strong></p>
+<p>基本数据类型：</p>
+<p>string,number,boolean,null,undefined</p>
+<p>引用数据类型</p>
+<p>object(Array,Object,Function,Map,Set)</p>
+<p>堆内存：</p>
+<p>在堆内存中开辟一块空间专门存放引用数据类型具体的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0x123=&gt;&#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>栈内存：</p>
+<p>基本数据类型存在栈内存中，变量：a  值： 1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a=1</span><br></pre></td></tr></table></figure>
+
+<p>引用数据类型的变量名存放在栈内存中，变量：obj  值：0x123(地址)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj= &#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>深浅拷贝的实现</strong></p>
+<p>浅拷贝指挥拷贝引用数据类型的地址，当某个数据被修改以后，也会影响到另一个拷贝的数据</p>
+<p>实例：obj和obj1都指向同一个堆内存内的地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=obj</span><br><span class="line">obj1.name=&#x27;ls&#x27;</span><br><span class="line">console.log(obj.name)</span><br><span class="line">console.log(obj1.name)</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">ls</span><br><span class="line">ls</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<p>深拷贝会拷贝多层，对于每一级数据都会拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=&#123;&#125;</span><br><span class="line">for(var i in obj)&#123;</span><br><span class="line">obj1[i]=pbj[i]</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>实现深拷贝的库</strong></p>
+<p>lodash库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var deep=_.cloneDeep(obj1)</span><br><span class="line">console.log(deep===obj1)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用js原生写深拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json.parse(json.stringfy.parse(obj))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="cl4ju2jzk0000jwfodjd0eufq" data-title="深拷贝和浅拷贝" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-预编译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" class="article-date">
@@ -388,23 +693,23 @@
       <ul>
         
           <li>
-            <a href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">web性能优化</a>
+            <a href="/2022/06/20/Map/">Map</a>
           </li>
         
           <li>
-            <a href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">防抖节流函数</a>
+            <a href="/2022/06/20/Set/">Set</a>
           </li>
         
           <li>
-            <a href="/2022/06/19/%E5%88%9B%E5%BB%BAjs%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%92%8C%E5%8C%BA%E5%88%AB/">创建js对象的几种方式和区别</a>
+            <a href="/2022/06/20/Symbol/">Symbol</a>
           </li>
         
           <li>
-            <a href="/2022/06/19/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a>
+            <a href="/2022/06/20/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">解构赋值</a>
           </li>
         
           <li>
-            <a href="/2022/06/19/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/">同源策略</a>
+            <a href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/">let,const var暂时性死区</a>
           </li>
         
       </ul>

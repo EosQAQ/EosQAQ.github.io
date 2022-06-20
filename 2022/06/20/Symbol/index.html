@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Symbol | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Symbol是es6新增的一种基本数据类型，只要是用于保证每一个对象属性的名字都是独一无二的 symbol函数可以接受一个字符串作为参数，表示对symbol实例的描述，主要是为了在控制台输出，或者转化为字符串时，比较容易曲风。 1234let s1&#x3D;Symbol(&amp;#x27;1&amp;#x27;)let s2&#x3D;Symbol(&amp;#x27;2&amp;#x27;)s1s2  Symbol参数是一个对象时，就会调用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Symbol">
+<meta property="og:url" content="http://example.com/2022/06/20/Symbol/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Symbol是es6新增的一种基本数据类型，只要是用于保证每一个对象属性的名字都是独一无二的 symbol函数可以接受一个字符串作为参数，表示对symbol实例的描述，主要是为了在控制台输出，或者转化为字符串时，比较容易曲风。 1234let s1&#x3D;Symbol(&amp;#x27;1&amp;#x27;)let s2&#x3D;Symbol(&amp;#x27;2&amp;#x27;)s1s2  Symbol参数是一个对象时，就会调用">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-20T08:45:14.000Z">
+<meta property="article:modified_time" content="2022-06-20T10:59:37.296Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Symbol" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/20/Symbol/" class="article-date">
+  <time class="dt-published" datetime="2022-06-20T08:45:14.000Z" itemprop="datePublished">2022-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Symbol
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p> Symbol是es6新增的一种基本数据类型，只要是用于保证每一个对象属性的名字都是独一无二的</p>
+<p>symbol函数可以接受一个字符串作为参数，表示对symbol实例的描述，主要是为了在控制台输出，或者转化为字符串时，比较容易曲风。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let s1=Symbol(&#x27;1&#x27;)</span><br><span class="line">let s2=Symbol(&#x27;2&#x27;)</span><br><span class="line">s1</span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
+
+<p>Symbol参数是一个对象时，就会调用该对象的toString方法，将其转化为字符串，然后才生成一个Symbol值</p>
+<p>Symbol函数的参数只是对当前Symbol值的描述，所以相同参数的Symbol函数的返回值是不一样的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;a:1&#125;</span><br><span class="line">let b = &#123;b:1&#125;</span><br><span class="line">let s1=Symbol(a)</span><br><span class="line">let s2=Symbol(b)</span><br><span class="line">let o = &#123;&#125;</span><br><span class="line">o[s1]=1</span><br><span class="line">o[s2]=2</span><br><span class="line">//如果不使用symbol的话，那么obja和objb在转换成字符串以后都是相同的，所以属性值会覆盖，但是使用symbol了以后就不会</span><br></pre></td></tr></table></figure>
+
+<p>对象的Symbol.iterator属性</p>
+<p>这是指向对象的默认遍历器方法,对象进行for of循环时，会调用Symbol.iretator方法返回该对象的默认遍历器</p>
+<p>Object.getOwnPropertySymbols方法</p>
+<p>可以获得只当对象的所有Symbol属性名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;a:1&#125;</span><br><span class="line">let b = &#123;b:1&#125;</span><br><span class="line">let s1=Symbol(a)</span><br><span class="line">let s2=Symbol(b)</span><br><span class="line">let o = &#123;&#125;</span><br><span class="line">o[s1]=1</span><br><span class="line">o[s2]=2</span><br><span class="line">const objectStmbol=Object.getOwnPropertySymbols(o)</span><br><span class="line">---</span><br><span class="line">Symbol(s1) Symbol(s2)</span><br></pre></td></tr></table></figure>
+
+<p><strong>应用</strong></p>
+<p>私有属性，用symbol定义的属性名是在外界访问不到的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let private = Symbol(&#x27;private&#x27;)</span><br><span class="line">var obj = &#123;</span><br><span class="line">[private]:&#x27;私有属性&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>枚举</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const one = 1</span><br><span class="line">const two = 2</span><br><span class="line">//使用symbol的话就可以支持一样的变量名</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/20/Symbol/" data-id="cl4mp48jj0002c0fohnt8go7x" data-title="Symbol" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/20/Set/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Set
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/20/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">解构赋值</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/20/Map/">Map</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/20/Set/">Set</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/20/Symbol/">Symbol</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/20/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/">let,const var暂时性死区</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

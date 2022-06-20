@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>let,const var暂时性死区 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="let，const声明的变量不会发生变量提升，但var声明的变量就可以，变量在声明前就可以使用，值为undefined，原因是因为预编译的时候就已经把变量存入变量对象中。 暂时性死区 在代码块内使用let命令声明变量之前，变量时不能被使用的，在语法上称为暂时性死区TDZ let是不能被重复声明的。 1234function(b)&amp;#123;let b&amp;#125;&#x2F;&#x2F;报错    块级作用域 允许块级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="let,const var暂时性死区">
+<meta property="og:url" content="http://example.com/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="let，const声明的变量不会发生变量提升，但var声明的变量就可以，变量在声明前就可以使用，值为undefined，原因是因为预编译的时候就已经把变量存入变量对象中。 暂时性死区 在代码块内使用let命令声明变量之前，变量时不能被使用的，在语法上称为暂时性死区TDZ let是不能被重复声明的。 1234function(b)&amp;#123;let b&amp;#125;&#x2F;&#x2F;报错    块级作用域 允许块级">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-20T07:34:34.000Z">
+<meta property="article:modified_time" content="2022-06-20T07:59:34.842Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-let-const-var暂时性死区" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/" class="article-date">
+  <time class="dt-published" datetime="2022-06-20T07:34:34.000Z" itemprop="datePublished">2022-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      let,const var暂时性死区
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>let，const声明的变量不会发生变量提升，但var声明的变量就可以，变量在声明前就可以使用，值为undefined，原因是因为预编译的时候就已经把变量存入变量对象中。</p>
+<p><strong>暂时性死区</strong></p>
+<p>在代码块内使用let命令声明变量之前，变量时不能被使用的，在语法上称为暂时性死区TDZ</p>
+<p>let是不能被重复声明的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(b)&#123;</span><br><span class="line">let b</span><br><span class="line">&#125;</span><br><span class="line">//报错</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>块级作用域</strong></p>
+<p>允许块级作用域的任意嵌套，但是每一层都是一个单独的作用域，每一层中的数据不互通。</p>
+<p>应用场景：</p>
+<p>内层变量可能会覆盖外面的变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var date= new Date()</span><br><span class="line">function f()&#123;</span><br><span class="line">//var date</span><br><span class="line">console.log(date)</span><br><span class="line">if(true)&#123;</span><br><span class="line">var date=&#x27;1&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>循环内部的计数变量泄露为全局变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4]</span><br><span class="line">for(var i = 0;i&lt;arr.length;i++)&#123;</span><br><span class="line">console.log(arr[i])</span><br><span class="line">&#125;</span><br><span class="line">console.log(i)</span><br><span class="line">---</span><br><span class="line">1 2 3 4 4</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>const特殊之处</strong></p>
+<p>const一旦声明就不能被改变，并且必须要给一个初始值。</p>
+<p>但如果const后面是一个引用数据类型，那么地址是在栈里面不能够改变，但是真正的数据是存放在堆里面的，也就可以改变。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const obj=&#123;&#125;</span><br><span class="line">obj.name=&#x27;123&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><em>for循环内部变量 i 和循环变量 i 不在同一个作用域中。</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/" data-id="cl4mp48jj0003c0fobzjv39im" data-title="let,const var暂时性死区" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/20/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          解构赋值
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">web性能优化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/20/Map/">Map</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/20/Set/">Set</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/20/Symbol/">Symbol</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/20/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">解构赋值</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/">let,const var暂时性死区</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
