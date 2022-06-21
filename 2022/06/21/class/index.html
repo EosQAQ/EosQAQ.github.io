@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>class | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="class可以理解为语法糖，将js只能通过构造函数创建实例的方法进行了补充 1234567class Person &amp;#123;constructor(name,age)&amp;#123;this.name&#x3D;namethis.age&#x3D;age&amp;#125;&amp;#125;new Person(&amp;#x27;z3&amp;#x27;,18)  class的特性  class的数据类型是一个函数 1console.log(t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="class">
+<meta property="og:url" content="http://example.com/2022/06/21/class/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="class可以理解为语法糖，将js只能通过构造函数创建实例的方法进行了补充 1234567class Person &amp;#123;constructor(name,age)&amp;#123;this.name&#x3D;namethis.age&#x3D;age&amp;#125;&amp;#125;new Person(&amp;#x27;z3&amp;#x27;,18)  class的特性  class的数据类型是一个函数 1console.log(t">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-21T11:57:42.000Z">
+<meta property="article:modified_time" content="2022-06-21T12:45:43.540Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-class" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/21/class/" class="article-date">
+  <time class="dt-published" datetime="2022-06-21T11:57:42.000Z" itemprop="datePublished">2022-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      class
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>class可以理解为语法糖，将js只能通过构造函数创建实例的方法进行了补充</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">constructor(name,age)&#123;</span><br><span class="line">this.name=name</span><br><span class="line">this.age=age</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">new Person(&#x27;z3&#x27;,18)</span><br></pre></td></tr></table></figure>
+
+<p><strong>class的特性</strong></p>
+<ol>
+<li><p>class的数据类型是一个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof(class A&#123;&#125;))</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>class的原型的constructor指向class</p>
+</li>
+<li><p>通过new关键字创建的实例的constructor指向class，类似于原型链</p>
+</li>
+<li><p>class内部的方式实际上都是定义在类的prototype上</p>
+</li>
+<li><p>通过类创建的对象的本质是调用类的constructor，如果类没有定义constructor，那么会在使用的时候默认添加</p>
+</li>
+<li><p>class不能直接调用，需要使用new关键字，这是class虽然是函数，但是和函数不同的地方</p>
+</li>
+<li><p>class内部的方法指向的是实例，class内部是严格模式，没有调用者的话函数内部的this就是undefined，在严格模式下也是不存在变量提升的，使用箭头函数的话就可以让class内部的方法中的this指向class实例，但是同时class里面的属性就会跑到实例上而非prototype上。</p>
+</li>
+<li><p>getter和setter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">constructor(name)&#123;</span><br><span class="line">this.name = name</span><br><span class="line">&#125;</span><br><span class="line">get=()=&gt;&#123;</span><br><span class="line">return this.name</span><br><span class="line">&#125;</span><br><span class="line">set=(Name)=&gt;&#123;</span><br><span class="line">this.name = Name</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态设置属性名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let method = &#x27;test&#x27;</span><br><span class="line">class A&#123;</span><br><span class="line">[method]=()=&gt;&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过在属性和方法前面添加关键字static，这些属性和方法就不会被实例继承，只能通过【类名.属性名&#x2F;方法名】的方式来获取,静态方法指向的是类而不是类的实例，同时静态方法是允许重复命名的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">static a = 1</span><br><span class="line">static fn()&#123;&#125;</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>class的继承</strong></p>
+<p>class的继承使用过extends实现的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class F&#123;</span><br><span class="line">a=1</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class S extends F&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(new S())</span><br></pre></td></tr></table></figure>
+
+<p>如果是属性，就会直接继承在当前的实例上。方法会保留在类的原型上。</p>
+<p>如果子类写了constructor，那么就必须要调用super()方法，在super调用前子类是没有this的。否则会报错，如果不写constructor那么就会隐式地调用。</p>
+<p>子类调用super会触发父类的constructor并将参数传递过去</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class F&#123;</span><br><span class="line">constructor(sname)&#123;</span><br><span class="line">this.sname=sname</span><br><span class="line">&#125;</span><br><span class="line">a=1</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class S extends F&#123;</span><br><span class="line">constructor(name)&#123;</span><br><span class="line">super(name)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(new S(&#x27;z3&#x27;))</span><br><span class="line">S.prototype.__proto__===F.protorype</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/21/class/" data-id="cl4o61a1r0003vkfo8uan4xt2" data-title="class" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/06/21/async%E5%92%8Cawait/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">async和await</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/21/class/">class</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/async%E5%92%8Cawait/">async和await</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/Promise/">Promise</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/">箭头函数和方法扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/">Iterator和for...of循环</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

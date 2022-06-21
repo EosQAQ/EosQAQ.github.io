@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>箭头函数和方法扩展 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="传统函数声明 声明式：function fn(){} 表达式： var fn &#x3D; function(){} 箭头函数 var fn &#x3D; ()&#x3D;&gt;{} 如果参数只有一个参数只有一个可以省略（） 如果函数体只有一句return加表达式的话{}和return可以省略 1var fn &#x3D; v &#x3D;&gt; v+1  如果返回值并不是表达式的话可以使用（）来包裹起来同时可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="箭头函数和方法扩展">
+<meta property="og:url" content="http://example.com/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="传统函数声明 声明式：function fn(){} 表达式： var fn &#x3D; function(){} 箭头函数 var fn &#x3D; ()&#x3D;&gt;{} 如果参数只有一个参数只有一个可以省略（） 如果函数体只有一句return加表达式的话{}和return可以省略 1var fn &#x3D; v &#x3D;&gt; v+1  如果返回值并不是表达式的话可以使用（）来包裹起来同时可以">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-21T07:09:54.000Z">
+<meta property="article:modified_time" content="2022-06-21T12:47:06.489Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-箭头函数和方法扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/" class="article-date">
+  <time class="dt-published" datetime="2022-06-21T07:09:54.000Z" itemprop="datePublished">2022-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      箭头函数和方法扩展
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>传统函数声明</p>
+<p>声明式：function fn(){}</p>
+<p>表达式： var fn &#x3D; function(){}</p>
+<p>箭头函数</p>
+<p>var fn &#x3D; ()&#x3D;&gt;{}</p>
+<p>如果参数只有一个参数只有一个可以省略（）</p>
+<p>如果函数体只有一句return加表达式的话{}和return可以省略</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fn = v =&gt; v+1</span><br></pre></td></tr></table></figure>
+
+<p>如果返回值并不是表达式的话可以使用（）来包裹起来同时可以省略return</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fn  = v =&gt;(&#123;obj:v&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>箭头函数与普通函数的区别</strong></p>
+<ol>
+<li><p>箭头函数是没有this的，它的this是从作用域链上一层继承来的，同时也无法通过call和apply来改变this的指向</p>
+</li>
+<li><p>不能作为构造函数，没有protorypep属性</p>
+</li>
+<li><p>没有arguments对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">Arguments(3)&#123;1,2,3&#125;</span><br><span class="line"></span><br><span class="line">var foo = () =&gt;&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">报错</span><br></pre></td></tr></table></figure>
+
+<p>想要获取箭头函数的参数列表可以使用…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo = (...arguments) =&gt;&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">(3)&#123;1,2,3&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>不能使用yield命令，所以箭头函数不能作为Generator函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//generator函数</span><br><span class="line">function *fn()&#123;</span><br><span class="line">yield 1;</span><br><span class="line">yield 2;</span><br><span class="line">return 3</span><br><span class="line">&#125;</span><br><span class="line">var f = fn()</span><br><span class="line">console.log(f)</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">---</span><br><span class="line">fn&#123;...&#125;</span><br><span class="line">&#123;value:1,done:false&#125;</span><br><span class="line">&#123;value:2,done:false&#125;</span><br><span class="line">&#123;value:3,done:true&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>实际应用</strong></p>
+<p>在函数内部想要拿到外部实例的时候可以使用箭头函数，这样函数体中的this就直接指向了外部实例</p>
+<p>setTimeout，setInterval</p>
+<p><strong>函数扩展方法</strong></p>
+<ol>
+<li><p>给函数的参数指定默认值，es5</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,y)&#123;</span><br><span class="line">//如果y存在，那么就取y，如果y不存在，那么就y=1</span><br><span class="line">y = y||1</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>es6</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,y=1)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn (&#123;x,y=1&#125;)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(&#123;X:1&#125;)</span><br><span class="line">//先解构，然后再赋一个默认值</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>通过rest参数获取函数的多余参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,...y)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(1,2,3,4)</span><br><span class="line">---</span><br><span class="line">1</span><br><span class="line">2,3,4</span><br></pre></td></tr></table></figure>
+
+<p>…y称为rest参数，是所有未被定义的实参的参数数组集合，也一样可以解构赋值。如果参数是对象的话那么就是所有未被定义的属性所形成的一个新的对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn(&#123;x,...y&#125;)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(&#123;x:1,a:2,b:3&#125;)</span><br><span class="line">---</span><br><span class="line">1</span><br><span class="line">&#123;a:2,b:3&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/" data-id="cl4o61a1s0004vkfo1pdz6779" data-title="箭头函数和方法扩展" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/21/Promise/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Promise
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Iterator和for...of循环</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/21/class/">class</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/async%E5%92%8Cawait/">async和await</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/Promise/">Promise</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/">箭头函数和方法扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/">Iterator和for...of循环</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Promise | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="promise是异步编程的一种解决方案 1234567const promise &#x3D; new Promise(function(resolve,reject)&amp;#123;if(&#x2F;*异步操作成功*&#x2F;)&amp;#123;resolve(value)&amp;#125;else&amp;#123;reject(error)&amp;#125;&amp;#125;)  Promise的三种状态 待定（pending）：初始状态，没有被兑现，也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise">
+<meta property="og:url" content="http://example.com/2022/06/21/Promise/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="promise是异步编程的一种解决方案 1234567const promise &#x3D; new Promise(function(resolve,reject)&amp;#123;if(&#x2F;*异步操作成功*&#x2F;)&amp;#123;resolve(value)&amp;#125;else&amp;#123;reject(error)&amp;#125;&amp;#125;)  Promise的三种状态 待定（pending）：初始状态，没有被兑现，也">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-21T09:00:19.000Z">
+<meta property="article:modified_time" content="2022-06-21T12:48:24.106Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/21/Promise/" class="article-date">
+  <time class="dt-published" datetime="2022-06-21T09:00:19.000Z" itemprop="datePublished">2022-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Promise
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>promise是异步编程的一种解决方案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">if(/*异步操作成功*/)&#123;</span><br><span class="line">resolve(value)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">reject(error)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Promise的三种状态</p>
+<p>待定（pending）：初始状态，没有被兑现，也没有被拒绝</p>
+<p>已兑现（fufilled）：意味着操作成功</p>
+<p>已拒绝（rejected）：意味着操作失败</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const promise =new Promise((resolve,reject)=&gt;&#123;&#125;)</span><br><span class="line">console.log(promise)//pending</span><br><span class="line">new Promise((resolve,reject)=&gt;&#123;resolve(&#x27;hello world&#x27;)&#125;).then(val=&gt;console.log(val))//resolve可以改变promise的状态，并且可以通过.then来拿到改变以后的结果</span><br><span class="line">new Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).then(err=&gt;console.log(err))//状态时rejected，返回的结果bad code</span><br></pre></td></tr></table></figure>
+
+<p>要想拿到使用reject改变以后的promise里面的值，除了使用.then方法以外同时可以使用catch</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).catch(fucntion(err)=&gt;console.log(err))</span><br></pre></td></tr></table></figure>
+
+<p>除了.catch.then还有.finally方法，只有再promise状态被改变了以后才会触发finally函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).then(err=&gt;console.log(err).finally(()=&gt;console.log(&#x27;promise状态变更&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p><strong>应用</strong></p>
+<p>把嵌套的回调函数改为链式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function counter(x,y,wait)</span><br><span class="line">&#123;</span><br><span class="line">return new Promise(function(resolve,reject)&#123;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">resolve(x+y)</span><br><span class="line">&#125;,wait)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">counter(1,2,1000).then(val=&gt;counter(val,1,1000)).then(num=&gt;console.log(num))</span><br></pre></td></tr></table></figure>
+
+<p><strong>Promise的方法</strong></p>
+<p>Promise.resolve(n)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve(2).then(2)((val)=&gt;&#123;</span><br><span class="line">console.log(val)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>返回的是一个状态为fulfilled的Promise对象并且有一个返回值为2</p>
+<p>等价于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Promise(function(resolve)&#123;</span><br><span class="line">resolve(2)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Promise.reject(n)方法返回一个带有拒绝原因的Promise对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise.reject(&#123;message:&quot;错误原因&quot;&#125;).catch((err)=&gt;console.log(err))</span><br></pre></td></tr></table></figure>
+
+<p>Promise.all()方法接受一个promise的iterable类型，（Array，Map，Set都属于ES6的iterable类型），返回一个promise实例</p>
+<p>只有再所有的promise状态都发生了变化以后才会拿到结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const promise1=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise2=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise3=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise4=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">Promise.all(promise1,promise2,promise3,promise4).then((val)=&gt;console.log(val))</span><br><span class="line">---</span><br><span class="line">两秒以后输出</span><br><span class="line">123 123 123 123</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/21/Promise/" data-id="cl4o61a1o0001vkfo8bsfen5c" data-title="Promise" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/21/async%E5%92%8Cawait/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          async和await
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">箭头函数和方法扩展</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/21/class/">class</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/async%E5%92%8Cawait/">async和await</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/Promise/">Promise</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/">箭头函数和方法扩展</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/">Iterator和for...of循环</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
