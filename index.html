@@ -171,7 +171,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>async可以让我们以一种更加简单的方式写出基于Promise的异步行为</p>
+        <p>async可以让我们以一种更加简单的方式写出基于Promise的异步行为,这样就可以不用写promise或者.then这类函数</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function p()&#123;</span><br><span class="line">return new Promise(resolve=&gt;&#123;</span><br><span class="line">setTimeout(()=&gt;&#123;</span><br><span class="line">resolve(&#x27;异步结果&#x27;)</span><br><span class="line">&#125;，1000)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">async function fn()&#123;</span><br><span class="line">const res = await p()</span><br><span class="line">console.log(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>async可以直接返回一个promise对象，状态是fufiled</p>
@@ -180,7 +180,7 @@
 <li><p>async函数内部会返回一个promise对象，如果不是promise，那么它会隐式地包装在promise中（Promise.resolve(‘不是promise的值’)）</p>
 </li>
 <li><p>await能获取到promise状态改变后地值，如果后面不是一个promise，那么await会把该值转换为已正常处理的（PromisePromise.resolve(‘不是promise的值’).then(()&#x3D;&gt;undefined）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">async function fn()&#123;</span><br><span class="line">await 1</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br><span class="line">//返回的结果是状态为fufiled，内容为undefined的promise对象</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">async function fn()&#123;</span><br><span class="line">const reponse = await fetch(&quot;http://...&quot;)</span><br><span class="line">const json = await response.json()</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
 
 
 </li>
@@ -227,7 +227,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>promise是异步编程的一种解决方案</p>
+        <p>promise是异步编程的一种解决方案，返回值是promise对象的都是异步函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;https://...&quot;).then((response)=&gt;reponse.json()).catch((error)=&gt;console.log(error))</span><br></pre></td></tr></table></figure>
+
+
+
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">if(/*异步操作成功*/)&#123;</span><br><span class="line">resolve(value)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">reject(error)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>Promise的三种状态</p>
