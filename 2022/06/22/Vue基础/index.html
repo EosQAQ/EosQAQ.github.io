@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Vue基础 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Vue安装方式  第一种是创建一个.html文件，然后使用script标签进行引入 1&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdeliver.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;  第二种是直接使用vue-cli模块化的方式。 1npm i vue-cli  Vue原理 el是element的缩写，初始化el中的标签作为vue的地盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue基础">
+<meta property="og:url" content="http://example.com/2022/06/22/Vue%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Vue安装方式  第一种是创建一个.html文件，然后使用script标签进行引入 1&lt;script src&#x3D;&quot;https:&#x2F;&#x2F;cdn.jsdeliver.net&#x2F;npm&#x2F;vue&quot;&gt;&lt;&#x2F;script&gt;  第二种是直接使用vue-cli模块化的方式。 1npm i vue-cli  Vue原理 el是element的缩写，初始化el中的标签作为vue的地盘">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-22T05:09:44.000Z">
+<meta property="article:modified_time" content="2022-06-22T13:24:10.061Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Vue基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/22/Vue%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2022-06-22T05:09:44.000Z" itemprop="datePublished">2022-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Vue基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>Vue安装方式</strong></p>
+<p> 第一种是创建一个.html文件，然后使用script标签进行引入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdn.jsdeliver.net/npm/vue&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>第二种是直接使用vue-cli模块化的方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vue-cli</span><br></pre></td></tr></table></figure>
+
+<p><strong>Vue原理</strong></p>
+<p>el是element的缩写，初始化el中的标签作为vue的地盘。</p>
+<p>在el初始化了以后的地方，<code>&#123;&#123; &#125;&#125;</code>就是模板语法-表达式（三目运算符也算是表达式）</p>
+<p>通过data属性可以把状态挂载到vue实例上，状态改变页面也会自动更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;box&quot;&gt;</span><br><span class="line">&#123;&#123;10+20&#125;&#125;</span><br><span class="line">&#123;&#123;10&gt;20?&quot;aaa&quot;:&quot;bbb&quot;&#125;&#125;</span><br><span class="line">&#123;&#123;myname&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">	el:&quot;#box&quot;,</span><br><span class="line">	data:&#123;</span><br><span class="line">		myname:&quot;kerwin&quot;//状态</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在vue中有方法监听到了状态被修改了，在这个方法中把dom也给修改了，但是这整个的过程是在vue内部执行的。所以Vue的原理是通过使用Object.defineProperty这个方法中的get方法和set方法的拦截去实现的。</p>
+<p>每个组件实例都对应一个watcher实例，它会在组件渲染的过程中把接触过的数据property记录为依赖，把节点和状态进行一一的关联，之后当依赖项的setter触发时，它会通知watcher，从而使他关联的组件重新渲染。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var mybox = document.getElementById(&#x27;box&#x27;)</span><br><span class="line">var obj = &#123;&#125;</span><br><span class="line">Object.defineProperty(obj,&quot;myname&quot;,&#123;</span><br><span class="line">	set(value)&#123;</span><br><span class="line">	console.log(&#x27;修改以后的值&#x27;,value)</span><br><span class="line">    mybox.innerHTML = value</span><br><span class="line">    &#125;,</span><br><span class="line">	get()&#123;</span><br><span class="line">	console.log(&#x27;有人访问了&#x27;,obox.innerHTML)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Vue会根据新老dom生成新老虚拟dom树进行比较找到最优解，然后去更新真实dom，从而尽量减少dom操作</p>
+<p><strong>mvvm架构模式</strong></p>
+<p>model：数据层</p>
+<p>view：视图层</p>
+<p>viewmodel：</p>
+<p>view层数据改变—&gt;通知viewmodel—&gt;model数据改变</p>
+<p>model数据改变—&gt;viewmodel做了getset拦截，自动得到通知，自动通知view层修改—&gt;view层修改数据</p>
+<p>解决了mvp大量的手动view和model同步的问题，提供了双向绑定机制，提高了代码的可维护性，对于大型的图形应用程序，视图状态较多，viewmodel的构建和维护的成本可能会比较高。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/22/Vue%E5%9F%BA%E7%A1%80/" data-id="cl4pmln400000z4fo06imdwu4" data-title="Vue基础" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/22/Vue%E8%AF%AD%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vue语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/21/class/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">class</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/22/%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/">模糊查询</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/22/%E6%95%B0%E7%BB%84%E6%A3%80%E6%B5%8B/">数组检测</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/22/todoList/">todoList</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/22/Vue%E8%AF%AD%E6%B3%95/">Vue语法</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/22/Vue%E5%9F%BA%E7%A1%80/">Vue基础</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
