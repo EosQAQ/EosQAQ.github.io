@@ -71,6 +71,178 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-表单控件绑定" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/23/%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E7%BB%91%E5%AE%9A/" class="article-date">
+  <time class="dt-published" datetime="2022-06-23T06:54:24.000Z" itemprop="datePublished">2022-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/23/%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E7%BB%91%E5%AE%9A/">表单控件绑定</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>表单控件绑定</p>
+<p>对于多选框来说，v-model绑定多个数据，那么v-model可以绑定一个数组，每次勾选都会把checkbox的value值放到checkGroup中，所以必须要给checkbox增加value</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot; v-model=&quot;checkGroup&quot; value=&quot;1&quot;/&gt;1</span><br><span class="line">&lt;input type=&quot;checkbox&quot; v-model=&quot;checkGroup&quot; value=&quot;2&quot;/&gt;2</span><br><span class="line">&lt;input type=&quot;checkbox&quot; v-model=&quot;checkGroup&quot; value=&quot;3&quot;/&gt;3</span><br><span class="line">&lt;button @click=&quot;handleSubmit()&quot;&gt;提交&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;</span><br><span class="line">checkGroup:[]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>对于只想知道某个checkbox是否勾选的话，可以通过双向绑定一个数组，如果只有一个的话也可以绑定一个布尔值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot; v-model=&quot;isRem&quot;/&gt;</span><br><span class="line">&lt;button @click=&quot;handleLogin()&quot;&gt;是否记住用户名&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;</span><br><span class="line">isRem = false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>单选框radio，可以绑定一个字符串，选中谁，那么字符串就是这个radio的value</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;radio&quot; v-model=&quot;selectGroup&quot; value=&quot;1&quot;/&gt;1</span><br><span class="line">&lt;input type=&quot;radio&quot; v-model=&quot;selectGroup&quot; value=&quot;2&quot;/&gt;2</span><br><span class="line">&lt;input type=&quot;radio&quot; v-model=&quot;selectGroup&quot; value=&quot;3&quot;/&gt;3</span><br><span class="line">&lt;button @click=&quot;handleSelect()&quot;&gt;提交&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;</span><br><span class="line">selectGroup = &quot;&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/23/%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E7%BB%91%E5%AE%9A/" data-id="cl4qpildw0002gofoc23gaepq" data-title="表单控件绑定" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-mixin" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/23/mixin/" class="article-date">
+  <time class="dt-published" datetime="2022-06-23T06:20:53.000Z" itemprop="datePublished">2022-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/23/mixin/">mixin</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>mixin混入：公共方法引入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">	methods:&#123;</span><br><span class="line">	handleClick()&#123;</span><br><span class="line">	console.log(&quot;1&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	computed:&#123;</span><br><span class="line">	total()&#123;</span><br><span class="line">		return &#x27;1234&#x27;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">	el:&quot;#box&quot;,</span><br><span class="line">	data:&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;,</span><br><span class="line">	mixins:[obj],//混入obj对象，可以复用obj里面的方法等，但是模式要相同</span><br><span class="line">	methods:&#123;</span><br><span class="line">	handleClick()&#123;</span><br><span class="line">	console.log(&quot;2&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>混入进来了以后如果命名冲突的话，那么自己定义的方法优先级更高。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/23/mixin/" data-id="cl4qpildr0000gofo32pxgtji" data-title="mixin" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-事件处理器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/23/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2022-06-23T05:34:03.000Z" itemprop="datePublished">2022-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/23/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/">事件处理器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>事件处理器</strong></p>
+<p>不需要传递参数，可以不写（），会自动传递一个event对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;handleClick&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>需要传递参数的时候要写（），且不会自动传递event对象，但是可以手动添加事件对象，<strong>实参有固定写法$event</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;handleClick($event,2)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以直接写代码,页面中不需要加this，但是只能写简单表达式，而且不太希望在页面解构中写太多逻辑减少可读性所以不推荐</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;count++&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>事件修饰符</strong></p>
+<p>阻止事件冒泡</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick(evt)&#123;</span><br><span class="line">//阻止冒泡，但是使用的是原生</span><br><span class="line">evt.stopPropagation()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修饰符</p>
+<p>.stop:阻止冒泡，在模态中应用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click.stop=&quot;handleClick&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>.prevent:阻止默认行为</p>
+<p>.capture:在捕获阶段触发方法</p>
+<p>.self:只有点击事件的事件源是自己的时候才会触发，所以不会阻止事件冒泡，但是不会触发点击事件</p>
+<p>.once:让方法只能执行一次</p>
+<p>.passive:将内核线程查询跳过，每次事件产生以后，浏览器都会去查询是否有preventDefault阻止该次事件的默认动作，我们加上.passive就是为了告诉浏览器不用查询了，我们没有使用preventDefalut阻止默认动作，一般用在滚动监听，@scroll,@toucnmove中，移动每个像素都会产生一次事件，使用.pressive可以大大提升滑动的流畅性。</p>
+<p>.enter:按键修饰符，只有按下特定的值才会执行方法,也有上下左右，空格shift，control等，也可以使用.键值来定义</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@keyup.13=&quot;handleKeyup&quot;</span><br></pre></td></tr></table></figure>
+
+<p>也可以两个按键修饰符一起使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@keyup.enter=&quot;handleKeyup&quot;</span><br></pre></td></tr></table></figure>
+
+<p>否则需要在函数体中使用keycode来定位按键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">handleKeyup(evt)&#123;</span><br><span class="line">if(evt.keycode===13)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/23/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/" data-id="cl4qpildu0001gofo2aklgahw" data-title="事件处理器" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-模糊查询" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/22/%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/" class="article-date">
@@ -472,248 +644,11 @@
 
 
   
-    <article id="post-Promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/21/Promise/" class="article-date">
-  <time class="dt-published" datetime="2022-06-21T09:00:19.000Z" itemprop="datePublished">2022-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/21/Promise/">Promise</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>promise是异步编程的一种解决方案，返回值是promise对象的都是异步函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;https://...&quot;).then((response)=&gt;reponse.json()).catch((error)=&gt;console.log(error))</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">if(/*异步操作成功*/)&#123;</span><br><span class="line">resolve(value)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">reject(error)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>Promise的三种状态</p>
-<p>待定（pending）：初始状态，没有被兑现，也没有被拒绝</p>
-<p>已兑现（fufilled）：意味着操作成功</p>
-<p>已拒绝（rejected）：意味着操作失败</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const promise =new Promise((resolve,reject)=&gt;&#123;&#125;)</span><br><span class="line">console.log(promise)//pending</span><br><span class="line">new Promise((resolve,reject)=&gt;&#123;resolve(&#x27;hello world&#x27;)&#125;).then(val=&gt;console.log(val))//resolve可以改变promise的状态，并且可以通过.then来拿到改变以后的结果</span><br><span class="line">new Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).then(err=&gt;console.log(err))//状态时rejected，返回的结果bad code</span><br></pre></td></tr></table></figure>
-
-<p>要想拿到使用reject改变以后的promise里面的值，除了使用.then方法以外同时可以使用catch</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).catch(fucntion(err)=&gt;console.log(err))</span><br></pre></td></tr></table></figure>
-
-<p>除了.catch.then还有.finally方法，只有再promise状态被改变了以后才会触发finally函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).then(err=&gt;console.log(err).finally(()=&gt;console.log(&#x27;promise状态变更&#x27;))</span><br></pre></td></tr></table></figure>
-
-<p><strong>应用</strong></p>
-<p>把嵌套的回调函数改为链式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function counter(x,y,wait)</span><br><span class="line">&#123;</span><br><span class="line">return new Promise(function(resolve,reject)&#123;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">resolve(x+y)</span><br><span class="line">&#125;,wait)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">counter(1,2,1000).then(val=&gt;counter(val,1,1000)).then(num=&gt;console.log(num))</span><br></pre></td></tr></table></figure>
-
-<p><strong>Promise的方法</strong></p>
-<p>Promise.resolve(n)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve(2).then(2)((val)=&gt;&#123;</span><br><span class="line">console.log(val)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>返回的是一个状态为fulfilled的Promise对象并且有一个返回值为2</p>
-<p>等价于</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Promise(function(resolve)&#123;</span><br><span class="line">resolve(2)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>Promise.reject(n)方法返回一个带有拒绝原因的Promise对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise.reject(&#123;message:&quot;错误原因&quot;&#125;).catch((err)=&gt;console.log(err))</span><br></pre></td></tr></table></figure>
-
-<p>Promise.all()方法接受一个promise的iterable类型，（Array，Map，Set都属于ES6的iterable类型），返回一个promise实例</p>
-<p>只有再所有的promise状态都发生了变化以后才会拿到结果</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const promise1=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise2=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise3=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise4=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">Promise.all(promise1,promise2,promise3,promise4).then((val)=&gt;console.log(val))</span><br><span class="line">---</span><br><span class="line">两秒以后输出</span><br><span class="line">123 123 123 123</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/21/Promise/" data-id="cl4o61a1o0001vkfo8bsfen5c" data-title="Promise" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-箭头函数和方法扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/" class="article-date">
-  <time class="dt-published" datetime="2022-06-21T07:09:54.000Z" itemprop="datePublished">2022-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/">箭头函数和方法扩展</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>传统函数声明</p>
-<p>声明式：function fn(){}</p>
-<p>表达式： var fn &#x3D; function(){}</p>
-<p>箭头函数</p>
-<p>var fn &#x3D; ()&#x3D;&gt;{}</p>
-<p>如果参数只有一个参数只有一个可以省略（）</p>
-<p>如果函数体只有一句return加表达式的话{}和return可以省略</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fn = v =&gt; v+1</span><br></pre></td></tr></table></figure>
-
-<p>如果返回值并不是表达式的话可以使用（）来包裹起来同时可以省略return</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fn  = v =&gt;(&#123;obj:v&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>箭头函数与普通函数的区别</strong></p>
-<ol>
-<li><p>箭头函数是没有this的，它的this是从作用域链上一层继承来的，同时也无法通过call和apply来改变this的指向</p>
-</li>
-<li><p>不能作为构造函数，没有protorypep属性</p>
-</li>
-<li><p>没有arguments对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">Arguments(3)&#123;1,2,3&#125;</span><br><span class="line"></span><br><span class="line">var foo = () =&gt;&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">报错</span><br></pre></td></tr></table></figure>
-
-<p>想要获取箭头函数的参数列表可以使用…</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo = (...arguments) =&gt;&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">(3)&#123;1,2,3&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>不能使用yield命令，所以箭头函数不能作为Generator函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//generator函数</span><br><span class="line">function *fn()&#123;</span><br><span class="line">yield 1;</span><br><span class="line">yield 2;</span><br><span class="line">return 3</span><br><span class="line">&#125;</span><br><span class="line">var f = fn()</span><br><span class="line">console.log(f)</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">---</span><br><span class="line">fn&#123;...&#125;</span><br><span class="line">&#123;value:1,done:false&#125;</span><br><span class="line">&#123;value:2,done:false&#125;</span><br><span class="line">&#123;value:3,done:true&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><strong>实际应用</strong></p>
-<p>在函数内部想要拿到外部实例的时候可以使用箭头函数，这样函数体中的this就直接指向了外部实例</p>
-<p>setTimeout，setInterval</p>
-<p><strong>函数扩展方法</strong></p>
-<ol>
-<li><p>给函数的参数指定默认值，es5</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,y)&#123;</span><br><span class="line">//如果y存在，那么就取y，如果y不存在，那么就y=1</span><br><span class="line">y = y||1</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>es6</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,y=1)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn (&#123;x,y=1&#125;)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(&#123;X:1&#125;)</span><br><span class="line">//先解构，然后再赋一个默认值</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>通过rest参数获取函数的多余参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,...y)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(1,2,3,4)</span><br><span class="line">---</span><br><span class="line">1</span><br><span class="line">2,3,4</span><br></pre></td></tr></table></figure>
-
-<p>…y称为rest参数，是所有未被定义的实参的参数数组集合，也一样可以解构赋值。如果参数是对象的话那么就是所有未被定义的属性所形成的一个新的对象。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn(&#123;x,...y&#125;)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(&#123;x:1,a:2,b:3&#125;)</span><br><span class="line">---</span><br><span class="line">1</span><br><span class="line">&#123;a:2,b:3&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/" data-id="cl4o61a1s0004vkfo1pdz6779" data-title="箭头函数和方法扩展" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Iterator和for-of循环" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/" class="article-date">
-  <time class="dt-published" datetime="2022-06-21T06:18:05.000Z" itemprop="datePublished">2022-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/">Iterator和for...of循环</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Iterator概念</p>
-<p>Iterator接口的目的就是为所有的数据结构提供一种统一的访问机制，即for of循环从而完成遍历的操作。当使用for…of循环时，该循环会自动调用Iterator的接口。</p>
-<p>for…of循环的遍历过程</p>
-<ol>
-<li>创建一个指针对象，指向当前数据结构的起始位置，因而遍历器本质上就是一个指针对象</li>
-<li>第一次调用指针对象的next方法，可以将指针指向数据结构的第一个成员</li>
-<li>第二次调用指针对象的next方法，可以将指针指向数据结构的第二个成员</li>
-<li>不断调用指针对象，直到它指向数据结构的最后结束位置</li>
-</ol>
-<p>每一次调用next方法返回一个包含value和done两个属性的对象</p>
-<p>其中value是当前成员的值，done属性是一个布尔值，表示遍历是否结束</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"><span class="keyword">var</span> it = <span class="title function_">makeIterator</span>(arr)</span><br><span class="line">it.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">//value:&#x27;1&#x27;,done:false</span></span><br><span class="line">it.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">//value:&#x27;2&#x27;,done:false</span></span><br><span class="line">it.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">//value:undefined,done:true</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">makeIterator</span>(<span class="params">arr</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> nextIndex = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">next</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">     <span class="keyword">return</span> nextIndex&lt;arr.<span class="property">length</span>?&#123;</span><br><span class="line">         <span class="attr">value</span>:arr[nextIndex++],<span class="attr">done</span>:<span class="literal">false</span></span><br><span class="line">     &#125;:&#123;</span><br><span class="line">         <span class="attr">value</span>:<span class="literal">undefined</span>,<span class="attr">done</span>:<span class="literal">true</span></span><br><span class="line">     &#125;</span><br><span class="line">    &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Iterator接口时部署在Symbol.iterator属性</strong></p>
-<p>如果一个数据结构具有Symbol.iterator属性，那么这个数据结构就是可便利的。</p>
-<p>Symbol.iterator属性本身是一种函数，就是当前数据结构的遍历器默认生成的一个函数，执行这个函数就会放回一个遍历器对象，（该对象的根本特征就是会具有next方法，每一次调用next()，都会返回一个代表当i请安成员的信息对象,这个对象具有value和done两个属性）</p>
-<p>对象的Symbol.iterator属性指向了该对象的默认遍历器方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">[Symbol.iterator] : function()&#123;</span><br><span class="line">return &#123;</span><br><span class="line">next:function()&#123;</span><br><span class="line">return &#123;</span><br><span class="line">value:1,</span><br><span class="line">done:true</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>如果要使用特殊的属性名，不能采用 . 的方式来操作</em></p>
-<p><em>需要使用另一种方式：语法：对象[“属性名”] &#x3D; 属性值</em></p>
-<p><em>读取时也需要采用这种方式</em></p>
-<p>example:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">[Symbol.iterator] : function()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">var it = arr[Symbol.iterator]()</span><br></pre></td></tr></table></figure>
-
-<p><strong>原生具备iterator接口的数据结构</strong></p>
-<p>Map,Set,Array,String,函数的arguments对象(伪数组)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var arr = [&#x27;1&#x27;,&#x27;2&#x27;]</span><br><span class="line">var it = arr[Symbol.iterator]()</span><br><span class="line">it.next()</span><br><span class="line">//value:&#x27;1&#x27;,done:false</span><br><span class="line">it.next()</span><br><span class="line">//value:&#x27;2&#x27;,done:false</span><br><span class="line">it.next()</span><br><span class="line">//value:undefined,done:true</span><br></pre></td></tr></table></figure>
-
-<p>对于原生部署了iterator的数据结构来说可以直接使用forof循环,但是如果没有iterator的接口的话(主要是数组),那么就要自己在[Symbol.iterator]上部署接口,这样才会被for…of循环</p>
-<p>对象不具备iterator接口的原因是对象哪一个属性先遍历,哪一个属性后遍历时不确定的,需要开发者手动部署</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"><span class="attr">data</span>:[<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>],</span><br><span class="line">[<span class="title class_">Symbol</span>.<span class="property">iterator</span>]:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> self = <span class="variable language_">this</span></span><br><span class="line"><span class="keyword">return</span>&#123;</span><br><span class="line">    <span class="attr">next</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(index&lt;self.<span class="property">data</span>.<span class="property">length</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>&#123;&#123;<span class="attr">value</span>:self.<span class="property">data</span>[index++],<span class="attr">done</span>:<span class="literal">false</span>&#125;&#125;</span><br><span class="line">&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;&#123;<span class="attr">value</span>:<span class="literal">undefined</span>,<span class="attr">done</span>:<span class="literal">true</span>&#125;&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/" data-id="cl4o61a1l0000vkfog8u7c8tz" data-title="Iterator和for...of循环" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -745,23 +680,23 @@
       <ul>
         
           <li>
+            <a href="/2022/06/23/%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E7%BB%91%E5%AE%9A/">表单控件绑定</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/23/mixin/">mixin</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/23/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/">事件处理器</a>
+          </li>
+        
+          <li>
             <a href="/2022/06/22/%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/">模糊查询</a>
           </li>
         
           <li>
             <a href="/2022/06/22/%E6%95%B0%E7%BB%84%E6%A3%80%E6%B5%8B/">数组检测</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/22/todoList/">todoList</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/22/Vue%E8%AF%AD%E6%B3%95/">Vue语法</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/22/Vue%E5%9F%BA%E7%A1%80/">Vue基础</a>
           </li>
         
       </ul>
