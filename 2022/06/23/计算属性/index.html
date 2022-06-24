@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>计算属性 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="计算属性 复杂逻辑，模板难以维护，使用计算属性可以简化逻辑。 计算缓存vsmethods  计算属性是基于它们的依赖进行缓存的 计算属性只有在它的相关依赖性发生改变的时候才会重新求值  dom节点中不适合放一串长代码，容易产生模板过重，难以维护 1&lt;div&gt;&amp;#123;&amp;#123;myname.toUpperCase()&amp;#125;&amp;#125;&lt;&#x2F;div&gt;    计算属性的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算属性">
+<meta property="og:url" content="http://example.com/2022/06/23/%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="计算属性 复杂逻辑，模板难以维护，使用计算属性可以简化逻辑。 计算缓存vsmethods  计算属性是基于它们的依赖进行缓存的 计算属性只有在它的相关依赖性发生改变的时候才会重新求值  dom节点中不适合放一串长代码，容易产生模板过重，难以维护 1&lt;div&gt;&amp;#123;&amp;#123;myname.toUpperCase()&amp;#125;&amp;#125;&lt;&#x2F;div&gt;    计算属性的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-23T11:08:32.000Z">
+<meta property="article:modified_time" content="2022-06-23T11:40:47.335Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-计算属性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/23/%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" class="article-date">
+  <time class="dt-published" datetime="2022-06-23T11:08:32.000Z" itemprop="datePublished">2022-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      计算属性
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>计算属性</p>
+<p>复杂逻辑，模板难以维护，使用计算属性可以简化逻辑。</p>
+<p>计算缓存vsmethods</p>
+<ul>
+<li>计算属性是基于它们的依赖进行缓存的</li>
+<li>计算属性只有在它的相关依赖性发生改变的时候才会重新求值</li>
+</ul>
+<p>dom节点中不适合放一串长代码，容易产生模板过重，难以维护</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;myname.toUpperCase()&#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>计算属性的用法</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;mytext&#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在调用的时候不要加（），同时在定义的时候就是一个有return值的函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">mytext()&#123;</span><br><span class="line">//基于依赖的改变会重新执行一次</span><br><span class="line">return this.myname.toUpperCase()</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但还是有区别的</p>
+<p>一个是methods可以不用return</p>
+<p>第二个即使多个地方使用计算属性，第一次以后计算属性就会存在缓存中而不会重复加载，而方法就是有几次加载几次，是没有缓存的。</p>
+<p>计算属性一般是不可以被赋值的，要在定义的时候自己定义一下set()，这时候传值也不会隐形mytext，但是可以找一个状态来改变这个计算属性。所以可以被赋值，但是几乎没有应用场景。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">mytext:&#123;</span><br><span class="line">get()&#123;</span><br><span class="line">return &quot;1234&quot;+myname</span><br><span class="line">&#125;,</span><br><span class="line">set(data)&#123;</span><br><span class="line">console.log(&quot;计算属性被赋值&quot;，data)</span><br><span class="line">this.name = data</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/23/%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" data-id="cl4sf5ru0000chsfobu3a2bz5" data-title="计算属性" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/23/watch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          watch
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/23/%E8%A1%A8%E5%8D%95%E4%BF%AE%E9%A5%B0%E7%AC%A6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">表单修饰符</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/24/transition/">transition</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/slot/">slot</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/">动态组件</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/">bus通信</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/">中间人模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>组件引入 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="组件引入 组件内部包括html，css，js 组件化的原因：扩展HTML元素，封装可复用的代码 组件注册方式： 全局注册 12345&lt;div&gt;&lt;navbar&gt;&lt;&#x2F;navbar&gt;&lt;navbar&gt;&lt;&#x2F;navbar&gt;&lt;navbar&gt;&lt;&#x2F;navbar&gt;&lt;&#x2F;div&gt;  命名在dom中要使用-，在js中使用驼峰 d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组件引入">
+<meta property="og:url" content="http://example.com/2022/06/23/%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="组件引入 组件内部包括html，css，js 组件化的原因：扩展HTML元素，封装可复用的代码 组件注册方式： 全局注册 12345&lt;div&gt;&lt;navbar&gt;&lt;&#x2F;navbar&gt;&lt;navbar&gt;&lt;&#x2F;navbar&gt;&lt;navbar&gt;&lt;&#x2F;navbar&gt;&lt;&#x2F;div&gt;  命名在dom中要使用-，在js中使用驼峰 d">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-23T12:32:02.000Z">
+<meta property="article:modified_time" content="2022-06-23T12:58:31.981Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-组件引入" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/23/%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5/" class="article-date">
+  <time class="dt-published" datetime="2022-06-23T12:32:02.000Z" itemprop="datePublished">2022-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      组件引入
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>组件引入</p>
+<p>组件内部包括html，css，js</p>
+<p>组件化的原因：扩展HTML元素，封装可复用的代码</p>
+<p>组件注册方式：</p>
+<p>全局注册</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;navbar&gt;&lt;/navbar&gt;</span><br><span class="line">&lt;navbar&gt;&lt;/navbar&gt;</span><br><span class="line">&lt;navbar&gt;&lt;/navbar&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>命名在dom中要使用-，在js中使用驼峰</p>
+<p>dom片段没有代码提示，没有高亮显示</p>
+<p>css只能写成行内的</p>
+<p>template内部只能包含一个根节点 </p>
+<p>组件时孤岛，无法直接访问外面的组件状态或者方法，只能通过组件通信来交互</p>
+<p>所有自定义组件中data必须是一个函数</p>
+<p>所有的组件都在一起，非常乱</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Vue.Componenet(&quot;navbar&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">navbar</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br><span class="line">methods:&#123;&#125;,</span><br><span class="line">computed:&#123;&#125;,</span><br><span class="line">data()&#123;</span><br><span class="line">return&#123;&#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>孩子组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.Componenet(&quot;child&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">child</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+
+<p>局部组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Vue.Componenet(&quot;navbar&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">navbar</span><br><span class="line">&lt;child&gt;&lt;/child&gt;</span><br><span class="line">&lt;navbar-child&gt;&lt;/navbar-child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br><span class="line">methods:&#123;&#125;,</span><br><span class="line">computed:&#123;&#125;,</span><br><span class="line">data()&#123;</span><br><span class="line">return&#123;&#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;&#125;,</span><br><span class="line">components:&#123;</span><br><span class="line">//局部定义,只能在navbar中使用</span><br><span class="line">&quot;navbarChild&quot;:&#123;</span><br><span class="line">template:`&lt;div&gt;navbarChild&lt;/div&gt;`</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/23/%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5/" data-id="cl4sf5rtz0009hsfofn0x4o2y" data-title="组件引入" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/24/%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          组件间通信
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/23/fetch-axios/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">fetch&amp;axios</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/24/transition/">transition</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/slot/">slot</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/">动态组件</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/">bus通信</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/">中间人模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

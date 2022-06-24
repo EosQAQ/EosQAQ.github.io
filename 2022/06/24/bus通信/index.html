@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>bus通信 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="bus通信 中央事件总线方式，不在组件内部，二是在组件外部。 $on:监听 $emit:触发 1var bus &#x3D; new Vue()  *mounted生命周期中进行监听，在mounted挂载完的时候让child2立即成为订阅者 12&lt;child1&gt;&lt;&#x2F;child1&gt;&lt;child2&gt;&lt;&#x2F;child2&gt;  1var bus &#x3D; new Vue()&#x2F;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bus通信">
+<meta property="og:url" content="http://example.com/2022/06/24/bus%E9%80%9A%E4%BF%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="bus通信 中央事件总线方式，不在组件内部，二是在组件外部。 $on:监听 $emit:触发 1var bus &#x3D; new Vue()  *mounted生命周期中进行监听，在mounted挂载完的时候让child2立即成为订阅者 12&lt;child1&gt;&lt;&#x2F;child1&gt;&lt;child2&gt;&lt;&#x2F;child2&gt;  1var bus &#x3D; new Vue()&#x2F;&#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-24T06:33:13.000Z">
+<meta property="article:modified_time" content="2022-06-24T08:03:03.180Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-bus通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/" class="article-date">
+  <time class="dt-published" datetime="2022-06-24T06:33:13.000Z" itemprop="datePublished">2022-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      bus通信
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>bus通信</p>
+<p>中央事件总线方式，不在组件内部，二是在组件外部。</p>
+<p>$on:监听</p>
+<p>$emit:触发</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bus = new Vue()</span><br></pre></td></tr></table></figure>
+
+<p>*mounted生命周期中进行监听，在mounted挂载完的时候让child2立即成为订阅者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;child1&gt;&lt;/child1&gt;</span><br><span class="line">&lt;child2&gt;&lt;/child2&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bus = new Vue()//空的vue实例</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;child1&quot;,&#123;</span><br><span class="line">template:`&lt;button @click=&quot;handleClick&quot;&gt;&lt;/button&gt;`,</span><br><span class="line">methods:&#123;</span><br><span class="line">handleClick()&#123;</span><br><span class="line">bus.$emit(&#x27;myevent&#x27;,&quot;要传递的参数&quot;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;child2&quot;,&#123;</span><br><span class="line">template:``,</span><br><span class="line">data:&#123;return()&#123;</span><br><span class="line">info:&#x27;&#x27;</span><br><span class="line">&#125;&#125;</span><br><span class="line">mounted()&#123;</span><br><span class="line">bus.$on(&quot;myevent&quot;,(data)=&gt;&#123;</span><br><span class="line">console.log(&quot;订阅者获取参数&quot;,data)</span><br><span class="line">this.info=data</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><em>data和props的区别，props是父组件传递给子组件的，子组件是不能去修改的，data是自己的状态，可以修改，赋值</em></p>
+<p>v-model也可以用在组件通信上，类似于组件之间的双向绑定</p>
+<p>在子组件被父组件调用的时候使用v-model相当于父组件使用了:value，可以在子组件的props里面接收到value值</p>
+<p>v-model&#x3D;”username”相当于:value&#x3D;”username” @input&#x3D;”…”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;child v-model=&quot;username&quot;&gt;&lt;child&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">props:[&quot;value&quot;]</span><br></pre></td></tr></table></figure>
+
+<p>在子组件内部使用，在input框中定义以下函数emit input</p>
+<p>可以把父组件中v-model对应的值给修改了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleInput(evt) &#123;</span><br><span class="line">this.$emit(&#x27;input&#x27;, evt.target.value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时候父组件的username就是你在input框中的值，value和input是固定的不能修改</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/24/bus%E9%80%9A%E4%BF%A1/" data-id="cl4sf5rtk0000hsfo7cgb91j0" data-title="bus通信" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/24/%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          动态组件
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/24/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">中间人模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/24/transition/">transition</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/slot/">slot</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/">动态组件</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/">bus通信</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/24/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/">中间人模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
