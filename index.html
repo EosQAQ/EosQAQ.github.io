@@ -71,6 +71,458 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vue-router" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/25/vue-router/" class="article-date">
+  <time class="dt-published" datetime="2022-06-25T12:46:40.000Z" itemprop="datePublished">2022-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/25/vue-router/">vue-router</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>vue-router</p>
+<p>一级路由配置</p>
+<p>main.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import router from &#x27;./router&#x27;</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">router,</span><br><span class="line">render:h=&gt;h(App)</span><br><span class="line">&#125;).$mount(&#x27;#app&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>.&#x2F;router&#x2F;index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#x27;Vue&#x27;</span><br><span class="line">import VueRouter from &#x27;vue-router&#x27;</span><br><span class="line">import Film from &#x27;../views/Film.vue&#x27;</span><br><span class="line">import Center from &#x27;../views/Center.vue&#x27;</span><br><span class="line">Vue.use(VueRouter)//注册模块,已经可以使用全局组件router-view</span><br><span class="line">const routes=[</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/film&#x27;,</span><br><span class="line">component:Film</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/center&#x27;,</span><br><span class="line">component:Center</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">routes</span><br><span class="line">&#125;)</span><br><span class="line">export default router</span><br></pre></td></tr></table></figure>
+
+<p>App.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//路由容器</span><br><span class="line">&lt;router-view&gt;&lt;/router-view&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>声明式导航</strong></p>
+<p>相对于a链接，声明式导航可以做到每一次选中都是高亮显示，或者改变路径（loaction.hash）的时候就高亮。</p>
+<p>如果自己写的话要监听路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=&quot;film&quot; tag=&quot;li&quot;&gt;电影&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+
+<p>高亮</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=&quot;film&quot; tag=&quot;li&quot; active-class=&quot;eosqaqActive&quot;&gt;电影&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">eosqaqActive:&#123;</span><br><span class="line">color:red</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/25/vue-router/" data-id="cl4twte5f0002ywfo0dm7h0iq" data-title="vue-router" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-单页面vs多页面" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/25/%E5%8D%95%E9%A1%B5%E9%9D%A2vs%E5%A4%9A%E9%A1%B5%E9%9D%A2/" class="article-date">
+  <time class="dt-published" datetime="2022-06-25T12:35:01.000Z" itemprop="datePublished">2022-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/25/%E5%8D%95%E9%A1%B5%E9%9D%A2vs%E5%A4%9A%E9%A1%B5%E9%9D%A2/">单页面vs多页面</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>单页面vs多页面</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>单页面应用spa</th>
+<th>多页面应用mpa</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>组成</td>
+<td>一个外壳页面和多个页面片段组成</td>
+<td>多个完整页面组成</td>
+</tr>
+<tr>
+<td>资源共用</td>
+<td>共用</td>
+<td>不共用，每个页面要重新加载</td>
+</tr>
+<tr>
+<td>刷新方式</td>
+<td>页面局部刷新或者更改</td>
+<td>整页刷新</td>
+</tr>
+<tr>
+<td>url模式</td>
+<td>a.com&#x2F;#&#x2F;pageone</td>
+<td>a.com&#x2F;pageone.html</td>
+</tr>
+<tr>
+<td>用户体验</td>
+<td>页面片段间的转化快，用户体验良好</td>
+<td>页面切换加载缓慢流畅度不够，用户体验较差</td>
+</tr>
+<tr>
+<td>转场动画</td>
+<td>容易实现</td>
+<td>无法实现</td>
+</tr>
+<tr>
+<td>数据传递</td>
+<td>容易</td>
+<td>依赖url传递，或者cookie，localstorage</td>
+</tr>
+<tr>
+<td>搜索引擎优化</td>
+<td>需要单独方案，实现较为困难，不利于seo检索，可利用服务器端渲染SSR优化</td>
+<td>实现方法简单</td>
+</tr>
+<tr>
+<td>试用范围</td>
+<td>高要求的体验，追求界面流畅的应用</td>
+<td>适用于追求高度支持搜索引擎的应用</td>
+</tr>
+<tr>
+<td>开发成本</td>
+<td>较高，需要借助专业框架</td>
+<td>较低，但页面重复代码较多</td>
+</tr>
+<tr>
+<td>维护成本</td>
+<td>相对容易</td>
+<td>相对复杂</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/25/%E5%8D%95%E9%A1%B5%E9%9D%A2vs%E5%A4%9A%E9%A1%B5%E9%9D%A2/" data-id="cl4twte5g0003ywfo9fsndeg7" data-title="单页面vs多页面" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Vue-cli" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/25/Vue-cli/" class="article-date">
+  <time class="dt-published" datetime="2022-06-25T08:27:43.000Z" itemprop="datePublished">2022-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/25/Vue-cli/">Vue-cli</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Vue-cli vue.js标准开发工具</p>
+<p>使用.vue文件，通过脚手架来获得已经配置好环境的项目。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<p>判断是否安装成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue --version</span><br></pre></td></tr></table></figure>
+
+<p>创建项目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create myapp</span><br></pre></td></tr></table></figure>
+
+<p>运行开发环境的启动项目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<p>生产环境构建部署项目</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<p>单文件项目入口</p>
+<p>&#x2F;public&#x2F;index.html</p>
+<p>整个项目的js入口</p>
+<p>&#x2F;src&#x2F;main.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">//把App，render渲染，挂载到app这个节点上</span><br><span class="line">//所以App长什么样子可以在app上面看出来</span><br><span class="line">render:h=&gt;h(App)</span><br><span class="line">&#125;).$mount(&#x27;#app&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>等价于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">el:&quot;#app&quot;</span><br><span class="line">render:h=&gt;h(App)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>eslint自动修改命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run lint</span><br></pre></td></tr></table></figure>
+
+<p>关闭eslint</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vue.config.js </span><br><span class="line">module.exports=&#123;</span><br><span class="line">lintOnSave:false</span><br><span class="line">&#125;</span><br><span class="line">.eslint删除&#x27;@vue/standard&#x27; (对于某一个规则关闭 no-new:&#x27;off&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>vue的样式处理style标签</p>
+<p>scoped:局部样式</p>
+<p>lang:scss支持scss语法</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/25/Vue-cli/" data-id="cl4twte5c0000ywfoa6vy2a74" data-title="Vue-cli" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-过滤器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/25/%E8%BF%87%E6%BB%A4%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2022-06-25T08:11:26.000Z" itemprop="datePublished">2022-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/25/%E8%BF%87%E6%BB%A4%E5%99%A8/">过滤器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>过滤器filter</p>
+<p>数据的加工厂，如果对于某一个数据要进行改变</p>
+<p>语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img :src=&quot;item.img | imgfilter&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.filter(&#x27;imgfilter&#x27;,function(path)&#123;</span><br><span class="line">return path.replace(&#x27;w.h&#x27;,&#x27;&#x27;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>过滤器可以链式调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img :src=&quot;item.img | imgfilter | uppearcase&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/25/%E8%BF%87%E6%BB%A4%E5%99%A8/" data-id="cl4twte5k0006ywfohpjv2fjq" data-title="过滤器" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-指令引入" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/25/%E6%8C%87%E4%BB%A4%E5%BC%95%E5%85%A5/" class="article-date">
+  <time class="dt-published" datetime="2022-06-25T07:14:13.000Z" itemprop="datePublished">2022-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/25/%E6%8C%87%E4%BB%A4%E5%BC%95%E5%85%A5/">指令引入</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>指令引入，自定义指令</strong></p>
+<p>自定义指令介绍directives-对普通dom元素进行底层操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//注册一个全局自定义指令v-color</span><br><span class="line">Vue.directive(&#x27;color&#x27;,&#123;</span><br><span class="line">//指令的生命周期</span><br><span class="line">//绑定当前指令的标签插入到父节点就会执行</span><br><span class="line">inserted:function(e)&#123;</span><br><span class="line">console.log(e,binding)//e是拿到的底层dom元素</span><br><span class="line">//第二个参数是传入的数据，是一个形参不过一般明命名为binding，参数存在binding.value里面</span><br><span class="line">e.style.background=binding.value</span><br><span class="line">&#125;,</span><br><span class="line">//生命周期update</span><br><span class="line">update(e,binding)&#123;</span><br><span class="line">e.style.background=binding.value</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果insert和update里面的逻辑一样，那么Vue提供了一种函数简写的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(&#x27;color&#x27;,function(e,binding)&#123;</span><br><span class="line">e.style.background=binding.value</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>指令里面的是变量，所以传字符串的话要加  ‘ ‘ </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-color=&quot; &#x27;red&#x27; &quot;&gt;1234&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>指令又第三个参数vnode，vnode虚拟节点</strong></p>
+<p>vnode.context就是当前这个节点所在的组件对象，通过组件实例可以直接拿到状态，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive(&#x27;color&#x27;,function(e,binding，vnode)&#123;</span><br><span class="line">e.style.background=binding.value</span><br><span class="line">console.log(vnode.context.datalist.length)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>指令的生命周期函数</strong></p>
+<p>bind：只调用一次，在指令第一次绑定到元素的时候调用，可以进行一次性的初始化设置</p>
+<p>inserted：被绑定的元素插入到父节点时调用，（仅保证父节点存在不一定被插入到文档中）</p>
+<p>update：所在组件vnode更新时调用，但是只可能发生在其子Vnode更新之前，指令的值可能发生了变化也可能没有，</p>
+<p>componentUpdated：指令所在的组件的VNode机器子VNode全部更新以后调用</p>
+<p>unbind：只调用一次，在指令与元素解绑的时候调用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/25/%E6%8C%87%E4%BB%A4%E5%BC%95%E5%85%A5/" data-id="cl4twte5g0004ywfo9cjd6qem" data-title="指令引入" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-swiper" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/25/swiper/" class="article-date">
+  <time class="dt-published" datetime="2022-06-25T06:09:54.000Z" itemprop="datePublished">2022-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/25/swiper/">swiper</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>swiper是一个关于轮播图的原生js库</p>
+<p>swiper-静态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;swiper-container eosqaq&quot;&gt;</span><br><span class="line">&lt;div class=&quot;swiper-wrapper&quot;&gt;</span><br><span class="line">&lt;div class=&quot;swiper-slide&quot;&gt;slide1&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;swiper-slide&quot;&gt;slide2&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 使用Swiper构造函数初始化一个Swiper实例，swiper-container是用来给样式的，可以加自己定的class名来初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new Swiper(&quot;.eosqaq&quot;,&#123;</span><br><span class="line">loop:true,//循环，不会再最后一张停止</span><br><span class="line">direction:&#x27;vertical&#x27;//竖直方向</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>swiper-动态</p>
+<p>如果是异步请求回来的数据来做轮播图的话，必须再请求数据回来生成dom节点以后再去用Swiper初始化，如果提前初始化的话会出现不可预期的错误。所以不要让Swiper()过早。</p>
+<p>封装一个swiper组件</p>
+<p>新老的虚拟dom swiper的key值只要不同，那么就会重新触发mounted（diff算法）</p>
+<p>如果把Swiper()写在updated中的话可能会导致更新过于频繁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;swiper :key=&quot;datalist.length&quot;&gt;</span><br><span class="line">&lt;div class=&quot;swiper-slide&quot; v-for=&quot;item in datalist&quot;&gt;&#123;&#123;item&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/swiper&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;swiper&quot;,&#123;</span><br><span class="line">template&quot;`&lt;div class=&quot;swiper-container eosqaq&quot;&gt;</span><br><span class="line">&lt;div class=&quot;swiper-wrapper&quot;&gt;</span><br><span class="line">&lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;`,</span><br><span class="line">mounted()&#123;</span><br><span class="line">new Swiper(&quot;.eosqaq&quot;,&#123;</span><br><span class="line">loop:true,//循环，不会再最后一张停止</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/25/swiper/" data-id="cl4twte5f0001ywfo99zn4ytd" data-title="swiper" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-生命周期函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/25/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-06-25T05:43:25.000Z" itemprop="datePublished">2022-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/25/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0/">生命周期函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>生命周期函数</strong></p>
+<p>beforeCreate：创建之前，访问不到依赖，没有getset拦截 init events &amp; lifecycle</p>
+<p>created：创建之后，可以访问到依赖和方法，一般用来初始化 init injection &amp; reactivity </p>
+<p>beforeMount：挂载之前，dom挂载之前，可以最后一次修改状态，这个函数可能会自己再服务端渲染一次，，然后再客户端又渲染一次，总过执行两次，所以一般不在这个钩子函数上写ajax等请求</p>
+<p>mounted：挂载之后 dom挂载完成了，访问dom-swiper一些基于dom的组件库，监听事件，ajax，设置定时器</p>
+<p>beforeUpdate：跟新之前，此时状态改变了，但是dom并没有改变</p>
+<p>updated：更新之后 状态修改以后，会异步更新dom（在主线程结束以后才更新），依赖于dom操作的库需要知道dom什么时候更新完。</p>
+<p>beforeDestroy：销毁之前</p>
+<p>destroyed：销毁之后 Window事件解绑操作，销毁定时器等</p>
+<p><strong>延时回调nextTick</strong></p>
+<p>等到所有的dom都插入到节点中了，在浏览器空闲的时候，在一次完整的事件循环之后才执行这个回调函数。</p>
+<p>而且nextTick只会执行一次。但是没有复用性可言。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">this.$nextTick((=&gt;&#123;</span><br><span class="line">//执行的比updated晚</span><br><span class="line">&#125;))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/25/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0/" data-id="cl4twte5h0005ywfohfio65rp" data-title="生命周期函数" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-transition" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/24/transition/" class="article-date">
@@ -253,392 +705,11 @@
 
 
   
-    <article id="post-bus通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/" class="article-date">
-  <time class="dt-published" datetime="2022-06-24T06:33:13.000Z" itemprop="datePublished">2022-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/">bus通信</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>bus通信</p>
-<p>中央事件总线方式，不在组件内部，二是在组件外部。</p>
-<p>$on:监听</p>
-<p>$emit:触发</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bus = new Vue()</span><br></pre></td></tr></table></figure>
-
-<p>*mounted生命周期中进行监听，在mounted挂载完的时候让child2立即成为订阅者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;child1&gt;&lt;/child1&gt;</span><br><span class="line">&lt;child2&gt;&lt;/child2&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bus = new Vue()//空的vue实例</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;child1&quot;,&#123;</span><br><span class="line">template:`&lt;button @click=&quot;handleClick&quot;&gt;&lt;/button&gt;`,</span><br><span class="line">methods:&#123;</span><br><span class="line">handleClick()&#123;</span><br><span class="line">bus.$emit(&#x27;myevent&#x27;,&quot;要传递的参数&quot;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;child2&quot;,&#123;</span><br><span class="line">template:``,</span><br><span class="line">data:&#123;return()&#123;</span><br><span class="line">info:&#x27;&#x27;</span><br><span class="line">&#125;&#125;</span><br><span class="line">mounted()&#123;</span><br><span class="line">bus.$on(&quot;myevent&quot;,(data)=&gt;&#123;</span><br><span class="line">console.log(&quot;订阅者获取参数&quot;,data)</span><br><span class="line">this.info=data</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><em>data和props的区别，props是父组件传递给子组件的，子组件是不能去修改的，data是自己的状态，可以修改，赋值</em></p>
-<p>v-model也可以用在组件通信上，类似于组件之间的双向绑定</p>
-<p>在子组件被父组件调用的时候使用v-model相当于父组件使用了:value，可以在子组件的props里面接收到value值</p>
-<p>v-model&#x3D;”username”相当于:value&#x3D;”username” @input&#x3D;”…”</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;child v-model=&quot;username&quot;&gt;&lt;child&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">props:[&quot;value&quot;]</span><br></pre></td></tr></table></figure>
-
-<p>在子组件内部使用，在input框中定义以下函数emit input</p>
-<p>可以把父组件中v-model对应的值给修改了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleInput(evt) &#123;</span><br><span class="line">this.$emit(&#x27;input&#x27;, evt.target.value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这时候父组件的username就是你在input框中的值，value和input是固定的不能修改</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/24/bus%E9%80%9A%E4%BF%A1/" data-id="cl4sf5rtk0000hsfo7cgb91j0" data-title="bus通信" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-中间人模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/24/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time class="dt-published" datetime="2022-06-24T06:03:23.000Z" itemprop="datePublished">2022-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/24/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/">中间人模式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>中间人模式，仅适用于单个中间人，也就是两个兄弟有一个共同的父组件，如果有多个中间人则不适合使用这种模式</p>
-<p>先把数据给父组件，然后用父组件把数据传给另一个兄弟</p>
-<p>父组件：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//使用v-on（eventname）监听事件</span><br><span class="line">&lt;file-item @myevent=&quot;handleEvent&quot;&gt; &lt;/film-item&gt;</span><br><span class="line">&lt;film-detail :information=&quot;info&quot;&gt;&lt;/file-detail&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;</span><br><span class="line">return&#123;</span><br><span class="line">info:&quot;&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">methods:&#123;</span><br><span class="line">handleEvent(info)&#123;</span><br><span class="line">console.log(&#x27;father&#x27;,info)</span><br><span class="line">this.info=info</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第一个子组件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">handleClick()&#123;</span><br><span class="line">//使用$emit(eventname)触发事件</span><br><span class="line">this.$emit(&quot;myevent&quot;,this.item.synopsis)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第二个组件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">porps:[&quot;information&quot;]</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/24/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/" data-id="cl4sf5rtv0005hsfo2wgdhfkc" data-title="中间人模式" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ref" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/24/ref/" class="article-date">
-  <time class="dt-published" datetime="2022-06-24T05:53:59.000Z" itemprop="datePublished">2022-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/24/ref/">ref</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>ref放在标签上，拿到的是原生节点</p>
-<p>this.refs里面可以直接拿到dom对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; ref=&quot;mytext&quot;/&gt;</span><br><span class="line"></span><br><span class="line">methods&#123;</span><br><span class="line">handleAdd()&#123;</span><br><span class="line">console.log(this.refs)</span><br><span class="line">//拿到输入框的value值</span><br><span class="line">console.log(this.$refs.mytext.value)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>ref放在组件上，拿到的就是组件对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;child ref=&quot;mychild&quot;&gt;&lt;/child&gt;</span><br><span class="line"></span><br><span class="line">methods()&#123;</span><br><span class="line">handleAdd()&#123;</span><br><span class="line">console.log(this.$refs.mychild)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>不需要通过传统方式，可以直接在从这个组件对象拿到孩子对象的属性和方法同时可以直接更改。</p>
-<p>不太推荐，维护比较困难</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/24/ref/" data-id="cl4sf5rts0002hsfo4vxeaoht" data-title="ref" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-组件间通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/24/%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1/" class="article-date">
-  <time class="dt-published" datetime="2022-06-24T02:44:59.000Z" itemprop="datePublished">2022-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/24/%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1/">组件间通信</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>组件间通信</p>
-<p><strong>父传子</strong></p>
-<p>在父组件调用子组件时用【：属性名】来传递参数</p>
-<p>在子组件中使用props接受</p>
-<p>props可以使用对象和数组写法，只有对象写法可以指定type，默认值等</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Vue.Componenet(&quot;navbar&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;button v-if=&quot;myshow&quot;&gt;返回&lt;/button&gt;</span><br><span class="line">&lt;span&gt;导航--&#123;&#123;mytitle&#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;button&gt;首页&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`,</span><br><span class="line">//props:[&quot;mytitle&quot;，&quot;myshow&quot;]//父组件传来的属性，在这里进行接受</span><br><span class="line">props:&#123;</span><br><span class="line">mytitle:&#123;</span><br><span class="line">type:String，</span><br><span class="line">default:&quot;默认名字&quot;</span><br><span class="line">&#125;,</span><br><span class="line">myshow:&#123;</span><br><span class="line">type:Boolean,</span><br><span class="line">default:true</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">methods:&#123;&#125;,</span><br><span class="line">computed:&#123;&#125;,</span><br><span class="line">data()&#123;</span><br><span class="line">return&#123;&#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>子传父</strong></p>
-<p>组件化开发中，父子组件传输就非常重要了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//在子组件绑定一个监听事件，后面是一个回调函数</span><br><span class="line">&lt;child @myevent=&quot;handleEvent&quot;&gt;&lt;/child&gt;</span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">handleEvent(data)&#123;</span><br><span class="line">//自动会把子组件的状态传过来，不需要写实参</span><br><span class="line">console.log(data)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Vue.Componenet(&quot;child&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">child</span><br><span class="line">&lt;button @click=&quot;handleClick&quot;&gt;&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br><span class="line">methods:&#123;</span><br><span class="line">handleClick()&#123;</span><br><span class="line">//$emit分发方法，触发myevent，而myevent的回调函数是在父组件上定义的，所以父组件山歌函数就会被执行</span><br><span class="line">this.$emit(&quot;myevent&quot;,this.money)</span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">computed:&#123;&#125;,</span><br><span class="line">data()&#123;</span><br><span class="line">return&#123;</span><br><span class="line">money:10</span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/24/%E7%BB%84%E4%BB%B6%E9%97%B4%E9%80%9A%E4%BF%A1/" data-id="cl4sf5rtz000ahsfoacvu671u" data-title="组件间通信" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-组件引入" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/23/%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5/" class="article-date">
-  <time class="dt-published" datetime="2022-06-23T12:32:02.000Z" itemprop="datePublished">2022-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/23/%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5/">组件引入</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>组件引入</p>
-<p>组件内部包括html，css，js</p>
-<p>组件化的原因：扩展HTML元素，封装可复用的代码</p>
-<p>组件注册方式：</p>
-<p>全局注册</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;navbar&gt;&lt;/navbar&gt;</span><br><span class="line">&lt;navbar&gt;&lt;/navbar&gt;</span><br><span class="line">&lt;navbar&gt;&lt;/navbar&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>命名在dom中要使用-，在js中使用驼峰</p>
-<p>dom片段没有代码提示，没有高亮显示</p>
-<p>css只能写成行内的</p>
-<p>template内部只能包含一个根节点 </p>
-<p>组件时孤岛，无法直接访问外面的组件状态或者方法，只能通过组件通信来交互</p>
-<p>所有自定义组件中data必须是一个函数</p>
-<p>所有的组件都在一起，非常乱</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Vue.Componenet(&quot;navbar&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">navbar</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br><span class="line">methods:&#123;&#125;,</span><br><span class="line">computed:&#123;&#125;,</span><br><span class="line">data()&#123;</span><br><span class="line">return&#123;&#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>孩子组件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.Componenet(&quot;child&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">child</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
-
-<p>局部组件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Vue.Componenet(&quot;navbar&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">navbar</span><br><span class="line">&lt;child&gt;&lt;/child&gt;</span><br><span class="line">&lt;navbar-child&gt;&lt;/navbar-child&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br><span class="line">methods:&#123;&#125;,</span><br><span class="line">computed:&#123;&#125;,</span><br><span class="line">data()&#123;</span><br><span class="line">return&#123;&#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch:&#123;&#125;,</span><br><span class="line">components:&#123;</span><br><span class="line">//局部定义,只能在navbar中使用</span><br><span class="line">&quot;navbarChild&quot;:&#123;</span><br><span class="line">template:`&lt;div&gt;navbarChild&lt;/div&gt;`</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/23/%E7%BB%84%E4%BB%B6%E5%BC%95%E5%85%A5/" data-id="cl4sf5rtz0009hsfofn0x4o2y" data-title="组件引入" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-fetch-axios" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/23/fetch-axios/" class="article-date">
-  <time class="dt-published" datetime="2022-06-23T11:49:41.000Z" itemprop="datePublished">2022-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/23/fetch-axios/">fetch&amp;axios</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>fetch&amp;axios</p>
-<p>fetch</p>
-<p>XMlHttpRequest是一个设计粗糙的API，配置和调用方法非常混乱，而且基于事件的异步模型写起来不友好，同时兼容性不好。</p>
-<p>fetch是基于w3c标准的，不需要依赖任何库。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//get,默认是gei的请求、</span><br><span class="line">//第一次拿到的是状态码，请求头等数据，一定要使用.json才能把可读流转化成一个新的promise对象，传参是使用？键=值的方式</span><br><span class="line">fetch(&quot;**&quot;).then(res=&gt;res.json()).then(res=&gt;&#123;console.log(res)&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//post</span><br><span class="line">fetch(&quot;**&quot;，&#123;</span><br><span class="line">methods：&quot;post&quot;,</span><br><span class="line">headers:&#123;</span><br><span class="line">//必须要写的请求头部分</span><br><span class="line">&quot;COntent-Type&quot;:&quot;application/x-www-form-urlencoded&quot;</span><br><span class="line">&#125;，</span><br><span class="line">body:&quot;name=z3&amp;age=18&quot;</span><br><span class="line">&#125;).then(res=&gt;res.json()).then(res=&gt;&#123;console.log(res)&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//post</span><br><span class="line">fetch(&quot;**&quot;，&#123;</span><br><span class="line">methods：&quot;post&quot;,</span><br><span class="line">headers:&#123;</span><br><span class="line">//必须要写的请求头部分,有不同传参的格式，所以要提前定好格式</span><br><span class="line">&quot;COntent-Type&quot;:&quot;application/json&quot;</span><br><span class="line">&#125;,</span><br><span class="line">body:&quot;JSON.stringify(&#123;</span><br><span class="line">name:&quot;z3&quot;,</span><br><span class="line">age:18</span><br><span class="line">&#125;)&quot;</span><br><span class="line">&#125;).then(res=&gt;res.json()).then(res=&gt;&#123;console.log(res)&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><em>注意：fetch默认是不太cookie的，需要设置crendentials:”include”</em></p>
-<p>axios 官方推荐的第三方库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.get(&quot;json/test.json&quot;).then(res=&gt;&#123;</span><br><span class="line">//数据会存在data中</span><br><span class="line">console.log(res.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>通过第二个参数的格式自动更改请求头</p>
-<p>application&#x2F;x-www-form-urlencoded格式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">axios.post(&quot;地址&quot;,&quot;name=z3&amp;age=18&quot;).then(res=&gt;&#123;</span><br><span class="line">console.log(res.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>json格式</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">axios.post(&quot;地址&quot;,&#123;name:&quot;z3&quot;,age:100&#125;).then(res=&gt;&#123;</span><br><span class="line">console.log(res.data)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><em>axios和带有cookie</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/23/fetch-axios/" data-id="cl4sf5rtn0001hsfo6wuseyfb" data-title="fetch&amp;axios" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-watch" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/23/watch/" class="article-date">
-  <time class="dt-published" datetime="2022-06-23T11:40:53.000Z" itemprop="datePublished">2022-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/23/watch/">watch</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>watch监听状态的改变，不需要return。相对于计算属性，更加注重过程，状态改变了以后执行相关的逻辑。而计算属性更加注重结果，只要状态改变就改变一下计算的结果。</p>
-<p>状态的名字要对应</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">watch:&#123;</span><br><span class="line">isAllChecked(data)&#123;</span><br><span class="line">	console.log(&quot;isAllChecked状态改变了&quot;,data)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/23/watch/" data-id="cl4sf5rtw0006hsfo55uvh6o3" data-title="watch" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -670,23 +741,23 @@
       <ul>
         
           <li>
-            <a href="/2022/06/24/transition/">transition</a>
+            <a href="/2022/06/25/vue-router/">vue-router</a>
           </li>
         
           <li>
-            <a href="/2022/06/24/slot/">slot</a>
+            <a href="/2022/06/25/%E5%8D%95%E9%A1%B5%E9%9D%A2vs%E5%A4%9A%E9%A1%B5%E9%9D%A2/">单页面vs多页面</a>
           </li>
         
           <li>
-            <a href="/2022/06/24/%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/">动态组件</a>
+            <a href="/2022/06/25/Vue-cli/">Vue-cli</a>
           </li>
         
           <li>
-            <a href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/">bus通信</a>
+            <a href="/2022/06/25/%E8%BF%87%E6%BB%A4%E5%99%A8/">过滤器</a>
           </li>
         
           <li>
-            <a href="/2022/06/24/%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/">中间人模式</a>
+            <a href="/2022/06/25/%E6%8C%87%E4%BB%A4%E5%BC%95%E5%85%A5/">指令引入</a>
           </li>
         
       </ul>
