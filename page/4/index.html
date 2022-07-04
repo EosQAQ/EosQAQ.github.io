@@ -71,6 +71,523 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-mixin" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/23/mixin/" class="article-date">
+  <time class="dt-published" datetime="2022-06-23T06:20:53.000Z" itemprop="datePublished">2022-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/23/mixin/">mixin</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>mixin混入：公共方法引入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">	methods:&#123;</span><br><span class="line">	handleClick()&#123;</span><br><span class="line">	console.log(&quot;1&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	computed:&#123;</span><br><span class="line">	total()&#123;</span><br><span class="line">		return &#x27;1234&#x27;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">	el:&quot;#box&quot;,</span><br><span class="line">	data:&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;,</span><br><span class="line">	mixins:[obj],//混入obj对象，可以复用obj里面的方法等，但是模式要相同</span><br><span class="line">	methods:&#123;</span><br><span class="line">	handleClick()&#123;</span><br><span class="line">	console.log(&quot;2&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>混入进来了以后如果命名冲突的话，那么自己定义的方法优先级更高。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/23/mixin/" data-id="cl4qpildr0000gofo32pxgtji" data-title="mixin" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-事件处理器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/23/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/" class="article-date">
+  <time class="dt-published" datetime="2022-06-23T05:34:03.000Z" itemprop="datePublished">2022-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/23/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/">事件处理器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>事件处理器</strong></p>
+<p>不需要传递参数，可以不写（），会自动传递一个event对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;handleClick&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>需要传递参数的时候要写（），且不会自动传递event对象，但是可以手动添加事件对象，<strong>实参有固定写法$event</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;handleClick($event,2)&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以直接写代码,页面中不需要加this，但是只能写简单表达式，而且不太希望在页面解构中写太多逻辑减少可读性所以不推荐</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;count++&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>事件修饰符</strong></p>
+<p>阻止事件冒泡</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleClick(evt)&#123;</span><br><span class="line">//阻止冒泡，但是使用的是原生</span><br><span class="line">evt.stopPropagation()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修饰符</p>
+<p>.stop:阻止冒泡，在模态中应用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click.stop=&quot;handleClick&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>.prevent:阻止默认行为</p>
+<p>.capture:在捕获阶段触发方法</p>
+<p>.self:只有点击事件的事件源是自己的时候才会触发，所以不会阻止事件冒泡，但是不会触发点击事件</p>
+<p>.once:让方法只能执行一次</p>
+<p>.passive:将内核线程查询跳过，每次事件产生以后，浏览器都会去查询是否有preventDefault阻止该次事件的默认动作，我们加上.passive就是为了告诉浏览器不用查询了，我们没有使用preventDefalut阻止默认动作，一般用在滚动监听，@scroll,@toucnmove中，移动每个像素都会产生一次事件，使用.pressive可以大大提升滑动的流畅性。</p>
+<p>.enter:按键修饰符，只有按下特定的值才会执行方法,也有上下左右，空格shift，control等，也可以使用.键值来定义</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@keyup.13=&quot;handleKeyup&quot;</span><br></pre></td></tr></table></figure>
+
+<p>也可以两个按键修饰符一起使用，必须两个键同时按才能触发</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@keyup.enter.ctrl=&quot;handleKeyup&quot;</span><br></pre></td></tr></table></figure>
+
+<p>否则需要在函数体中使用keycode来定位按键</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">handleKeyup(evt)&#123;</span><br><span class="line">if(evt.keycode===13)&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/23/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%99%A8/" data-id="cl4qpildu0001gofo2aklgahw" data-title="事件处理器" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-模糊查询" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/22/%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/" class="article-date">
+  <time class="dt-published" datetime="2022-06-22T12:54:34.000Z" itemprop="datePublished">2022-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/22/%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/">模糊查询</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>模糊查询</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; @input=&quot;handleInput&quot;/&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;li v-for=&quot;item in datalist&quot;&gt;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">el:&quot;#box&quot;,</span><br><span class="line">data:&#123;</span><br><span class="line">orginlist:[&quot;aa&quot;,&quot;bb&quot;,&quot;ac&quot;,&quot;bd&quot;],</span><br><span class="line">datalist:[&quot;aa&quot;,&quot;bb&quot;,&quot;ac&quot;,&quot;bd&quot;]</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">handleInput(e)&#123;</span><br><span class="line">console.log(e.target.value)</span><br><span class="line">//过滤数组filter</span><br><span class="line">var datalist = this.orginlist.filter(item=&gt;item.includes(e.target.value))</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>模糊查询：函数表达式</p>
+<p>注意：在页面中要加()来调用，而在函数体中也要有return的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot; v-model=&quot;mytext&quot;/&gt;</span><br><span class="line">&#123;&#123;mymethod()&#125;&#125;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;li v-for=&quot;item in mymethod()&quot;&gt;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>每次状态改变，所有依赖状态的函数也会重新执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">el:&quot;#box&quot;,</span><br><span class="line">data:&#123;</span><br><span class="line">datalist:[&quot;aa&quot;,&quot;bb&quot;,&quot;ac&quot;,&quot;bd&quot;],</span><br><span class="line">mytext:[]</span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">mymethod()&#123;</span><br><span class="line"></span><br><span class="line">//过滤数组filter,不会对原数组进行修改</span><br><span class="line">return this.datalist.filter(item=&gt;item.includes(this.mytext))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/22/%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/" data-id="cl4pmln450003z4fo6bwff95n" data-title="模糊查询" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-数组检测" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/22/%E6%95%B0%E7%BB%84%E6%A3%80%E6%B5%8B/" class="article-date">
+  <time class="dt-published" datetime="2022-06-22T12:41:18.000Z" itemprop="datePublished">2022-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/22/%E6%95%B0%E7%BB%84%E6%A3%80%E6%B5%8B/">数组检测</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>数组检测</p>
+<p>使用一下方法可以操作数组可以检测变动</p>
+<p>push(),pop(),shift(),unshift(),splice(),sort(),reverse()</p>
+<p>新数组替换旧数组，因为这些方法不影响原数组所以检测不到</p>
+<p>.filer(),concat(),slice(),map()</p>
+<p>特殊：</p>
+<p>做不到索引的拦截</p>
+<p>datalist[0] &#x3D; “old”</p>
+<p>vm.datalist[0] &#x3D; “new”，这时候页面不会改变</p>
+<p>代替：</p>
+<p>vm.datalist.splice(0,1,”new”)</p>
+<p>Vue.set(vm.datalist,0,”new”)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/22/%E6%95%B0%E7%BB%84%E6%A3%80%E6%B5%8B/" data-id="cl4pmln450004z4fo030s9al7" data-title="数组检测" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-todoList" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/22/todoList/" class="article-date">
+  <time class="dt-published" datetime="2022-06-22T10:25:21.000Z" itemprop="datePublished">2022-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/22/todoList/">todoList</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>todoList</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;box&quot;&gt;</span><br><span class="line">//@change=&quot;handleChange()&quot;</span><br><span class="line">//如果函数没有加上()，那么默认不传递参数的话就什么也拿不到，但是如果函数没有加上()，那么vue会自动给你传递一个事件对象，在事件对象.target.value中是input中的value</span><br><span class="line">//&lt;input type=&quot;text&quot;  @input=&quot;handleInput&quot;/&gt;</span><br><span class="line">//v-model双向绑定</span><br><span class="line">&lt;input type=&quot;text&quot;  v-model=&quot;mytext&quot;/&gt;</span><br><span class="line">&lt;button @click=&quot;handleClick()&quot;&gt;add&lt;/button&gt;</span><br><span class="line">&lt;div v-if=&quot;datalist.length===0&quot;&gt;待办事项空空如也&lt;/div&gt;</span><br><span class="line">&lt;ul v-else&gt;</span><br><span class="line">&lt;li v-for=&quot;(item,index) in datalist&quot;&gt;&#123;&#123;item&#125;&#125;</span><br><span class="line">&lt;button @click=&quot;handleDel(index)&quot;&gt;del</span><br><span class="line">&lt;/button&gt;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">	el:&quot;#box&quot;,</span><br><span class="line">	data:&#123;</span><br><span class="line">	mytext:&#x27;&#x27;,</span><br><span class="line">	datalist:[]	</span><br><span class="line">	&#125;,</span><br><span class="line">	methods:&#123;</span><br><span class="line">	handleClick()&#123;</span><br><span class="line">		console.log(&quot;add&quot;,this.mytext)</span><br><span class="line">	&#125;</span><br><span class="line">	handleInput(evt)&#123;</span><br><span class="line">	//change()函数是在input框失去焦点的时候自动调用,input()函数是在input框值改变的时候调用</span><br><span class="line">	//可以拿到input中的value值</span><br><span class="line">		//console.log(&quot;input&quot;，evt.target.value)</span><br><span class="line">		this.mytext = evt.target.value</span><br><span class="line">	&#125;,</span><br><span class="line">	handleClick()&#123;</span><br><span class="line">	this.datalist.push(this.mytext)</span><br><span class="line">	this.mytext=&quot;&quot;</span><br><span class="line">	&#125;,</span><br><span class="line">	handleDel(myindex)&#123;</span><br><span class="line">	this.datalist.splice(myindex,1)</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/22/todoList/" data-id="cl4pmln440002z4fo7dszdrf0" data-title="todoList" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Vue语法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/22/Vue%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2022-06-22T06:07:37.000Z" itemprop="datePublished">2022-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/22/Vue%E8%AF%AD%E6%B3%95/">Vue语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>模板语法</p>
+<ol>
+<li><p>v-on绑定事件的指令，可以简写为@</p>
+</li>
+<li><p>v-show动态显示和隐藏</p>
+</li>
+<li><p>v-if条件渲染，动态创建和移除,template是一个包装元素，不会真正地创建到页面上，所以不会影响dom元素但是可以根据这个包装元素上写逻辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template v-if=&quot;true&quot;&gt;</span><br><span class="line">&lt;div v-if=&quot;data.state===0&quot;&gt;1&lt;/div&gt;</span><br><span class="line">&lt;div v-else-if=&quot;data.state===1&quot;&gt;1&lt;/div&gt;</span><br><span class="line">&lt;div v-else-if=&quot;data.state===2&quot;&gt;2&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>v-bind动态绑定属性，可以简写为：</p>
+</li>
+<li><p>v-for遍历数组的指令，v-for也可以遍历对象，而且有三个参数（对象属性值，对象属性名，对象属性的索引），但是一般很少遍历对象     <em>特殊：v-for(n in 10）输出的是1到10的遍历</em>                                                             v-for必须要有key值，key可以用来跟踪每一个节点的身份，方便虚拟dom的比较。如果key用索引值每次改变是根据虚拟dom节点比较来进行改变而不是修改正确对应的dom节点，比如有1，2，3个节点，删除2的操作是把2改成3，然后删掉3。index只能适用于在数组的最后添加元素的list或者以后不会改变的list。重用和重新排序现有的元素，理想的key值是每项都有且唯一的id</p>
+</li>
+<li><p>v-html解析html的指令，但是在网站上任意渲染html是非常危险的，因为容易导致xss攻击，只可以在可信内容上使用v-html，永不用在用户提交的内容上，因为如果用户提交的是一段脚本就会出现不可预知的问题。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;box&quot;&gt;</span><br><span class="line">&#123;&#123;myname&#125;&#125;</span><br><span class="line">//&#123;&#123;&#125;&#125;只能解析文本，不能解析html语句</span><br><span class="line">&#123;&#123;myhtml&#125;&#125;</span><br><span class="line">&lt;div v-html=&quot;myhtml&quot;&gt;&lt;/div&gt;</span><br><span class="line">//v-on绑定事件的指令，可以简写为@</span><br><span class="line">&lt;button v-on:click=&quot;handleClick()&quot;&gt;change</span><br><span class="line">&lt;/button&gt;</span><br><span class="line">//v-开头的叫做指令,这里也可以是表达式或者布尔值</span><br><span class="line">&lt;div v-show=&quot;isShow===true&quot;&gt;动态隐藏属性</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">//v-if条件渲染</span><br><span class="line">&lt;div v-if=&quot;isCreated&quot;&gt;动态创建和删除</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">//v-bind:动态绑定，这样class后面就可以跟表达式了,v-bind:可以简写为:</span><br><span class="line">&lt;div v-bind:class=&quot;isActive?&#x27;red&#x27;:&#x27;yellow&#x27;&quot;&gt;动态切换背景色</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;li v-for=&quot;(item,index) in dataList&quot; &gt;&#123;&#123;item&#125;&#125;&lt;/li&gt;</span><br><span class="line"></span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">	el:&quot;#box&quot;,</span><br><span class="line">	data:&#123;</span><br><span class="line">		myname:&quot;kerwin&quot;，//状态</span><br><span class="line">		myhtml:&#x27;&lt;b&gt;1234&lt;/b&gt;&#x27;</span><br><span class="line">		isShow：true，</span><br><span class="line">		isCreated：true,</span><br><span class="line">		isActive:true,</span><br><span class="line">		dataList:[&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;,&#x27;s&#x27;]</span><br><span class="line">	&#125;,</span><br><span class="line">	methods:&#123;</span><br><span class="line">	handleClick()&#123;</span><br><span class="line">	this.myname=&quot;xiaoming&quot;</span><br><span class="line">	//节点的display属性改变了，但是节点还在</span><br><span class="line">	this.isShow=!this.isShow</span><br><span class="line">	//直接把节点给移除了</span><br><span class="line">	this.isCreated=!this.isCreated</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>class&#x2F;style写法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.a&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.b&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.c&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">.d&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=box&gt;</span><br><span class="line">&lt;div :class=&quot;classobj&quot;&gt;1&lt;/div&gt;</span><br><span class="line">&lt;div :class=&quot;classarr&quot;&gt;2&lt;/div&gt;</span><br><span class="line">&lt;div :style=&quot;styleobj&quot;&gt;3&lt;/div&gt;</span><br><span class="line">&lt;div :style=&quot;stylearr&quot;&gt;4&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">	el:&quot;#box&quot;,</span><br><span class="line">	data:&#123;</span><br><span class="line">	//对象写法</span><br><span class="line">	classobj:&#123;</span><br><span class="line">	a:true,</span><br><span class="line">	b:true,</span><br><span class="line">	c:true</span><br><span class="line">	&#125;，</span><br><span class="line">	//数组写法</span><br><span class="line">	classarr:[&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;]</span><br><span class="line">	&#125;，</span><br><span class="line">	styleobj:&#123;</span><br><span class="line">	//不使用-，使用驼峰</span><br><span class="line">	backgroundColor:&quot;red&quot;</span><br><span class="line">	&#125;,</span><br><span class="line">	stylearr:[&#123;backgroundColor:red&quot;]</span><br><span class="line">	</span><br><span class="line">	//Vue.set(vm.classobj,&quot;d&quot;,true) 拦截,为classobj提供新的属性</span><br><span class="line">	//Vue.set(vm.styleobj,&quot;fontsize&quot;,&quot;40px&quot;)</span><br><span class="line">	//vm.classsarr.push(d) 数组写法不用后期拦截</span><br><span class="line">	//vm.stylearr.push(&#123;fontsize:&quot;40px&quot;&#125;)</span><br><span class="line">	//vm.styleobj.backgoundColor=&quot;yellow&quot;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/22/Vue%E8%AF%AD%E6%B3%95/" data-id="cl4pmln430001z4fo3zx553co" data-title="Vue语法" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Vue基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/22/Vue%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2022-06-22T05:09:44.000Z" itemprop="datePublished">2022-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/22/Vue%E5%9F%BA%E7%A1%80/">Vue基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>Vue安装方式</strong></p>
+<p> 第一种是创建一个.html文件，然后使用script标签进行引入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdn.jsdeliver.net/npm/vue&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>第二种是直接使用vue-cli模块化的方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vue-cli</span><br></pre></td></tr></table></figure>
+
+<p><strong>Vue原理</strong></p>
+<p>el是element的缩写，初始化el中的标签作为vue的地盘。</p>
+<p>在el初始化了以后的地方，<code>&#123;&#123; &#125;&#125;</code>就是模板语法-表达式（三目运算符也算是表达式）</p>
+<p>通过data属性可以把状态挂载到vue实例上，状态改变页面也会自动更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;box&quot;&gt;</span><br><span class="line">&#123;&#123;10+20&#125;&#125;</span><br><span class="line">&#123;&#123;10&gt;20?&quot;aaa&quot;:&quot;bbb&quot;&#125;&#125;</span><br><span class="line">&#123;&#123;myname&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">	el:&quot;#box&quot;,</span><br><span class="line">	data:&#123;</span><br><span class="line">		myname:&quot;kerwin&quot;//状态</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在vue中有方法监听到了状态被修改了，在这个方法中把dom也给修改了，但是这整个的过程是在vue内部执行的。所以Vue的原理是通过使用Object.defineProperty这个方法中的get方法和set方法的拦截去实现的。</p>
+<p>每个组件实例都对应一个watcher实例，它会在组件渲染的过程中把接触过的数据property记录为依赖，把节点和状态进行一一的关联，之后当依赖项的setter触发时，它会通知watcher，从而使他关联的组件重新渲染。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var mybox = document.getElementById(&#x27;box&#x27;)</span><br><span class="line">var obj = &#123;&#125;</span><br><span class="line">Object.defineProperty(obj,&quot;myname&quot;,&#123;</span><br><span class="line">	set(value)&#123;</span><br><span class="line">	console.log(&#x27;修改以后的值&#x27;,value)</span><br><span class="line">    mybox.innerHTML = value</span><br><span class="line">    &#125;,</span><br><span class="line">	get()&#123;</span><br><span class="line">	console.log(&#x27;有人访问了&#x27;,obox.innerHTML)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Vue会根据新老dom生成新老虚拟dom树进行比较找到最优解，然后去更新真实dom，从而尽量减少dom操作</p>
+<p><strong>mvvm架构模式</strong></p>
+<p>model：数据层</p>
+<p>view：视图层</p>
+<p>viewmodel：</p>
+<p>view层数据改变—&gt;通知viewmodel—&gt;model数据改变</p>
+<p>model数据改变—&gt;viewmodel做了getset拦截，自动得到通知，自动通知view层修改—&gt;view层修改数据</p>
+<p>解决了mvp大量的手动view和model同步的问题，提供了双向绑定机制，提高了代码的可维护性，对于大型的图形应用程序，视图状态较多，viewmodel的构建和维护的成本可能会比较高。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/22/Vue%E5%9F%BA%E7%A1%80/" data-id="cl4pmln400000z4fo06imdwu4" data-title="Vue基础" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-class" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/21/class/" class="article-date">
+  <time class="dt-published" datetime="2022-06-21T11:57:42.000Z" itemprop="datePublished">2022-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/21/class/">class</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>class可以理解为语法糖，将js只能通过构造函数创建实例的方法进行了补充</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">constructor(name,age)&#123;</span><br><span class="line">this.name=name</span><br><span class="line">this.age=age</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">new Person(&#x27;z3&#x27;,18)</span><br></pre></td></tr></table></figure>
+
+<p><strong>class的特性</strong></p>
+<ol>
+<li><p>class的数据类型是一个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof(class A&#123;&#125;))</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>class的原型的constructor指向class</p>
+</li>
+<li><p>通过new关键字创建的实例的constructor指向class，类似于原型链</p>
+</li>
+<li><p>class内部的方式实际上都是定义在类的prototype上</p>
+</li>
+<li><p>通过类创建的对象的本质是调用类的constructor，如果类没有定义constructor，那么会在使用的时候默认添加</p>
+</li>
+<li><p>class不能直接调用，需要使用new关键字，这是class虽然是函数，但是和函数不同的地方</p>
+</li>
+<li><p>class内部的方法指向的是实例，class内部是严格模式，没有调用者的话函数内部的this就是undefined，在严格模式下也是不存在变量提升的，使用箭头函数的话就可以让class内部的方法中的this指向class实例，但是同时class里面的属性就会跑到实例上而非prototype上。</p>
+</li>
+<li><p>getter和setter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">constructor(name)&#123;</span><br><span class="line">this.name = name</span><br><span class="line">&#125;</span><br><span class="line">get=()=&gt;&#123;</span><br><span class="line">return this.name</span><br><span class="line">&#125;</span><br><span class="line">set=(Name)=&gt;&#123;</span><br><span class="line">this.name = Name</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态设置属性名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let method = &#x27;test&#x27;</span><br><span class="line">class A&#123;</span><br><span class="line">[method]=()=&gt;&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过在属性和方法前面添加关键字static，这些属性和方法就不会被实例继承，只能通过【类名.属性名&#x2F;方法名】的方式来获取,静态方法指向的是类而不是类的实例，同时静态方法是允许重复命名的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">static a = 1</span><br><span class="line">static fn()&#123;&#125;</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>class的继承</strong></p>
+<p>class的继承使用过extends实现的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class F&#123;</span><br><span class="line">a=1</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class S extends F&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(new S())</span><br></pre></td></tr></table></figure>
+
+<p>如果是属性，就会直接继承在当前的实例上。方法会保留在类的原型上。</p>
+<p>如果子类写了constructor，那么就必须要调用super()方法，在super调用前子类是没有this的。否则会报错，如果不写constructor那么就会隐式地调用。</p>
+<p>子类调用super会触发父类的constructor并将参数传递过去</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class F&#123;</span><br><span class="line">constructor(sname)&#123;</span><br><span class="line">this.sname=sname</span><br><span class="line">&#125;</span><br><span class="line">a=1</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class S extends F&#123;</span><br><span class="line">constructor(name)&#123;</span><br><span class="line">super(name)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(new S(&#x27;z3&#x27;))</span><br><span class="line">S.prototype.__proto__===F.protorype</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/21/class/" data-id="cl4o61a1r0003vkfo8uan4xt2" data-title="class" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-async和await" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/21/async%E5%92%8Cawait/" class="article-date">
+  <time class="dt-published" datetime="2022-06-21T11:28:35.000Z" itemprop="datePublished">2022-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/21/async%E5%92%8Cawait/">async和await</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>async可以让我们以一种更加简单的方式写出基于Promise的异步行为,这样就可以不用写promise或者.then这类函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function p()&#123;</span><br><span class="line">return new Promise(resolve=&gt;&#123;</span><br><span class="line">setTimeout(()=&gt;&#123;</span><br><span class="line">resolve(&#x27;异步结果&#x27;)</span><br><span class="line">&#125;，1000)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">async function fn()&#123;</span><br><span class="line">const res = await p()</span><br><span class="line">console.log(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>async可以直接返回一个promise对象，状态是fufiled</p>
+<p><strong>特性</strong></p>
+<ol>
+<li><p>async函数内部会返回一个promise对象，如果不是promise，那么它会隐式地包装在promise中（Promise.resolve(‘不是promise的值’)）</p>
+</li>
+<li><p>await能获取到promise状态改变后地值，如果后面不是一个promise，那么await会把该值转换为已正常处理的（PromisePromise.resolve(‘不是promise的值’).then(()&#x3D;&gt;undefined）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">async function fn()&#123;</span><br><span class="line">const reponse = await fetch(&quot;http://...&quot;)</span><br><span class="line">const json = await response.json()</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>await后面的promise状态是reject，那么await后的代码不会被执行，async函数将返回状态为reject的promise</p>
+</li>
+<li><p>async函数内部如果存在await，那么await表达式会暂停整个async函数的执行，等当前promise状态改变后才能恢复</p>
+</li>
+<li><p>await后面的内容视为异步任务，放到异步调用的宏任务里面，可以看作是传递给settimeout的一个回调函数，等到同步任务执行完了以后再执行。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/21/async%E5%92%8Cawait/" data-id="cl4o61a1q0002vkfo5c5d5pas" data-title="async和await" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/21/Promise/" class="article-date">
@@ -148,632 +665,11 @@
 
 
   
-    <article id="post-箭头函数和方法扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/" class="article-date">
-  <time class="dt-published" datetime="2022-06-21T07:09:54.000Z" itemprop="datePublished">2022-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/">箭头函数和方法扩展</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>传统函数声明</p>
-<p>声明式：function fn(){}</p>
-<p>表达式： var fn &#x3D; function(){}</p>
-<p>箭头函数</p>
-<p>var fn &#x3D; ()&#x3D;&gt;{}</p>
-<p>如果参数只有一个参数只有一个可以省略（）</p>
-<p>如果函数体只有一句return加表达式的话{}和return可以省略</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fn = v =&gt; v+1</span><br></pre></td></tr></table></figure>
-
-<p>如果返回值并不是表达式的话可以使用（）来包裹起来同时可以省略return</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var fn  = v =&gt;(&#123;obj:v&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>箭头函数与普通函数的区别</strong></p>
-<ol>
-<li><p>箭头函数是没有this的，它的this是从作用域链上一层继承来的，同时也无法通过call和apply来改变this的指向</p>
-</li>
-<li><p>不能作为构造函数，没有protorypep属性</p>
-</li>
-<li><p>没有arguments对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function foo()&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">Arguments(3)&#123;1,2,3&#125;</span><br><span class="line"></span><br><span class="line">var foo = () =&gt;&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">报错</span><br></pre></td></tr></table></figure>
-
-<p>想要获取箭头函数的参数列表可以使用…</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var foo = (...arguments) =&gt;&#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">&#125;</span><br><span class="line">foo(1,2,3)</span><br><span class="line">---</span><br><span class="line">(3)&#123;1,2,3&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>不能使用yield命令，所以箭头函数不能作为Generator函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//generator函数</span><br><span class="line">function *fn()&#123;</span><br><span class="line">yield 1;</span><br><span class="line">yield 2;</span><br><span class="line">return 3</span><br><span class="line">&#125;</span><br><span class="line">var f = fn()</span><br><span class="line">console.log(f)</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">console.log(f.next())</span><br><span class="line">---</span><br><span class="line">fn&#123;...&#125;</span><br><span class="line">&#123;value:1,done:false&#125;</span><br><span class="line">&#123;value:2,done:false&#125;</span><br><span class="line">&#123;value:3,done:true&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><strong>实际应用</strong></p>
-<p>在函数内部想要拿到外部实例的时候可以使用箭头函数，这样函数体中的this就直接指向了外部实例</p>
-<p>setTimeout，setInterval</p>
-<p><strong>函数扩展方法</strong></p>
-<ol>
-<li><p>给函数的参数指定默认值，es5</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,y)&#123;</span><br><span class="line">//如果y存在，那么就取y，如果y不存在，那么就y=1</span><br><span class="line">y = y||1</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>es6</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,y=1)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fn (&#123;x,y=1&#125;)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(&#123;X:1&#125;)</span><br><span class="line">//先解构，然后再赋一个默认值</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>通过rest参数获取函数的多余参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn (x,...y)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(1,2,3,4)</span><br><span class="line">---</span><br><span class="line">1</span><br><span class="line">2,3,4</span><br></pre></td></tr></table></figure>
-
-<p>…y称为rest参数，是所有未被定义的实参的参数数组集合，也一样可以解构赋值。如果参数是对象的话那么就是所有未被定义的属性所形成的一个新的对象。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn(&#123;x,...y&#125;)&#123;</span><br><span class="line">console.log(x)</span><br><span class="line">console.log(y)</span><br><span class="line">&#125;</span><br><span class="line">fn(&#123;x:1,a:2,b:3&#125;)</span><br><span class="line">---</span><br><span class="line">1</span><br><span class="line">&#123;a:2,b:3&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/" data-id="cl4o61a1s0004vkfo1pdz6779" data-title="箭头函数和方法扩展" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Iterator和for-of循环" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/" class="article-date">
-  <time class="dt-published" datetime="2022-06-21T06:18:05.000Z" itemprop="datePublished">2022-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/">Iterator和for...of循环</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Iterator概念</p>
-<p>Iterator接口的目的就是为所有的数据结构提供一种统一的访问机制，即for of循环从而完成遍历的操作。当使用for…of循环时，该循环会自动调用Iterator的接口。</p>
-<p>for…of循环的遍历过程</p>
-<ol>
-<li>创建一个指针对象，指向当前数据结构的起始位置，因而遍历器本质上就是一个指针对象</li>
-<li>第一次调用指针对象的next方法，可以将指针指向数据结构的第一个成员</li>
-<li>第二次调用指针对象的next方法，可以将指针指向数据结构的第二个成员</li>
-<li>不断调用指针对象，直到它指向数据结构的最后结束位置</li>
-</ol>
-<p>每一次调用next方法返回一个包含value和done两个属性的对象</p>
-<p>其中value是当前成员的值，done属性是一个布尔值，表示遍历是否结束</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line"><span class="keyword">var</span> it = <span class="title function_">makeIterator</span>(arr)</span><br><span class="line">it.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">//value:&#x27;1&#x27;,done:false</span></span><br><span class="line">it.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">//value:&#x27;2&#x27;,done:false</span></span><br><span class="line">it.<span class="title function_">next</span>()</span><br><span class="line"><span class="comment">//value:undefined,done:true</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">makeIterator</span>(<span class="params">arr</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> nextIndex = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">next</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">     <span class="keyword">return</span> nextIndex&lt;arr.<span class="property">length</span>?&#123;</span><br><span class="line">         <span class="attr">value</span>:arr[nextIndex++],<span class="attr">done</span>:<span class="literal">false</span></span><br><span class="line">     &#125;:&#123;</span><br><span class="line">         <span class="attr">value</span>:<span class="literal">undefined</span>,<span class="attr">done</span>:<span class="literal">true</span></span><br><span class="line">     &#125;</span><br><span class="line">    &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Iterator接口时部署在Symbol.iterator属性</strong></p>
-<p>如果一个数据结构具有Symbol.iterator属性，那么这个数据结构就是可便利的。</p>
-<p>Symbol.iterator属性本身是一种函数，就是当前数据结构的遍历器默认生成的一个函数，执行这个函数就会放回一个遍历器对象，（该对象的根本特征就是会具有next方法，每一次调用next()，都会返回一个代表当i请安成员的信息对象,这个对象具有value和done两个属性）</p>
-<p>对象的Symbol.iterator属性指向了该对象的默认遍历器方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">[Symbol.iterator] : function()&#123;</span><br><span class="line">return &#123;</span><br><span class="line">next:function()&#123;</span><br><span class="line">return &#123;</span><br><span class="line">value:1,</span><br><span class="line">done:true</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>如果要使用特殊的属性名，不能采用 . 的方式来操作</em></p>
-<p><em>需要使用另一种方式：语法：对象[“属性名”] &#x3D; 属性值</em></p>
-<p><em>读取时也需要采用这种方式</em></p>
-<p>example:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const obj = &#123;</span><br><span class="line">[Symbol.iterator] : function()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">var it = arr[Symbol.iterator]()</span><br></pre></td></tr></table></figure>
-
-<p><strong>原生具备iterator接口的数据结构</strong></p>
-<p>Map,Set,Array,String,函数的arguments对象(伪数组)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var arr = [&#x27;1&#x27;,&#x27;2&#x27;]</span><br><span class="line">var it = arr[Symbol.iterator]()</span><br><span class="line">it.next()</span><br><span class="line">//value:&#x27;1&#x27;,done:false</span><br><span class="line">it.next()</span><br><span class="line">//value:&#x27;2&#x27;,done:false</span><br><span class="line">it.next()</span><br><span class="line">//value:undefined,done:true</span><br></pre></td></tr></table></figure>
-
-<p>对于原生部署了iterator的数据结构来说可以直接使用forof循环,但是如果没有iterator的接口的话(主要是数组),那么就要自己在[Symbol.iterator]上部署接口,这样才会被for…of循环</p>
-<p>对象不具备iterator接口的原因是对象哪一个属性先遍历,哪一个属性后遍历时不确定的,需要开发者手动部署</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line"><span class="attr">data</span>:[<span class="string">&#x27;hello&#x27;</span>,<span class="string">&#x27;world&#x27;</span>],</span><br><span class="line">[<span class="title class_">Symbol</span>.<span class="property">iterator</span>]:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">let</span> index = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> self = <span class="variable language_">this</span></span><br><span class="line"><span class="keyword">return</span>&#123;</span><br><span class="line">    <span class="attr">next</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(index&lt;self.<span class="property">data</span>.<span class="property">length</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>&#123;&#123;<span class="attr">value</span>:self.<span class="property">data</span>[index++],<span class="attr">done</span>:<span class="literal">false</span>&#125;&#125;</span><br><span class="line">&#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>&#123;&#123;<span class="attr">value</span>:<span class="literal">undefined</span>,<span class="attr">done</span>:<span class="literal">true</span>&#125;&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/21/Iterator%E5%92%8Cfor-of%E5%BE%AA%E7%8E%AF/" data-id="cl4o61a1l0000vkfog8u7c8tz" data-title="Iterator和for...of循环" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Map" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/20/Map/" class="article-date">
-  <time class="dt-published" datetime="2022-06-20T12:02:16.000Z" itemprop="datePublished">2022-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/20/Map/">Map</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Map是新的应用类型的字符串，类似于对象，但是键的范围但不限于字符串，各种类型的值包括对象类型的值都可以当作键</p>
-<p>Object提供了‘字符串—值’的对应</p>
-<p>Map提供了‘值—值’的对应，是一种更加完美的键值对的实现</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const m = new Map()</span><br><span class="line">const o = &#123;p:&#x27;hello world&#x27;&#125;</span><br><span class="line">m.set(o,&#x27;content&#x27;)</span><br><span class="line">m.get(o)//&quot;content&quot;</span><br><span class="line">m.has(o)//true</span><br><span class="line">m.delete(o)//true</span><br><span class="line">m.has(o)//false</span><br></pre></td></tr></table></figure>
-
-<p><strong>证明Map()是引用数据类型</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const m = new Map()</span><br><span class="line">console.log(map instance Map)//true</span><br><span class="line">console.log(Object.prototype.toString.call(map))//[object Map]</span><br></pre></td></tr></table></figure>
-
-<p><em>console.log(Object.prototype.toString.call(map))使用原型链顶端的toString()方法的原因是因为数组和对象对toString()的方法进行了改写</em></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">toString:function()&#123;</span><br><span class="line">return &#x27;123&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.toString()</span><br><span class="line">//这样就会覆盖.toString方法从而导致问题</span><br></pre></td></tr></table></figure>
-
-<p><strong>Map可以接受数组作为参数，在Map构造函数中接受的数组必须是一个个表示键值对的数组</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let m =new Map([ [&#123;&#x27;name&#x27;:&#x27;z3&#x27;&#125;,1],[age,18] ])</span><br></pre></td></tr></table></figure>
-
-<p>Map的存储特点是把对象作为键名的时候传输的是地址，所以下列中的两个{x:1}虽然形式相同但是实际的值不同，（存储在堆内存中的不同位置）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let m = new Map([</span><br><span class="line">&#123;x:1&#125;,&#x27;abc&#x27;</span><br><span class="line">])</span><br><span class="line">console.log(m.get(&#123;x:1&#125;))</span><br><span class="line">//undefined</span><br><span class="line">//这里存进去的&#123;x:1&#125;其实是这个对象在堆内存中的地址</span><br><span class="line">let obj = &#123;x:1&#125;</span><br><span class="line">let m = new Map([</span><br><span class="line">obj,&#x27;abc&#x27;</span><br><span class="line">])</span><br><span class="line">console.log(m.get(obj))</span><br><span class="line">//abc</span><br></pre></td></tr></table></figure>
-
-<p>Map可以接受数组作为参数，在Map构造函数中接受的数组必须是一个个表示键值对的数组的本质</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let m =new Map([ [&#123;&#x27;name&#x27;:&#x27;z3&#x27;&#125;,1],[age,18] ])</span><br><span class="line">//内部机制</span><br><span class="line">items.forEach(</span><br><span class="line">//([key,value],index)=&gt;m.set(key,value)</span><br><span class="line">([key,value])=&gt;m.set(key,value)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p> <strong>Map自带的方法</strong></p>
-<p>m.keys()</p>
-<p>m.values()</p>
-<p>m.entries()</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const m = new Map([[&#x27;a&#x27;,&#x27;b&#x27;],[&#x27;c&#x27;,&#x27;d&#x27;]])</span><br><span class="line">m.set(&#x27;e&#x27;,10)</span><br><span class="line">console.log(m.size)</span><br><span class="line">console.log(m.keys())//输出所有键</span><br><span class="line">console.log(m.values())//输出所有值</span><br><span class="line">console.log(m.entries())//输出所有对应关系</span><br><span class="line">---</span><br><span class="line">3</span><br><span class="line">&#123;&#x27;a&#x27;, &#x27;c&#x27;, &#x27;e&#x27;&#125;</span><br><span class="line">&#123;&#x27;b&#x27;, &#x27;d&#x27;, 10&#125;</span><br><span class="line">&#123;&#x27;a&#x27; =&gt; &#x27;b&#x27;, &#x27;c&#x27; =&gt; &#x27;d&#x27;, &#x27;e&#x27; =&gt; 10&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em><strong>Map参数的扩展</strong></em></p>
-<p><em>任何具有Iterator接口，且每一个成员都是一个双元素的数组的数据结构，都可以当作Map构造函数的参数，</em></p>
-<p><em>所以set和map也都可以作为Map构造函数的初始值，只要是每一个成员都是一个双元素的数组。</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/20/Map/" data-id="cl4mp48je0000c0fo7x8yctqv" data-title="Map" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Set" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/20/Set/" class="article-date">
-  <time class="dt-published" datetime="2022-06-20T11:00:21.000Z" itemprop="datePublished">2022-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/20/Set/">Set</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Set是新的引用类型的数据解构，类似于数组，但是每一个成员都是唯一的，没有重复的值</p>
-<p>Set本身是一个构造函数，用来生成Set数据结构</p>
-<p>Set函数可以接受一个数组作为参数，用于初始化</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const set = new Set([1,2,3,4,1])</span><br><span class="line">console.log(set)</span><br><span class="line">---</span><br><span class="line">Set(4)&#123;1,2,3,4&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Set可以转化为数组</strong>（通过…或者Array.from()），原因是应为Set数据结构支持for of循环（内部部署了iterator接口）</p>
-<p>可以快速实现数组去重</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const set = new Set([1,2,3,4,1])</span><br><span class="line">Array.from(set)</span><br><span class="line">[...set]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>Set数据内部判断值的机制</strong>所使用的算法类似于精确相等运算符（&#x3D;&#x3D;&#x3D;），但是如果是多个NaN的话那么Set会返回一个NaN，因为在Set内部两个NaN是全等的，但是对于精确相等运算符来说两个NaN是不全等的。</p>
-<p><strong>Set实例的属性和方法</strong></p>
-<p>set.add(1)：添加元素</p>
-<p>set.has(1)：判断是否有这个属性</p>
-<p>set.delete(2)：删除</p>
-<p>set.forEach()：Set结构的实例和数组一样也是拥有forEach的方法，对每一个成员执行某种操作，没有返回值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let set = [1,4,3]</span><br><span class="line">set.forEach((value，index)=&gt;console.log(index+&#x27;:&#x27;+value))</span><br><span class="line">---</span><br><span class="line">1:1</span><br><span class="line">4:4</span><br><span class="line">3:3</span><br></pre></td></tr></table></figure>
-
-<p><em>对于set.forEach来说是没有索引这个概念的，所以</em>：左右都一样</p>
-<p>Set可以实现数组之间的集合操作</p>
-<p>并集：let set &#x3D; new Set([…a,…b])</p>
-<p>交集：let set &#x3D; new Set([…a].filter(x&#x3D;&gt;b.has(x)))</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/20/Set/" data-id="cl4mp48jh0001c0fogjb78920" data-title="Set" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Symbol" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/20/Symbol/" class="article-date">
-  <time class="dt-published" datetime="2022-06-20T08:45:14.000Z" itemprop="datePublished">2022-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/20/Symbol/">Symbol</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p> Symbol是es6新增的一种基本数据类型，只要是用于保证每一个对象属性的名字都是独一无二的</p>
-<p>symbol函数可以接受一个字符串作为参数，表示对symbol实例的描述，主要是为了在控制台输出，或者转化为字符串时，比较容易曲风。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let s1=Symbol(&#x27;1&#x27;)</span><br><span class="line">let s2=Symbol(&#x27;2&#x27;)</span><br><span class="line">s1</span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
-
-<p>Symbol参数是一个对象时，就会调用该对象的toString方法，将其转化为字符串，然后才生成一个Symbol值</p>
-<p>Symbol函数的参数只是对当前Symbol值的描述，所以相同参数的Symbol函数的返回值是不一样的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;a:1&#125;</span><br><span class="line">let b = &#123;b:1&#125;</span><br><span class="line">let s1=Symbol(a)</span><br><span class="line">let s2=Symbol(b)</span><br><span class="line">let o = &#123;&#125;</span><br><span class="line">o[s1]=1</span><br><span class="line">o[s2]=2</span><br><span class="line">//如果不使用symbol的话，那么obja和objb在转换成字符串以后都是相同的，所以属性值会覆盖，但是使用symbol了以后就不会</span><br></pre></td></tr></table></figure>
-
-<p>对象的Symbol.iterator属性</p>
-<p>这是指向对象的默认遍历器方法,对象进行for of循环时，会调用Symbol.iretator方法返回该对象的默认遍历器</p>
-<p>Object.getOwnPropertySymbols方法</p>
-<p>可以获得只当对象的所有Symbol属性名</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;a:1&#125;</span><br><span class="line">let b = &#123;b:1&#125;</span><br><span class="line">let s1=Symbol(a)</span><br><span class="line">let s2=Symbol(b)</span><br><span class="line">let o = &#123;&#125;</span><br><span class="line">o[s1]=1</span><br><span class="line">o[s2]=2</span><br><span class="line">const objectStmbol=Object.getOwnPropertySymbols(o)</span><br><span class="line">---</span><br><span class="line">Symbol(s1) Symbol(s2)</span><br></pre></td></tr></table></figure>
-
-<p><strong>应用</strong></p>
-<p>私有属性，用symbol定义的属性名是在外界访问不到的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let private = Symbol(&#x27;private&#x27;)</span><br><span class="line">var obj = &#123;</span><br><span class="line">[private]:&#x27;私有属性&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>枚举</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const one = 1</span><br><span class="line">const two = 2</span><br><span class="line">//使用symbol的话就可以支持一样的变量名</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/20/Symbol/" data-id="cl4mp48jj0002c0fohnt8go7x" data-title="Symbol" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-解构赋值" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/20/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" class="article-date">
-  <time class="dt-published" datetime="2022-06-20T08:01:00.000Z" itemprop="datePublished">2022-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/20/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/">解构赋值</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p> <strong>数组解构赋值</strong></p>
-<p>按照一定模式，对数组中提取值，对变量进行赋值，这被称为解构赋值</p>
-<p>方便地将一组参数与变量名对应起来</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let [a,b,c]=[1,2,3]</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
-
-<p><strong>模式匹配</strong></p>
-<p>只要等号两边地模式相同，左边地变量就会被赋予对应的值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let [foo,[[bar],baz]]=[1,[[2],3]]</span><br><span class="line">let [,,third]=[1,2,3]</span><br></pre></td></tr></table></figure>
-
-<p><strong>对象的解构赋值</strong></p>
-<p>允许使用自变量的语法将对象的属性赋给变量，可以取得继承的属性</p>
-<p>变量名必须属性名相同才能取到正确的值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let &#123;bar&#125; = &#123;bar:&#x27;123&#x27;,foo:&#x27;456&#x27;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>同时也可以使用 :变量名的写法进行重命名,这样真正被赋值的就是后者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let &#123;bar:baz&#125; = &#123;bar:&#x27;123&#x27;,foo:&#x27;456&#x27;&#125;</span><br><span class="line">console.log(baz)</span><br><span class="line">---</span><br><span class="line">123</span><br></pre></td></tr></table></figure>
-
-<p>对象的解构赋值可以和数组解构赋值一起使用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let obj=&#123;</span><br><span class="line">p:[&#x27;1&#x27;,&#123;</span><br><span class="line">y:&#x27;2&#x27;</span><br><span class="line">&#125;]</span><br><span class="line">&#125;</span><br><span class="line">let &#123;p:[x,&#123;y&#125;]&#125;=obj</span><br></pre></td></tr></table></figure>
-
-<p>对象的解构可以设置默认值,默认值生效的条件是对象的属性值严格等于undefined</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let &#123;x=3&#125;=&#123;&#125;</span><br><span class="line">---</span><br><span class="line">x=3</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let &#123;x:y=3&#125;=&#123;x:5&#125;</span><br><span class="line">---</span><br><span class="line">y=5</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let &#123;x=3&#125;=&#123;x:undefined&#125;</span><br><span class="line">---</span><br><span class="line">x=3</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let &#123;x=3&#125;=&#123;x:null&#125;</span><br><span class="line">---</span><br><span class="line">x=null</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/20/%E8%A7%A3%E6%9E%84%E8%B5%8B%E5%80%BC/" data-id="cl4mp48jl0004c0fo4ghydm7u" data-title="解构赋值" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-let-const-var暂时性死区" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/" class="article-date">
-  <time class="dt-published" datetime="2022-06-20T07:34:34.000Z" itemprop="datePublished">2022-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/">let,const var暂时性死区</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>let，const声明的变量不会发生变量提升，但var声明的变量就可以，变量在声明前就可以使用，值为undefined，原因是因为预编译的时候就已经把变量存入变量对象中。</p>
-<p><strong>暂时性死区</strong></p>
-<p>在代码块内使用let命令声明变量之前，变量时不能被使用的，在语法上称为暂时性死区TDZ</p>
-<p>let是不能被重复声明的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(b)&#123;</span><br><span class="line">let b</span><br><span class="line">&#125;</span><br><span class="line">//报错</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>块级作用域</strong></p>
-<p>允许块级作用域的任意嵌套，但是每一层都是一个单独的作用域，每一层中的数据不互通。</p>
-<p>应用场景：</p>
-<p>内层变量可能会覆盖外面的变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var date= new Date()</span><br><span class="line">function f()&#123;</span><br><span class="line">//var date</span><br><span class="line">console.log(date)</span><br><span class="line">if(true)&#123;</span><br><span class="line">var date=&#x27;1&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
-
-<p>循环内部的计数变量泄露为全局变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4]</span><br><span class="line">for(var i = 0;i&lt;arr.length;i++)&#123;</span><br><span class="line">console.log(arr[i])</span><br><span class="line">&#125;</span><br><span class="line">console.log(i)</span><br><span class="line">---</span><br><span class="line">1 2 3 4 4</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>const特殊之处</strong></p>
-<p>const一旦声明就不能被改变，并且必须要给一个初始值。</p>
-<p>但如果const后面是一个引用数据类型，那么地址是在栈里面不能够改变，但是真正的数据是存放在堆里面的，也就可以改变。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const obj=&#123;&#125;</span><br><span class="line">obj.name=&#x27;123&#x27;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><em>for循环内部变量 i 和循环变量 i 不在同一个作用域中。</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/" data-id="cl4mp48jj0003c0fobzjv39im" data-title="let,const var暂时性死区" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-web性能优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
-  <time class="dt-published" datetime="2022-06-19T12:27:45.000Z" itemprop="datePublished">2022-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">web性能优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>web性能有哪些：</strong></p>
-<p>用户对加载时间和运行时的直观体验</p>
-<p>页面加载到可交互和可响应所消耗的时间，页面在交互的时候的流畅度。</p>
-<p><strong>如何进行Web性能优化</strong></p>
-<ol>
-<li>了解性能指标</li>
-<li>专业的工具可量化的评估出网站和应用的性能表现</li>
-<li>从网站页面响应的声明周期，分析出造成较差性能表现的原因</li>
-<li>进行技术改造，可行性分析等具体的优化实施</li>
-<li>迭代优化</li>
-</ol>
-<p><strong>web性能报告</strong></p>
-<p>Lighthouse插件分析web应用和web页面，生成评估页面。</p>
-<p>五个打分维度：检测得分，性能指标，优化建议，诊断结果，已通过的性能</p>
-<p>优化建议</p>
-<ol>
-<li>移除阻塞渲染的资源：js教本和css没有请求回来导致的白屏，一般解决方法是内嵌进入本地而非在网上请求</li>
-<li>预链接所需要请求的源，提前建立与所需要访问的资源之间的网络连接，link rel&#x3D;”preconnect”,link rel &#x3D; “dns-prefetch”DNS预解析</li>
-<li>降低服务端的响应时间，网络请求资源收到服务器内核，带宽，内存三个因素影响。</li>
-<li>适当调整图片大小&#x3D;&gt;小图片可以转化base64位编码、大图片可以压缩到可以接受为止</li>
-</ol>
-<p><strong>诊断结果</strong></p>
-<p>对静态资源使用高效的缓存策略</p>
-<p>较少主线程的工作</p>
-<p>减少HTTP的请求</p>
-<p><strong>浏览器缓存策略</strong></p>
-<p>强缓存</p>
-<p>不会向服务器发送请求，直接从缓存读取资源，第二次请求就会快很多。</p>
-<p>Expires和Cache-Control这两种HTTP Header实现</p>
-<p>强缓存有两个状态：</p>
-<p>from memory cache：不访问服务器，直接从内存中读取缓存，浏览器关闭以后，数据不存在，再次打开相同界面不会出现from memory cache</p>
-<p>from disk cache：直接从硬盘中读取，关闭浏览器以后数据依然存在，此资源不会因为该页面的关闭而释放掉，下次打开相同界面依然是from disk cache</p>
-<p>协商缓存</p>
-<p>在强制缓存失效以后，浏览器携带缓存标识向服务器发起请求，有服务器根据缓存标识决定是否使用缓存</p>
-<ul>
-<li>协商缓存生效，返回304和not modified</li>
-<li>协商缓存失效，返回200和请求结果</li>
-</ul>
-<p><strong>精炼js代码</strong></p>
-<p>减少业务复杂度</p>
-<p>算法优化</p>
-<p>动态规划</p>
-<p>适用情况</p>
-<p>最优子结构</p>
-<p>无后效性</p>
-<p>子问题重叠</p>
-<p><em>从浏览器地址栏输入URL之后到页面渲染出来整个过程发生了什么</em></p>
-<p>从浏览器地址栏输入URL，服务器接受到请求并转到处理后台（对应接口），接口进行响应，前后台http响应，拿到数据时浏览器和服务器之间会有对应的缓存机制，浏览器接收到数据后渲染出页面，js引擎对脚本进行执行。</p>
-<p>优化的点：</p>
-<p>请求之前对前端进行优化。</p>
-<p>发出请求后可以对后端做出优化</p>
-<p>接受到数据以后可以对数据进行处理，如分页等，对图片资源的缓存和对代码的优化</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="cl4lccg0k00009cfogqaf1owc" data-title="web性能优化" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-防抖节流函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-06-19T11:52:25.000Z" itemprop="datePublished">2022-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">防抖节流函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>防抖函数的概念：</p>
-<p>函数防抖：就是指在触发事件后，在n秒内函数只能调用一次，如果触发事件后在n秒内又触发了事件，那么会重新计算函数延执行的时间。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">func,wait</span>)&#123;</span><br><span class="line"><span class="comment">//timer是定时器</span></span><br><span class="line"><span class="keyword">var</span> timer = <span class="literal">null</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(timer) &#123;</span><br><span class="line">       <span class="built_in">clearTimeout</span>(timer)</span><br><span class="line">       &#125;</span><br><span class="line">    timer=<span class="built_in">setTimeout</span>(func,wait)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>节流：当持续触发事件时，保证在一定时间内只调用一次事件处理函数，假设用户一直触发这个函数，且每一次触发这个函数都小于既定值，函数节流会每隔这个时间调用一次。 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span> (func,deplay)&#123;</span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!timer)&#123;</span><br><span class="line">            timer = <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="title function_">func</span>()</span><br><span class="line">                timer = <span class="literal">null</span></span><br><span class="line">            &#125;,deplay)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>var timer &#x3D; null</em></p>
-<p><em>!timer&#x3D;&#x3D;&#x3D;true</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/" data-id="cl4lccg0n00019cfogv4yghkf" data-title="防抖节流函数" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -792,7 +688,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
     </div>
   </div>
 
@@ -805,23 +701,23 @@
       <ul>
         
           <li>
-            <a href="/2022/06/25/vue-router/">vue-router</a>
+            <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
           </li>
         
           <li>
-            <a href="/2022/06/25/%E5%8D%95%E9%A1%B5%E9%9D%A2vs%E5%A4%9A%E9%A1%B5%E9%9D%A2/">单页面vs多页面</a>
+            <a href="/2022/07/04/git/">git</a>
           </li>
         
           <li>
-            <a href="/2022/06/25/Vue-cli/">Vue-cli</a>
+            <a href="/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">项目复盘</a>
           </li>
         
           <li>
-            <a href="/2022/06/25/%E8%BF%87%E6%BB%A4%E5%99%A8/">过滤器</a>
+            <a href="/2022/07/02/Vuex/">Vuex</a>
           </li>
         
           <li>
-            <a href="/2022/06/25/%E6%8C%87%E4%BB%A4%E5%BC%95%E5%85%A5/">指令引入</a>
+            <a href="/2022/06/26/%E8%BD%AE%E6%92%AD%E7%BB%84%E4%BB%B6/">轮播组件</a>
           </li>
         
       </ul>

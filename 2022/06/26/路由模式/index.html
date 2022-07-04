@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>路由模式 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="路由模式 vue支持两种模式 hash模式 #&#x2F;home  12location.hash 切换、window.onhashchange 监听路径改变  history模式 &#x2F;home 12history.pushState 切换window.onpopstate 监听路径切换  默认情况下是hash模式 index.js 1234const router &#x3D; new VueR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由模式">
+<meta property="og:url" content="http://example.com/2022/06/26/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="路由模式 vue支持两种模式 hash模式 #&#x2F;home  12location.hash 切换、window.onhashchange 监听路径改变  history模式 &#x2F;home 12history.pushState 切换window.onpopstate 监听路径切换  默认情况下是hash模式 index.js 1234const router &#x3D; new VueR">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-26T08:10:31.000Z">
+<meta property="article:modified_time" content="2022-06-26T08:21:23.406Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-路由模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/26/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2022-06-26T08:10:31.000Z" itemprop="datePublished">2022-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      路由模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>路由模式</strong></p>
+<p>vue支持两种模式</p>
+<p>hash模式 #&#x2F;home </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">location.hash 切换、</span><br><span class="line">window.onhashchange 监听路径改变</span><br></pre></td></tr></table></figure>
+
+<p>history模式 &#x2F;home</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history.pushState 切换</span><br><span class="line">window.onpopstate 监听路径切换</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下是hash模式</p>
+<p>index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">mode:&#x27;history&#x27;,//hash,history</span><br><span class="line">routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>但是history模式需要后台配置支持，应为我们的应用是一个单页面客户端应用，如果后台没有正确的配置，那么当用户在浏览器访问<a target="_blank" rel="noopener" href="http://oursite.com/user/id%E7%9A%84%E6%97%B6%E5%80%99%E5%B0%B1%E4%BC%9A%E8%BF%94%E5%9B%9E404%E3%80%82">http://oursite.com/user/id的时候就会返回404。</a></p>
+<p>如果路径匹配不到资源，要返回一个index页面。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/26/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" data-id="cl56qh3gr0004pkfoakfre0ih" data-title="路由模式" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/26/%E8%B7%AF%E7%94%B1%E6%8B%A6%E6%88%AA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          路由拦截
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/25/vue-router/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vue-router</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/04/git/">git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">项目复盘</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/02/Vuex/">Vuex</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/26/%E8%BD%AE%E6%92%AD%E7%BB%84%E4%BB%B6/">轮播组件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

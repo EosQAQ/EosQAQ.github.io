@@ -71,6 +71,609 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-面向对象" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/19/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time class="dt-published" datetime="2022-06-19T05:51:47.000Z" itemprop="datePublished">2022-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/19/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">面向对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>面向对象：功能封装在对象内部，实现功能通过调用对象方法来实现</p>
+<p>面向对象的优势：</p>
+<p>在面向对象程序开发思想中，每一个对象都是功能核心，具有明确的分工</p>
+<p>面向对象编程具有灵活，代码可复用，容易维护和开发的优点，更适合多人合作的大型软件项目</p>
+<p><strong>面向对象的三大特性</strong></p>
+<p><strong>封装：</strong></p>
+<p>工厂模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//自变量创建</span><br><span class="line">//var obj=&#123;&#125;</span><br><span class="line">//obj.name=&#x27;json&#x27;</span><br><span class="line">function createCar()&#123;</span><br><span class="line">//创建一个空对象</span><br><span class="line">var obj=new Object(color,style)</span><br><span class="line">obj.color=color</span><br><span class="line">obj.style=style</span><br><span class="line">return obj</span><br><span class="line">&#125;</span><br><span class="line">var Car=createCar(&#x27;blue&#x27;,&#x27;奔驰&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>构造函数模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function CreateCar(color,style)&#123;</span><br><span class="line">this.color=color</span><br><span class="line">this.style=style</span><br><span class="line">&#125;</span><br><span class="line">var Car=new CreateCar(&#x27;blue&#x27;,&#x27;奔驰&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>构造函数和工厂模式的区别：</p>
+<p>没有通过new关键字 显示地创建对象</p>
+<p>直接将属性和方法赋值给了this对象</p>
+<p>没有return语句</p>
+<p>内部处理&#x3D;&gt;</p>
+<p>隐式地创建了一个新对象</p>
+<p>将构造函数的作用域赋给了新对象</p>
+<p>执行构造函数中地代码</p>
+<p>返回了一个新对象</p>
+<p><code>如何区分数组和对象？=&gt;instanceof关键字和.constructor属性指向的构造函数    </code></p>
+<p>原型模式 </p>
+<p>![原型链](C:\Users\12590\Desktop\Web Study\JavaScriptStudy\原型链.png)</p>
+<p>test.constructor&#x3D;&#x3D;&#x3D;Test,同时constructor是可以更改的</p>
+<p>原型对象也有constructor属性，指向的是原型对象的构造函数</p>
+<p>prototype：原型</p>
+<p><strong><strong>proto</strong></strong>:原型链（链接点）</p>
+<p>原型链的概念：以起始的对象为基准，以proto为链接一直到Object.prototyp的这个链就是原型链</p>
+<p>从属关系</p>
+<p>prototype &#x3D;&gt; 函数的一个属性：对象{}</p>
+<p><strong><strong>proto</strong></strong>&#x3D;&gt;对象object的一个属性：对象{}</p>
+<p>对象的____proto____保存着该对象的构造函数的prototype</p>
+<p>fn构造函数的prototype就是fn的原型对象，fn.protorype的constructor就是fn构造函数</p>
+<p>fn的实例就是var obj&#x3D;new fn()，实例对象obj的constructor就是fn构造函数</p>
+<p>f1&#x3D;fn.prototype</p>
+<p>fn.prototype.constructor&#x3D;&#x3D;&#x3D;fn</p>
+<p>var obj&#x3D;new fn()</p>
+<p>obj.constructor&#x3D;&#x3D;&#x3D;fn</p>
+<p>obj.<strong><strong>proto</strong></strong>&#x3D;&#x3D;&#x3D;fn.prototype</p>
+<p>fn.protorype.<strong><strong>proto</strong></strong>&#x3D;Object.protorype</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function Test()&#123;&#125;</span><br><span class="line">console.log(Test.prototype)</span><br><span class="line">const test=new Test()</span><br><span class="line">console.log(test.__proto__)</span><br><span class="line">console.log(test.__proto__===Test.prototype)</span><br><span class="line">//true</span><br><span class="line">console.log(Test.prototype.__proto__===Object.prototype)</span><br><span class="line">//true</span><br><span class="line">console.log(Object.prototype.__proto__)</span><br><span class="line">//null</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">test=&#123;</span><br><span class="line">a:1</span><br><span class="line">__proto__:Test.prototype=&#123;</span><br><span class="line">b:2</span><br><span class="line">__proto__:Object.prototype=&#123;</span><br><span class="line">c:3</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">test.a.b.c都是可以直接访问的</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+
+
+<p>公共的属性和方法可以写在prototype里面</p>
+<p>只要有相同的prototype，那么就可以继承prototype上所带有的方法</p>
+<p><strong>继承：</strong></p>
+<p>原型链的继承原理：直接让子类的原型对象指向父类的实例，当子类的实例找不到对应的属性和方法时就会到父类上面去找</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">child.prototype=new parent()</span><br></pre></td></tr></table></figure>
+
+<p>问题&#x3D;&gt;所有child实例原型都指向同一个parent实例，对某一个父类引用类型变量的修改会改变所有child实例，创建子类的时候也无法向父类的构造函数传参，并没有实现super的功能</p>
+<p>构造函数的继承原理：在子类的构造函数里面执行父类的构造函数，并为其绑定子类的this，让父类的构造函数把属性和方法都挂载到this上面去,从而实现super的功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function child()&#123;</span><br><span class="line">parent.call(this,&#x27;1&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>问题&#x3D;&gt;不能访问父类原型上面的属性和方法</p>
+<p>组合式继承</p>
+<p>原型链和构造函数组合</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function child()&#123;</span><br><span class="line">parent.call(this,&#x27;1&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">//原型链的继承，拿到了父类自己的属性和原型链上的属性和方法</span><br><span class="line">child.prototype=new parent()</span><br><span class="line">child.prototype.constructor=child</span><br></pre></td></tr></table></figure>
+
+<p>问题&#x3D;&gt;构造函数会被执行两次parent.call( )和new parent( ),会存在两份相同的属性和方法</p>
+<p>寄生组合式继承</p>
+<p>在原型链继承中把父类的实例改编为原型对象，让子类原型和父类的原型指向同一个对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function child()&#123;</span><br><span class="line">parent.call(this,&#x27;1&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">//原型链的继承，拿到了原型链上的属性和方法</span><br><span class="line">child.prototype=parent.prototype</span><br><span class="line">child.prototype.constructor=child</span><br></pre></td></tr></table></figure>
+
+<p>问题&#x3D;&gt;操作子类的原型会影响父类的原型</p>
+<p>完美实现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function child()&#123;</span><br><span class="line">parent.call(this,&#x27;1&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">//原型链的继承，但是通过浅拷贝拿到了原型链上的属性和方法</span><br><span class="line">child.prototype=Object.create(parent.prototype)</span><br><span class="line">child.prototype.constructor=child</span><br></pre></td></tr></table></figure>
+
+<p><strong>多态：</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/19/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" data-id="cl4l2dtkm0002s8fo44bwha9g" data-title="面向对象" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-同源策略" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/19/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/" class="article-date">
+  <time class="dt-published" datetime="2022-06-19T05:01:24.000Z" itemprop="datePublished">2022-06-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/19/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/">同源策略</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Web内容的源由访问它的url的方案（协议），主机（域名），端口定义，只有这三个都匹配，两个对象才拥有相同的源。</p>
+<p>同源策略是一种安全策略，定义了源之间资源如何交互。</p>
+<p>主要针对ajax请求</p>
+<p><strong>跨源网络访问</strong></p>
+<p>跨域写操作一般是允许的：links，重定向，表单提交等</p>
+<p>跨域资源嵌入一般是允许的，可以回避这个同源策略，容易造成XSS攻击</p>
+<p>跨域读操作一般是不允许的</p>
+<p>example：</p>
+<p>script标签嵌入跨域脚本，语法错误信息只能被同源脚本捕捉到</p>
+<p>link标签嵌入css，css的跨域需要设置一个正确的HTTP请求头ContentType，不同浏览器有不同的限制</p>
+<p>通过img展示的图片</p>
+<p>通过video、audio播放的多媒体资源</p>
+<p>通过object、embed、和applet嵌入的插件</p>
+<p>通过@font-face引入的字体</p>
+<p>通过iframe载入的资源</p>
+<hr>
+<p><strong>如何解决跨域</strong></p>
+<p><strong>跨域资源共享CORS</strong>：</p>
+<p>实现关键：需要服务器实现CORS接口</p>
+<p>浏览器发出的跨域请求分为两种：</p>
+<p>简单请求：</p>
+<p>简单请求特征：</p>
+<p>请求方法：get，head，post</p>
+<p>请求头的内容：</p>
+<ol>
+<li>无自定义头</li>
+<li>Cotent-Type：text&#x2F;plain&#x2F;multipart&#x2F;form-data&#x2F;application&#x2F;x-ww-form-urlendcoded</li>
+</ol>
+<p>在服务端的app.js中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var cors = require(&#x27;cors&#x27;)</span><br><span class="line">app.use(cors(&#123;</span><br><span class="line">//代表所有请求都可以跨域处理</span><br><span class="line">origin:&#x27;*&#x27;</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
+
+<p>复杂请求：</p>
+<p>复杂请求特征：请求方法：put&#x2F;delete&#x2F;post</p>
+<p>必须要有自定义请求头{headers:{‘x-token’:’1234’}}</p>
+<p>浏览器第一次会发送预检options请求，服务器端确认跨域请求后，第二次才会发送真正的请求，来请求后端数据 </p>
+<p><strong>JSONP</strong>：</p>
+<p>原理：通过动态创建script标签并写入src属性实现跨域</p>
+<p>跨源网络访问的三种方式：跨域写操作，跨域资源嵌入，跨域读操作</p>
+<p>JSONP的代码实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">jsonp</span>(<span class="params">options</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> script=<span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">    script.<span class="property">src</span>=options.<span class="property">url</span></span></span><br><span class="line"><span class="language-javascript">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(script)</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//在onload以后需要把script标签清除</span></span></span><br><span class="line"><span class="language-javascript">    script.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(script)</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="title function_">jsonp</span>(&#123;<span class="attr">url</span>:<span class="attr">http</span>:<span class="comment">//127.0.0.1:3000/jsonp&#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;1&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//在script标签中写一个后台的路径就不会有跨域的报错</span><br><span class="line">//<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&#x27;http://127.0.0.1:3000/jsonp&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>问题：</p>
+<p>只能发送get请求</p>
+<p>没有办法返回后端的状态码</p>
+<p>存在安全隐患</p>
+<p>不推荐使用</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/19/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/" data-id="cl4l2dtkl0001s8fobbm2hqlb" data-title="同源策略" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Ajax" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/Ajax/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T14:26:06.000Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/Ajax/">Ajax</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>ajax使用的优点</strong></p>
+<p>网页应用能够快速地将增量更新呈现在用户界面上，使用局部刷新，而不需要重载(刷新)整个页面，这使得程序可以更快地回应用户地操作。</p>
+<p>ajax的实现原理</p>
+<ol>
+<li><p>创建Ajax对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var xhr=new XMLHttpRequest()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>传入请求方式和请求地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&#x27;get&#x27;,&#x27;http://127.0.0.1:3000/getData&#x27;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>发送请求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.send()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>获取服务器与客户端的响应数据,回调函数</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xhr.onload=function()&#123;</span><br><span class="line">//容易出现跨域问题</span><br><span class="line">console.log(xhr.reponseText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/Ajax/" data-id="cl4jz4h6x00005gfode8k6r7x" data-title="Ajax" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Event-Loop" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/Event-Loop/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T12:41:02.000Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/Event-Loop/">Event Loop事件循环</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>js是一门单线程解释型编程语言，它的异步和多线程是通过EventLoop实现的</p>
+<p>创建执行上下文&#x3D;&gt;创建作用域&#x3D;&gt;创建变量对象和活动对象&#x3D;&gt;预编译&#x3D;&gt;执行代码</p>
+<p><strong>js的执行上下文</strong></p>
+<ol>
+<li>全局执行上下文</li>
+<li>函数执行上下文</li>
+<li>eval函数创建的执行上下文</li>
+</ol>
+<p><strong>宏任务和微任务</strong></p>
+<p>宏任务：setTimeout,setInterval,Ajax,Dom事件</p>
+<p>微任务：Promise</p>
+<p>微任务的优先级是大于宏任务的</p>
+<p>执行栈全部完成以后，先看微任务队列，微任务队列完成以后看消息队列即宏任务</p>
+<p><strong>事件循环概念</strong></p>
+<p>在主线程中碰到异步任务时，会以task的形式存在于事件循环中，当所有同步任务完成以后，异步任务会放入主线程中同步执行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/Event-Loop/" data-id="cl4jwg0e10000nwfo1g069uy3" data-title="Event Loop事件循环" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-this" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/this/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T12:21:36.000Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/this/">this</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>this的使用场景</strong></p>
+<ol>
+<li><p>在一般的函数中(没有实例来调用这个函数)，this指向的时window</p>
+</li>
+<li><p>在构造函数中，this指向的是实例化的对象</p>
+</li>
+<li><p>作为对象方法调用，this指向调用对象</p>
+</li>
+<li><p>call和apply的调用，this指向第一个调用的对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var x=2</span><br><span class="line">function fn()&#123;</span><br><span class="line">console.log(this.x)</span><br><span class="line">&#125;</span><br><span class="line">var obj1=&#123;</span><br><span class="line">x:1</span><br><span class="line">&#125;</span><br><span class="line">var obj2=&#123;&#125;</span><br><span class="line">obj2.fn=fn</span><br><span class="line">obj2.fn.apply()</span><br><span class="line">---</span><br><span class="line">2</span><br><span class="line">//这里this指向了window</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>js中的apply和call方法</strong></p>
+<p>每个函数都包含两个非继承而来的方法：call()方法和apply()方法。</p>
+<p> 相同点： 这两个方法的作用是一样的。</p>
+<p>都是在特定的作用域中调用函数，等于设置函数体内this对象的值，以扩充函数赖以运行的作用域。</p>
+<p>一般来说，this总是指向调用某个方法的对象，但是使用call()和apply()方法时，就会改变this的指向。</p>
+<p>不同点： 接收参数的方式不同。<br>apply()方法 接收两个参数，一个是函数运行的作用域（this），另一个是参数数组。<br>语法：apply([thisObj [,argArray] ]);，调用一个对象的一个方法，2另一个对象替换当前对象。</p>
+<p>说明：如果argArray不是一个有效数组或不是arguments对象，那么将导致一个<br>TypeError，如果没有提供argArray和thisObj任何一个参数，那么Global对象将用作thisObj。</p>
+<p>call()方法 第一个参数和apply()方法的一样，但是传递给函数的参数必须列举出来。<br>语法：call([thisObject[,arg1 [,arg2 [,…,argn]]]]);，应用某一对象的一个方法，用另一个对象替换当前对象。</p>
+<p>说明： call方法可以用来代替另一个对象调用一个方法，call方法可以将一个函数的对象上下文从初始的上下文改变为thisObj指定的新对象，如果没有提供thisObj参数，那么Global对象被用于thisObj。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function add(c,d)&#123;</span><br><span class="line"> 	return this.a + this.b + c + d;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> var s = &#123;a:1, b:2 &#125;;</span><br><span class="line"> console.log(add.call(s,3,4)); // 1+2+3+4 = 10</span><br><span class="line"> console.log(add.apply(s,[5,6])); // 1+2+5+6 = 14 </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/this/" data-id="cl4jwhzfy0000ssfo2hqu5gkn" data-title="this" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-闭包" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E9%97%AD%E5%8C%85/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T12:00:36.229Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/%E9%97%AD%E5%8C%85/">闭包</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>能够访问到其他函数作用域中的对象的函数统称为闭包</p>
+<p>嵌套</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function fn()&#123;</span><br><span class="line">var a=1</span><br><span class="line">function fn1()&#123;</span><br><span class="line">console.log(a+1)</span><br><span class="line">&#125;</span><br><span class="line">fn1()</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br><span class="line">---</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>callback回调函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function fn(cb)&#123;</span><br><span class="line">var a=1</span><br><span class="line">cb(a)</span><br><span class="line">&#125;</span><br><span class="line">function callback()&#123;</span><br><span class="line">console.log(a+1)</span><br><span class="line">&#125;</span><br><span class="line">fn(callback)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>底层原理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function books()&#123;</span><br><span class="line">var book = &#x27;书包里面的书本&#x27;</span><br><span class="line">return function()&#123;</span><br><span class="line">console.log(book)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">//bag这里拿到的是一个匿名函数</span><br><span class="line">var bag=books()</span><br><span class="line">//对匿名函数的一个调用</span><br><span class="line">bag()</span><br><span class="line">---</span><br><span class="line">书包里面的书本</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>全局执行上下文创建作用域链的时候，作用域链里面包含了全局变量对象：[作用域链]:[全局变量对象]</li>
+<li>books函数调用时创建作用域链，具体操作为先复制全局作用域，然后创建活动对象AO推入当前作用域的顶端，[作用域链:[books活动变量，全局变量对象]]，books函数执行完毕以后当前作用域会被销毁  <em>属于books环境的变量对象(也就是pub()函数中所有的函数和变量)叫做活动对象</em></li>
+<li>bag函数调用创建作用域的时候，首先复制上层作用域，然后创建AO推入当前作用域的顶端[作用域链：[匿名函数func，books活动变量，全局变量对象]]，bag函数执行完毕以后当前作用域就会被销毁</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E9%97%AD%E5%8C%85/" data-id="cl4ju2jzo0001jwfoe6t3a7it" data-title="闭包" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-深拷贝和浅拷贝" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T10:31:51.501Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">深拷贝和浅拷贝</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>js的数据类型</strong></p>
+<p>基本数据类型：</p>
+<p>string,number,boolean,null,undefined</p>
+<p>引用数据类型</p>
+<p>object(Array,Object,Function,Map,Set)</p>
+<p>堆内存：</p>
+<p>在堆内存中开辟一块空间专门存放引用数据类型具体的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0x123=&gt;&#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>栈内存：</p>
+<p>基本数据类型存在栈内存中，变量：a  值： 1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a=1</span><br></pre></td></tr></table></figure>
+
+<p>引用数据类型的变量名存放在栈内存中，变量：obj  值：0x123(地址)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj= &#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>深浅拷贝的实现</strong></p>
+<p>浅拷贝指挥拷贝引用数据类型的地址，当某个数据被修改以后，也会影响到另一个拷贝的数据</p>
+<p>实例：obj和obj1都指向同一个堆内存内的地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=obj</span><br><span class="line">obj1.name=&#x27;ls&#x27;</span><br><span class="line">console.log(obj.name)</span><br><span class="line">console.log(obj1.name)</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">ls</span><br><span class="line">ls</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<p>深拷贝会拷贝多层，对于每一级数据都会拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=&#123;&#125;</span><br><span class="line">for(var i in obj)&#123;</span><br><span class="line">obj1[i]=pbj[i]</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>实现深拷贝的库</strong></p>
+<p>lodash库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var deep=_.cloneDeep(obj1)</span><br><span class="line">console.log(deep===obj1)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用js原生写深拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json.parse(json.stringfy.parse(obj))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="cl4ju2jzk0000jwfodjd0eufq" data-title="深拷贝和浅拷贝" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-预编译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T08:35:14.743Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/">预编译</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>上下文创建后，会生成变量对象VO，VO首先寻找变量声明，将var声明的变量作为VO对象的属性名，值为undefined，然后寻找函数声明，如果函数名和变量名冲突，函数声明会将变量名覆盖。js代码执行前的一段时期，在这个时期，会对js代码进行预处理</p>
+<p><strong>全局预编译</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">console.log(a)</span><br><span class="line">var a =100</span><br><span class="line">function a()&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(a)</span><br><span class="line">//VO&#123;</span><br><span class="line">//a:undefined</span><br><span class="line">  a:funcA </span><br><span class="line">  a:100</span><br><span class="line">  //函数声明会覆盖变量声明</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>函数预编译</strong></p>
+<p>函数上下文创建以后会生成变量对象AO</p>
+<ol>
+<li>寻找变量声明，变量名作为AO对象的属性名，属性值为undefined</li>
+<li>寻找形参，形参名作为AO对象的属性名，属性值为undefined</li>
+<li>将实参的值赋给形参，函数名作为AO对象的属性名，属性值为函数本身，如果不冲突的话，变量还是undefined，只有在函数声明以后才会被赋值</li>
+<li>如果函数名和变量名冲突，那么函数声明将会覆盖变量声明</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function a(b,c)&#123;</span><br><span class="line">console.log(b)</span><br><span class="line">var b=0</span><br><span class="line">console.log(b)</span><br><span class="line">var b=function()&#123;</span><br><span class="line">console.log(&#x27;bbbb&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">console.log(c)</span><br><span class="line">console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">a(1)</span><br><span class="line">---</span><br><span class="line">VO&#123;</span><br><span class="line">b:undefined =&gt; 1</span><br><span class="line">c:undefined</span><br><span class="line">&#125;</span><br><span class="line">执行结果：</span><br><span class="line">1</span><br><span class="line">0</span><br><span class="line">undefined</span><br><span class="line">function()&#123;</span><br><span class="line">console.log(&#x27;bbbb&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" data-id="cl4ju2jzq0002jwfodenjed37" data-title="预编译" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-作用域链" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T07:32:01.177Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">作用域链</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>创建fn函数的时候，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在Scope属性中</p>
+<p>当调用fn时，会为函数创建一个执行环境，然后通过复制函数的Scope属性中的对象构建起执行环境的作用域链，此时scopes属性中不仅有global，还有local，然后创建活动对象AO(active object)并推入执行环境的作用域链，在fn执行完后作用域会销毁,最后只剩下global</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a =1</span><br><span class="line">function fn()&#123;</span><br><span class="line">var b=a+1</span><br><span class="line">console.log(b)</span><br><span class="line">&#125;</span><br><span class="line">console.dir(fn)</span><br><span class="line">//&#123;&#123;Scopes&#125;&#125;:Scopes[1] 0:Global</span><br><span class="line">fn()</span><br><span class="line">//b=2</span><br></pre></td></tr></table></figure>
+
+<p>在JavaScript中,当一个函数被调用的时候,就会产生一个特殊的对象:活动对象。这个对象中包含了参数列表和arguments对象等属性。由于活动对象是变量对象的特例,因此它包含变量对象所有的属性如变量定义,函数定义等。</p>
+<p>假设在全局环境下定义了函数pub（）和变量pubvar：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pubvar = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">pub</span> () &#123;</span><br><span class="line">  <span class="keyword">var</span> pravar = <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> pubvar + pravar;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">alert</span>(<span class="title function_">pub</span>(<span class="number">2</span>));     <span class="comment">//调用pub()函数</span></span><br></pre></td></tr></table></figure>
+
+<p>此时后台会创建一个作用域链（scope chain），这个作用域链包含了全局环境的变量对象并被保存在pub（）函数内部的scope属性中。<strong>但是，当我们打开浏览器的时候已经存在了一个全局的执行环境，这个全局的执行环境属于浏览器，JS里浏览器被称为window对象，我们把这个环境叫做A环境，只要没有关闭浏览器，A环境会一直存在</strong>下面会提到执行环境什么时候会被创建。</p>
+<p>我们用色块表示执行环境，链条表示作用域链，作用域链上半部分是活动对象区域，下半部分是变量对象区域，如下图：</p>
+<p><img src="https://pic3.zhimg.com/50/f20a5f2137716e4936490704018ddd27_720w.jpg?source=1940ef5c" alt="img"></p>
+<p>当我们要调用pub（）函数的时候，<strong>又会创建一个执行环境B</strong>，没错，执行环境如其名是在运行和执行代码的时候才存在的，所以我们运行浏览器的时候会创建全局的执行环境。这个时候根据pub（）函数scope属性中的作用域链把pub（）函数内的变量对象放入新的B环境中，作用域链也得到更新，如下图：</p>
+<p><img src="https://pica.zhimg.com/50/32541193ee5c7900e5137c245f4dfe32_720w.jpg?source=1940ef5c" alt="img"></p>
+<p><strong>上图的虚线表示正在执行，全局变量对象此时处于作用域链的第二位，所以标号变成了1。****你可能也注意到那个arguments对象，它是在函数被创建的时候就一直存在的，无需用户创建。arguments对象保存的是函数圆括号内定义的参数，准确来说保存的是参数的值，因这里我们没有设置参数，所以显示未定义。</strong></p>
+<p><strong>此时我们把属于B环境的变量对象（也就是pub（）函数中的所有函数和变量）叫做活动对象。</strong></p>
+<p><strong>因此我们可以说变量对象包含了活动对象，活动对象就是作用域链上正在被执行和引用的变量对象。我们从活动对象的名称中也能看出 “执行、运行、激活” 等意味。你可以这样理解，整个代码的运行总有一个起始的对象吧，不管这个起始是变量还是函数，总要有一个称呼，虽然我们把执行环境中的变量和函数的总称叫做变量对象，但这不能反映代码的动态性，为了区别于普通的变量对象，我们创造了活动对象的概念。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" data-id="cl4jmii490001bcfo4pmhcxst" data-title="作用域链" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-作用域" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/18/%E4%BD%9C%E7%94%A8%E5%9F%9F/" class="article-date">
@@ -149,108 +752,11 @@
 
 
   
-    <article id="post-我的第一篇博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="dt-published" datetime="2022-06-18T06:45:41.085Z" itemprop="datePublished">2022-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>如何在自己搭建的hexo博客上发布文章</p>
-<p>1.选择一款Markdown编译器编写文章（以下步骤以csdn为例）；<br>2.编写文章：注册账号登录进去，点击：头像-管理博客，进入文章管理页面，点击左上角的“Markdown编辑器”；<br>3.导出文章：文章写好后，在“管理博客”页面点击进入目标文章，点击顶部的“导出选项”，即可将文章导出到本地；</p>
-<p>4.将导出的.md文件复制到hexo博客文件下的&#x2F;source&#x2F;_posts文件内；<br>5.复制完成后，用编译器打开这个文件，在第一行加上title；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 我的第一篇博客</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<p>这一步用来给文章命名，不按这个格式写的话，在hexo博客上就会显示这个文章没有名字</p>
-<p>6.命名结束完成后，在&#x2F;source&#x2F;_posts文件内鼠标右键点击空白处，选择Git Bash Here：</p>
-<p>输入 hexo g (完整命令为hexo generate)，用于生成静态文件；<br>然后输入 hexo s(完整命令为hexo server)，用于启动服务器，主要用来本地预览；完成后 打开浏览器输入http:localhost:4000，会发现多了你刚写的那篇博客;<br>最后输入hexo d(hexo deploy)，用于将本地文件发布到github等git仓库上；<br>7.文章发布完成<br>8.注意：每次对hexo博客上的博客.md文件进行更改后都要重复步骤6，这样更改的内容才能在hexo博客上显示。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/18/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="cl4jiw2cp00011cfoegzwg276" data-title="我的第一篇博客" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/18/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-06-18T06:21:59.029Z" itemprop="datePublished">2022-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/18/hello-world/" data-id="cl4jiw2ci00001cfo0ukl72ds" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -269,7 +775,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
     </div>
   </div>
 
@@ -282,23 +788,23 @@
       <ul>
         
           <li>
-            <a href="/2022/06/25/vue-router/">vue-router</a>
+            <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
           </li>
         
           <li>
-            <a href="/2022/06/25/%E5%8D%95%E9%A1%B5%E9%9D%A2vs%E5%A4%9A%E9%A1%B5%E9%9D%A2/">单页面vs多页面</a>
+            <a href="/2022/07/04/git/">git</a>
           </li>
         
           <li>
-            <a href="/2022/06/25/Vue-cli/">Vue-cli</a>
+            <a href="/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">项目复盘</a>
           </li>
         
           <li>
-            <a href="/2022/06/25/%E8%BF%87%E6%BB%A4%E5%99%A8/">过滤器</a>
+            <a href="/2022/07/02/Vuex/">Vuex</a>
           </li>
         
           <li>
-            <a href="/2022/06/25/%E6%8C%87%E4%BB%A4%E5%BC%95%E5%85%A5/">指令引入</a>
+            <a href="/2022/06/26/%E8%BD%AE%E6%92%AD%E7%BB%84%E4%BB%B6/">轮播组件</a>
           </li>
         
       </ul>

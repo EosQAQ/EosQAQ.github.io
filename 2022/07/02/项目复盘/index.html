@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>项目复盘 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="项目复盘 在这一周左右的时间中主要是写了一个仿卖座的项目。 静态资源文件夹public文件夹中主要存放的是静态资源文件，比如iconfont组件库，jpg图像等，和index.html，也就是项目的骨架。 在index.js中，可以通过这个meta标签让安卓机的浏览器没有300ms的按键延迟。 1&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目复盘">
+<meta property="og:url" content="http://example.com/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="项目复盘 在这一周左右的时间中主要是写了一个仿卖座的项目。 静态资源文件夹public文件夹中主要存放的是静态资源文件，比如iconfont组件库，jpg图像等，和index.html，也就是项目的骨架。 在index.js中，可以通过这个meta标签让安卓机的浏览器没有300ms的按键延迟。 1&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;wi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-02T12:37:49.000Z">
+<meta property="article:modified_time" content="2022-07-03T06:00:27.887Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-项目复盘" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/" class="article-date">
+  <time class="dt-published" datetime="2022-07-02T12:37:49.000Z" itemprop="datePublished">2022-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      项目复盘
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>项目复盘</p>
+<p>在这一周左右的时间中主要是写了一个仿卖座的项目。</p>
+<h4 id="静态资源文件夹"><a href="#静态资源文件夹" class="headerlink" title="静态资源文件夹"></a>静态资源文件夹</h4><p>public文件夹中主要存放的是静态资源文件，比如iconfont组件库，jpg图像等，和index.html，也就是项目的骨架。</p>
+<p>在index.js中，可以通过这个meta标签让安卓机的浏览器没有300ms的按键延迟。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果想要彻底消除300ms延迟，可以在App.vue中设置CSS</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/* 通过CSS取消双击缩放功能 */</span><br><span class="line">* &#123;</span><br><span class="line">  touch-action: manipulation;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="components文件夹"><a href="#components文件夹" class="headerlink" title="components文件夹"></a>components文件夹</h4><p>components文件夹主要存放的是所有页面都共用的组件，在这个项目中是Tabbar组件</p>
+<p>在tabbar中使用声明式跳转来写路由跳转</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  &lt;router-link to=&quot;/film&quot; tag=&quot;li&quot; active-class=&quot;kerwinactive&quot;&gt;</span><br><span class="line">    &lt;i class=&quot;iconfont icon-training&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;span&gt;电影&lt;/span&gt;</span><br><span class="line">  &lt;/router-link&gt;</span><br><span class="line">  &lt;router-link to=&quot;/cinema&quot; tag=&quot;li&quot; active-class=&quot;kerwinactive&quot;&gt;</span><br><span class="line">    &lt;i class=&quot;iconfont icon-all&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;span&gt;影院&lt;/span&gt;</span><br><span class="line">  &lt;/router-link&gt;</span><br><span class="line">  &lt;router-link to=&quot;/center&quot; tag=&quot;li&quot; active-class=&quot;kerwinactive&quot;&gt;</span><br><span class="line">    &lt;i class=&quot;iconfont icon-account&quot;&gt;&lt;/i&gt;</span><br><span class="line">    &lt;span&gt;我的&lt;/span&gt;</span><br><span class="line">  &lt;/router-link&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="路由文件"><a href="#路由文件" class="headerlink" title="路由文件"></a>路由文件</h4><p>路由文件中的index.js中，首先要引入Vue，VueRouter组件，然后注册模块，这样就全局注册了router-view，并初始化。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.use(VueRouter) // 注册模块, 已经全局组件 router-view</span><br><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">  mode: &#x27;hash&#x27;, // hash ,history</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注意：在定义路由路径routes的时候，通过使用箭头函数做到组件的按需加载，从而解决了一个SPA项目的痛点，首次加载时间过长</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: &#x27;/login&#x27;,</span><br><span class="line">  component: () =&gt; import(/* webpackChunkName: &quot;kerwingroup&quot; */ &#x27;../views/Login.vue&#x27;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>全局路由守卫的定义，验证localstorage中是否有token，有的话就next()，没有就跳转login</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">  // ...</span><br><span class="line">  const auth = [&#x27;/center&#x27;, &#x27;/order&#x27;, &#x27;/money&#x27;, &#x27;/card&#x27;]</span><br><span class="line"></span><br><span class="line">  if (auth.includes(to.fullPath)) &#123;</span><br><span class="line">    // console.log(&#x27;验证token&#x27;)</span><br><span class="line">    if (!localStorage.getItem(&#x27;token&#x27;)) &#123;</span><br><span class="line">      next(&#x27;/login&#x27;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      next()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="store文件夹"><a href="#store文件夹" class="headerlink" title="store文件夹"></a>store文件夹</h4><p>store文件夹主要是配合Vuex使用的。Vuex可以全局管理整个项目的所有状态，但是管理所有的项目中的状态成本过高，所以一般用来管理多个组件所共用的资源。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#x27;vue&#x27;</span><br><span class="line">import Vuex from &#x27;vuex&#x27;</span><br><span class="line">import CityModule from &#x27;./module/CityModule&#x27;</span><br><span class="line">import CinemaModule from &#x27;./module/CinemaModule&#x27;</span><br><span class="line">import TabbarModule from &#x27;./module/TabbarModule&#x27;</span><br><span class="line">import createPersistedState from &#x27;vuex-persistedstate&#x27;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">// store &quot;全局&quot;</span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">  //Vuex持久化，没操作Vuex的时候都会把数据存到LocalStorage中，会永久存储</span><br><span class="line">  // 持久化不是Vuex本身的诉求，所以需要使用第三方库来实现</span><br><span class="line">  plugins: [createPersistedState()],</span><br><span class="line"></span><br><span class="line">  // 公共状态</span><br><span class="line">  // 公共状态被修改也不会被记录</span><br><span class="line">  state: &#123;&#125;,</span><br><span class="line">  // 集中式修改状态-被监控了</span><br><span class="line">  // 唯一修改状态的东西</span><br><span class="line">  mutations: &#123;&#125;,</span><br><span class="line"></span><br><span class="line">  // 异步</span><br><span class="line">  actions: &#123;&#125;,</span><br><span class="line">  // 各个模块-火车组装</span><br><span class="line">  modules: &#123;</span><br><span class="line">    CityModule,</span><br><span class="line">    CinemaModule,</span><br><span class="line">    TabbarModule</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>各个模块-火车组装：每个组件所对应的状态使用modules来封装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">import http from &#x27;@/util/http&#x27;</span><br><span class="line">// 严格遵循Vuex流程，action=&gt;mutation=&gt;改变状态</span><br><span class="line">const module = &#123;</span><br><span class="line">  namespaced: true, // 命名空间</span><br><span class="line">  state: &#123;</span><br><span class="line">    cinemaList: []</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  mutations: &#123;</span><br><span class="line">    setCinemaList(state, cinemaList) &#123;</span><br><span class="line">      state.cinemaList = cinemaList</span><br><span class="line">    &#125;,</span><br><span class="line">    clearCinemaList(state) &#123;</span><br><span class="line">      state.cinemaList = []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">// 异步请求回来的数据缓存在vuex中，成为后端数据的状态快照</span><br><span class="line">  actions: &#123;</span><br><span class="line">    getCinemaList(store, cityId) &#123;</span><br><span class="line">      return http(&#123;</span><br><span class="line">        url: `/gateway?cityId=$&#123;cityId&#125;&amp;ticketFlag=1&amp;k=2500238`,</span><br><span class="line">        headers: &#123;</span><br><span class="line">          &#x27;X-Host&#x27;: &#x27;mall.film-ticket.cinema.list&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;).then(res =&gt; &#123;</span><br><span class="line">        // console.log(res.data)</span><br><span class="line">        store.commit(&#x27;setCinemaList&#x27;, res.data.data.cinemas)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default module</span><br></pre></td></tr></table></figure>
+
+<h4 id="util文件夹"><a href="#util文件夹" class="headerlink" title="util文件夹"></a>util文件夹</h4><p>util文件夹一般用来封装项目的api，在这个项目中二次封装了axios组件库，初始化了一个自己的axios实例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const http = axios.create(&#123;</span><br><span class="line">  // axios给了我们create函数可以自己构建一个axios实例，同时自己设置一些配置</span><br><span class="line">  baseURL: &#x27;https://m.maizuo.com&#x27;,</span><br><span class="line">  // 超时的时间</span><br><span class="line">  timeout: 10000,</span><br><span class="line">  headers: &#123;</span><br><span class="line">    &#x27;X-Client-Info&#x27;:</span><br><span class="line">      &#x27;&#123;&quot;a&quot;:&quot;3000&quot;,&quot;ch&quot;:&quot;1002&quot;,&quot;v&quot;:&quot;5.0.4&quot;,&quot;e&quot;:&quot;1596502176387264316178433&quot;,&quot;bc&quot;:&quot;340800&quot;&#125;&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>通过使用axios拦截器和vant中的Toast来实现页面加载时的转圈圈功能。</p>
+<p><em>http.interceptors.request()</em></p>
+<p>在加载axios请求之前</p>
+<p><em>http.interceptors.response()</em></p>
+<p>在请求的数据请求回来以后</p>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p>引入组件库的时候要看清楚文档，比如引入swiper组件的时候要引入两个文件.js和.css</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import Swiper from &#x27;swiper/bundle&#x27; // 引入swiper.js</span><br><span class="line">import &#x27;swiper/swiper-bundle.min.css&#x27; // 引入swiper.css</span><br></pre></td></tr></table></figure>
+
+<p>要避免出现swiper初始化过早的问题，在请求到数据的时候isShow才能显示为true</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;film-swiper v-if=&quot;isShow&quot;&gt;&lt;/film-swiper&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  http(&#123;</span><br><span class="line">    url: &#x27;/gateway?cityId=340800&amp;pageNum=1&amp;pageSize=10&amp;type=1&amp;k=136082&#x27;,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;X-Host&#x27;: &#x27;mall.film-ticket.film.list&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    // method:&quot;get&quot;</span><br><span class="line">  &#125;).then(res =&gt; &#123;</span><br><span class="line">    console.log(res.data.data.films)</span><br><span class="line"></span><br><span class="line">    this.datalist = res.data.data.films</span><br><span class="line">    this.isShow = true</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用Vuex的时候的流程</p>
+<p>要使用state，通过引入mapstate方法，在computed中得到state</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapState &#125; from &#x27;vuex&#x27;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    ...mapState(&#x27;CityModule&#x27;, [&#x27;cityId&#x27;])</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>懒加载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">onLoad() &#123;</span><br><span class="line">  // 滚动条的问题导致的bug，如果页面销毁了重新加载的时候datalist.length就是0，所以直接就finished了，所以要增加一个非零的判断</span><br><span class="line">  if (this.datalist.length === this.total &amp;&amp; this.datalist.length !== 0) &#123;</span><br><span class="line">    this.finished = true</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  console.log(&#x27;到底了&#x27;)</span><br><span class="line">  // 1. ajax请求新页面的数据，</span><br><span class="line">  // 2. 合并新数据到老数据</span><br><span class="line">  // 3. this.loading=false</span><br><span class="line"></span><br><span class="line">  this.current++</span><br><span class="line">  http(&#123;</span><br><span class="line">    url: `/gateway?cityId=$&#123;this.cityId&#125;&amp;pageNum=$&#123;this.current&#125;&amp;pageSize=10&amp;type=1&amp;k=136082`,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      &#x27;X-Host&#x27;: &#x27;mall.film-ticket.film.list&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">    // method:&quot;get&quot;</span><br><span class="line">  &#125;).then(res =&gt; &#123;</span><br><span class="line">    // console.log(res.data.data.films)</span><br><span class="line">    this.datalist = [...this.datalist, ...res.data.data.films]</span><br><span class="line"></span><br><span class="line">    this.loading = false</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>模糊搜索的逻辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computedCinemaList () &#123;</span><br><span class="line">  if (this.value === &#x27;&#x27;) return []</span><br><span class="line">  //全部转换成大写从而做到搜索时的大小写忽略</span><br><span class="line">  return this.cinemaList.filter(item =&gt; item.name.toUpperCase().includes(this.value.toUpperCase()) || item.address.toUpperCase().includes(this.value.toUpperCase()))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/" data-id="cl56qh3gt0008pkfo5wxmavcg" data-title="项目复盘" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/07/04/git/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          git
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/07/02/Vuex/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vuex</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/04/git/">git</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">项目复盘</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/02/Vuex/">Vuex</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/26/%E8%BD%AE%E6%92%AD%E7%BB%84%E4%BB%B6/">轮播组件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
