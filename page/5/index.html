@@ -71,6 +71,219 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-class" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/21/class/" class="article-date">
+  <time class="dt-published" datetime="2022-06-21T11:57:42.000Z" itemprop="datePublished">2022-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/21/class/">class</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>class可以理解为语法糖，将js只能通过构造函数创建实例的方法进行了补充</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">constructor(name,age)&#123;</span><br><span class="line">this.name=name</span><br><span class="line">this.age=age</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">new Person(&#x27;z3&#x27;,18)</span><br></pre></td></tr></table></figure>
+
+<p><strong>class的特性</strong></p>
+<ol>
+<li><p>class的数据类型是一个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(typeof(class A&#123;&#125;))</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>class的原型的constructor指向class</p>
+</li>
+<li><p>通过new关键字创建的实例的constructor指向class，类似于原型链</p>
+</li>
+<li><p>class内部的方式实际上都是定义在类的prototype上</p>
+</li>
+<li><p>通过类创建的对象的本质是调用类的constructor，如果类没有定义constructor，那么会在使用的时候默认添加</p>
+</li>
+<li><p>class不能直接调用，需要使用new关键字，这是class虽然是函数，但是和函数不同的地方</p>
+</li>
+<li><p>class内部的方法指向的是实例，class内部是严格模式，没有调用者的话函数内部的this就是undefined，在严格模式下也是不存在变量提升的，使用箭头函数的话就可以让class内部的方法中的this指向class实例，但是同时class里面的属性就会跑到实例上而非prototype上。</p>
+</li>
+<li><p>getter和setter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">constructor(name)&#123;</span><br><span class="line">this.name = name</span><br><span class="line">&#125;</span><br><span class="line">get=()=&gt;&#123;</span><br><span class="line">return this.name</span><br><span class="line">&#125;</span><br><span class="line">set=(Name)=&gt;&#123;</span><br><span class="line">this.name = Name</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>动态设置属性名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let method = &#x27;test&#x27;</span><br><span class="line">class A&#123;</span><br><span class="line">[method]=()=&gt;&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过在属性和方法前面添加关键字static，这些属性和方法就不会被实例继承，只能通过【类名.属性名&#x2F;方法名】的方式来获取,静态方法指向的是类而不是类的实例，同时静态方法是允许重复命名的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">static a = 1</span><br><span class="line">static fn()&#123;&#125;</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>class的继承</strong></p>
+<p>class的继承使用过extends实现的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class F&#123;</span><br><span class="line">a=1</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class S extends F&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(new S())</span><br></pre></td></tr></table></figure>
+
+<p>如果是属性，就会直接继承在当前的实例上。方法会保留在类的原型上。</p>
+<p>如果子类写了constructor，那么就必须要调用super()方法，在super调用前子类是没有this的。否则会报错，如果不写constructor那么就会隐式地调用。</p>
+<p>子类调用super会触发父类的constructor并将参数传递过去</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class F&#123;</span><br><span class="line">constructor(sname)&#123;</span><br><span class="line">this.sname=sname</span><br><span class="line">&#125;</span><br><span class="line">a=1</span><br><span class="line">fn()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class S extends F&#123;</span><br><span class="line">constructor(name)&#123;</span><br><span class="line">super(name)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(new S(&#x27;z3&#x27;))</span><br><span class="line">S.prototype.__proto__===F.protorype</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/21/class/" data-id="cl4o61a1r0003vkfo8uan4xt2" data-title="class" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-async和await" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/21/async%E5%92%8Cawait/" class="article-date">
+  <time class="dt-published" datetime="2022-06-21T11:28:35.000Z" itemprop="datePublished">2022-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/21/async%E5%92%8Cawait/">async和await</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>async可以让我们以一种更加简单的方式写出基于Promise的异步行为,这样就可以不用写promise或者.then这类函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function p()&#123;</span><br><span class="line">return new Promise(resolve=&gt;&#123;</span><br><span class="line">setTimeout(()=&gt;&#123;</span><br><span class="line">resolve(&#x27;异步结果&#x27;)</span><br><span class="line">&#125;，1000)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">async function fn()&#123;</span><br><span class="line">const res = await p()</span><br><span class="line">console.log(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>async可以直接返回一个promise对象，状态是fufiled</p>
+<p><strong>特性</strong></p>
+<ol>
+<li><p>async函数内部会返回一个promise对象，如果不是promise，那么它会隐式地包装在promise中（Promise.resolve(‘不是promise的值’)）</p>
+</li>
+<li><p>await能获取到promise状态改变后地值，如果后面不是一个promise，那么await会把该值转换为已正常处理的（PromisePromise.resolve(‘不是promise的值’).then(()&#x3D;&gt;undefined）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">async function fn()&#123;</span><br><span class="line">const reponse = await fetch(&quot;http://...&quot;)</span><br><span class="line">const json = await response.json()</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>await后面的promise状态是reject，那么await后的代码不会被执行，async函数将返回状态为reject的promise</p>
+</li>
+<li><p>async函数内部如果存在await，那么await表达式会暂停整个async函数的执行，等当前promise状态改变后才能恢复</p>
+</li>
+<li><p>await后面的内容视为异步任务，放到异步调用的宏任务里面，可以看作是传递给settimeout的一个回调函数，等到同步任务执行完了以后再执行。</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/21/async%E5%92%8Cawait/" data-id="cl4o61a1q0002vkfo5c5d5pas" data-title="async和await" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Promise" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/21/Promise/" class="article-date">
+  <time class="dt-published" datetime="2022-06-21T09:00:19.000Z" itemprop="datePublished">2022-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/21/Promise/">Promise</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>promise是异步编程的一种解决方案，返回值是promise对象的都是异步函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch(&quot;https://...&quot;).then((response)=&gt;reponse.json()).catch((error)=&gt;console.log(error))</span><br></pre></td></tr></table></figure>
+
+<p>promise的定义：Promise()是一个构造函数，promise对象用于表示一个异步操作最终完成（成功或者失败）以及返回的结果值。</p>
+<p>promise使用的原因是因为可以绑定回调函数，避免回调函数作为参数，链式调用避免回调地狱。</p>
+<p><img src="C:\Users\12590\AppData\Roaming\Typora\typora-user-images\image-20220624203650791.png" alt="image-20220624203650791"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(function(resolve,reject)&#123;</span><br><span class="line">if(/*异步操作成功*/)&#123;</span><br><span class="line">resolve(value)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">reject(error)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Promise的三种状态</p>
+<p>待定（pending）：初始状态，没有被兑现，也没有被拒绝</p>
+<p>已兑现（fufilled）：意味着操作成功</p>
+<p>已拒绝（rejected）：意味着操作失败</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const promise =new Promise((resolve,reject)=&gt;&#123;&#125;)</span><br><span class="line">console.log(promise)//pending</span><br><span class="line">new Promise((resolve,reject)=&gt;&#123;resolve(&#x27;hello world&#x27;)&#125;).then(val=&gt;console.log(val))//resolve可以改变promise的状态，并且可以通过.then来拿到改变以后的结果</span><br><span class="line">new Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).then(err=&gt;console.log(err))//状态时rejected，返回的结果bad code</span><br></pre></td></tr></table></figure>
+
+<p>要想拿到使用reject改变以后的promise里面的值，除了使用.then方法以外同时可以使用catch</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ew Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).catch(fucntion(err)=&gt;console.log(err))</span><br></pre></td></tr></table></figure>
+
+<p>除了.catch.then还有.finally方法，只有再promise状态被改变了以后才会触发finally函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Promise((resolve,reject)=&gt;&#123;reject(&#x27;bad code&#x27;)&#125;).then(err=&gt;console.log(err).finally(()=&gt;console.log(&#x27;promise状态变更&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p><strong>应用</strong></p>
+<p>把嵌套的回调函数改为链式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function counter(x,y,wait)</span><br><span class="line">&#123;</span><br><span class="line">return new Promise(function(resolve,reject)&#123;</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">resolve(x+y)</span><br><span class="line">&#125;,wait)</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">counter(1,2,1000).then(val=&gt;counter(val,1,1000)).then(num=&gt;console.log(num))</span><br></pre></td></tr></table></figure>
+
+<p><strong>Promise的方法</strong></p>
+<p>Promise.resolve(n)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Promise.resolve(2).then(2)((val)=&gt;&#123;</span><br><span class="line">console.log(val)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>返回的是一个状态为fulfilled的Promise对象并且有一个返回值为2</p>
+<p>等价于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new Promise(function(resolve)&#123;</span><br><span class="line">resolve(2)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Promise.reject(n)方法返回一个带有拒绝原因的Promise对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Promise.reject(&#123;message:&quot;错误原因&quot;&#125;).catch((err)=&gt;console.log(err))</span><br></pre></td></tr></table></figure>
+
+<p>Promise.all()方法接受一个promise的iterable类型，（Array，Map，Set都属于ES6的iterable类型），返回一个promise实例</p>
+<p>只有再所有的promise状态都发生了变化以后才会拿到结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const promise1=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise2=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise3=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">const promise4=new Promise((resolve)=&gt;setTimeout(()=&gt;&#123;resolve(&#x27;123&#x27;)&#125;,2000))</span><br><span class="line">Promise.all(promise1,promise2,promise3,promise4).then((val)=&gt;console.log(val))</span><br><span class="line">---</span><br><span class="line">两秒以后输出</span><br><span class="line">123 123 123 123</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/21/Promise/" data-id="cl4o61a1o0001vkfo8bsfen5c" data-title="Promise" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-箭头函数和方法扩展" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/21/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95%E6%89%A9%E5%B1%95/" class="article-date">
@@ -553,203 +766,6 @@
 
 
   
-    <article id="post-web性能优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
-  <time class="dt-published" datetime="2022-06-19T12:27:45.000Z" itemprop="datePublished">2022-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">web性能优化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>web性能有哪些：</strong></p>
-<p>用户对加载时间和运行时的直观体验</p>
-<p>页面加载到可交互和可响应所消耗的时间，页面在交互的时候的流畅度。</p>
-<p><strong>如何进行Web性能优化</strong></p>
-<ol>
-<li>了解性能指标</li>
-<li>专业的工具可量化的评估出网站和应用的性能表现</li>
-<li>从网站页面响应的声明周期，分析出造成较差性能表现的原因</li>
-<li>进行技术改造，可行性分析等具体的优化实施</li>
-<li>迭代优化</li>
-</ol>
-<p><strong>web性能报告</strong></p>
-<p>Lighthouse插件分析web应用和web页面，生成评估页面。</p>
-<p>五个打分维度：检测得分，性能指标，优化建议，诊断结果，已通过的性能</p>
-<p>优化建议</p>
-<ol>
-<li>移除阻塞渲染的资源：js教本和css没有请求回来导致的白屏，一般解决方法是内嵌进入本地而非在网上请求</li>
-<li>预链接所需要请求的源，提前建立与所需要访问的资源之间的网络连接，link rel&#x3D;”preconnect”,link rel &#x3D; “dns-prefetch”DNS预解析</li>
-<li>降低服务端的响应时间，网络请求资源收到服务器内核，带宽，内存三个因素影响。</li>
-<li>适当调整图片大小&#x3D;&gt;小图片可以转化base64位编码、大图片可以压缩到可以接受为止</li>
-</ol>
-<p><strong>诊断结果</strong></p>
-<p>对静态资源使用高效的缓存策略</p>
-<p>较少主线程的工作</p>
-<p>减少HTTP的请求</p>
-<p><strong>浏览器缓存策略</strong></p>
-<p>强缓存</p>
-<p>不会向服务器发送请求，直接从缓存读取资源，第二次请求就会快很多。</p>
-<p>Expires和Cache-Control这两种HTTP Header实现</p>
-<p>强缓存有两个状态：</p>
-<p>from memory cache：不访问服务器，直接从内存中读取缓存，浏览器关闭以后，数据不存在，再次打开相同界面不会出现from memory cache</p>
-<p>from disk cache：直接从硬盘中读取，关闭浏览器以后数据依然存在，此资源不会因为该页面的关闭而释放掉，下次打开相同界面依然是from disk cache</p>
-<p>协商缓存</p>
-<p>在强制缓存失效以后，浏览器携带缓存标识向服务器发起请求，有服务器根据缓存标识决定是否使用缓存</p>
-<ul>
-<li>协商缓存生效，返回304和not modified</li>
-<li>协商缓存失效，返回200和请求结果</li>
-</ul>
-<p><strong>精炼js代码</strong></p>
-<p>减少业务复杂度</p>
-<p>算法优化</p>
-<p>动态规划</p>
-<p>适用情况</p>
-<p>最优子结构</p>
-<p>无后效性</p>
-<p>子问题重叠</p>
-<p><em>从浏览器地址栏输入URL之后到页面渲染出来整个过程发生了什么</em></p>
-<p>从浏览器地址栏输入URL，服务器接受到请求并转到处理后台（对应接口），接口进行响应，前后台http响应，拿到数据时浏览器和服务器之间会有对应的缓存机制，浏览器接收到数据后渲染出页面，js引擎对脚本进行执行。</p>
-<p>优化的点：</p>
-<p>请求之前对前端进行优化。</p>
-<p>发出请求后可以对后端做出优化</p>
-<p>接受到数据以后可以对数据进行处理，如分页等，对图片资源的缓存和对代码的优化</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" data-id="cl4lccg0k00009cfogqaf1owc" data-title="web性能优化" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-防抖节流函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-06-19T11:52:25.000Z" itemprop="datePublished">2022-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">防抖节流函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>防抖函数的概念：</p>
-<p>函数防抖：就是指在触发事件后，在n秒内函数只能调用一次，如果触发事件后在n秒内又触发了事件，那么会重新计算函数延执行的时间。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">debounce</span>(<span class="params">func,wait</span>)&#123;</span><br><span class="line"><span class="comment">//timer是定时器</span></span><br><span class="line"><span class="keyword">var</span> timer = <span class="literal">null</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(timer) &#123;</span><br><span class="line">       <span class="built_in">clearTimeout</span>(timer)</span><br><span class="line">       &#125;</span><br><span class="line">    timer=<span class="built_in">setTimeout</span>(func,wait)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>节流：当持续触发事件时，保证在一定时间内只调用一次事件处理函数，假设用户一直触发这个函数，且每一次触发这个函数都小于既定值，函数节流会每隔这个时间调用一次。 </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">throttle</span> (func,deplay)&#123;</span><br><span class="line">    <span class="keyword">var</span> timer = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!timer)&#123;</span><br><span class="line">            timer = <span class="built_in">setTimeout</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">                <span class="title function_">func</span>()</span><br><span class="line">                timer = <span class="literal">null</span></span><br><span class="line">            &#125;,deplay)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>var timer &#x3D; null</em></p>
-<p><em>!timer&#x3D;&#x3D;&#x3D;true</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/19/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/" data-id="cl4lccg0n00019cfogv4yghkf" data-title="防抖节流函数" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-创建js对象的几种方式和区别" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/19/%E5%88%9B%E5%BB%BAjs%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%92%8C%E5%8C%BA%E5%88%AB/" class="article-date">
-  <time class="dt-published" datetime="2022-06-19T08:37:32.000Z" itemprop="datePublished">2022-06-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/19/%E5%88%9B%E5%BB%BAjs%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%92%8C%E5%8C%BA%E5%88%AB/">创建js对象的几种方式和区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>对象的自变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var obj1=&#123;</span><br><span class="line">name:&#x27;z3&#x27;,</span><br><span class="line">age:&#x27;17&#x27;,</span><br><span class="line">speak:function()&#123;</span><br><span class="line">console.log(&#x27;1&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>new Object()</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var obj2=new Object()</span><br><span class="line">dog2.name=&#x27;ls&#x27;</span><br><span class="line">dog2.speak=function()&#123;</span><br><span class="line">console.log(&#x27;1&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>构造函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Obj(name,age)&#123;</span><br><span class="line">this.name=name</span><br><span class="line">this.age=age</span><br><span class="line">&#125;</span><br><span class="line">Obj.prototype.speak=function()&#123;</span><br><span class="line">console.log(&#x27;1&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">var obj3=new Obj(&#x27;w5&#x27;,18)</span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>object.create()</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj4=Object.create(obj1)</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>第四种的属性和对象都是放在原型对象上的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/19/%E5%88%9B%E5%BB%BAjs%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%92%8C%E5%8C%BA%E5%88%AB/" data-id="cl4l2dtki0000s8focr7p7h0n" data-title="创建js对象的几种方式和区别" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -786,23 +802,23 @@
       <ul>
         
           <li>
+            <a href="/2022/07/19/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">数组方法</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/09/css/">css</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/09/html/">html</a>
+          </li>
+        
+          <li>
             <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
           </li>
         
           <li>
             <a href="/2022/07/04/git/">git</a>
-          </li>
-        
-          <li>
-            <a href="/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">项目复盘</a>
-          </li>
-        
-          <li>
-            <a href="/2022/07/02/Vuex/">Vuex</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/26/%E8%BD%AE%E6%92%AD%E7%BB%84%E4%BB%B6/">轮播组件</a>
           </li>
         
       </ul>

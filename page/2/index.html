@@ -71,6 +71,220 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-路由拦截" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/26/%E8%B7%AF%E7%94%B1%E6%8B%A6%E6%88%AA/" class="article-date">
+  <time class="dt-published" datetime="2022-06-26T08:19:25.000Z" itemprop="datePublished">2022-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/26/%E8%B7%AF%E7%94%B1%E6%8B%A6%E6%88%AA/">路由拦截</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>路由拦截</p>
+<p><strong>使用原生js来写</strong>，但是要在不同的地方写很多遍</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">if(!localStorage.getItem(&#x27;token&#x27;))&#123;</span><br><span class="line">this.$router.push(&#x27;/login&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>导航守卫</strong></p>
+<p>全局前置守卫</p>
+<p>项目中又很多组件都涉及路由拦截，可以使用全局守卫。</p>
+<p>index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to,from,next)=&gt;&#123;</span><br><span class="line">let auth = [&#x27;/film&#x27;,&#x27;/center&#x27;,&#x27;/money&#x27;]</span><br><span class="line">if(auth.includes(to.fullPath))&#123;</span><br><span class="line">//console.log(&#x27;验证token&#x27;)</span><br><span class="line">if(!localStorage.getItem(&#x27;token&#x27;))&#123;</span><br><span class="line">next(&#x27;/login&#x27;)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">next()</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">next()//放行</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>局部守卫</p>
+<p>center.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">beforeRouteEnter(to,from,next)&#123;</span><br><span class="line">if(!localStorage.getItem(&#x27;token&#x27;))&#123;</span><br><span class="line">next(&#x27;/login&#x27;)</span><br><span class="line">&#125;else&#123;</span><br><span class="line">next()</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/26/%E8%B7%AF%E7%94%B1%E6%8B%A6%E6%88%AA/" data-id="cl56qh3gr0005pkfo0snl3hne" data-title="路由拦截" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-路由模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/26/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2022-06-26T08:10:31.000Z" itemprop="datePublished">2022-06-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/26/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/">路由模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>路由模式</strong></p>
+<p>vue支持两种模式</p>
+<p>hash模式 #&#x2F;home </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">location.hash 切换、</span><br><span class="line">window.onhashchange 监听路径改变</span><br></pre></td></tr></table></figure>
+
+<p>history模式 &#x2F;home</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history.pushState 切换</span><br><span class="line">window.onpopstate 监听路径切换</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下是hash模式</p>
+<p>index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">mode:&#x27;history&#x27;,//hash,history</span><br><span class="line">routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>但是history模式需要后台配置支持，应为我们的应用是一个单页面客户端应用，如果后台没有正确的配置，那么当用户在浏览器访问<a target="_blank" rel="noopener" href="http://oursite.com/user/id%E7%9A%84%E6%97%B6%E5%80%99%E5%B0%B1%E4%BC%9A%E8%BF%94%E5%9B%9E404%E3%80%82">http://oursite.com/user/id的时候就会返回404。</a></p>
+<p>如果路径匹配不到资源，要返回一个index页面。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/26/%E8%B7%AF%E7%94%B1%E6%A8%A1%E5%BC%8F/" data-id="cl56qh3gr0004pkfoakfre0ih" data-title="路由模式" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-vue-router" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/25/vue-router/" class="article-date">
+  <time class="dt-published" datetime="2022-06-25T12:46:40.000Z" itemprop="datePublished">2022-06-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/25/vue-router/">vue-router</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>vue-router</p>
+<p><strong>一级路由配置</strong></p>
+<p>main.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import router from &#x27;./router&#x27;</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">router,</span><br><span class="line">render:h=&gt;h(App)</span><br><span class="line">&#125;).$mount(&#x27;#app&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>.&#x2F;router&#x2F;index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#x27;Vue&#x27;</span><br><span class="line">import VueRouter from &#x27;vue-router&#x27;</span><br><span class="line">import Film from &#x27;../views/Film.vue&#x27;</span><br><span class="line">import Center from &#x27;../views/Center.vue&#x27;</span><br><span class="line">Vue.use(VueRouter)//注册模块,已经可以使用全局组件router-view</span><br><span class="line">const routes=[</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/film&#x27;,</span><br><span class="line">component:Film</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/center&#x27;,</span><br><span class="line">component:Center</span><br><span class="line">&#125;</span><br><span class="line">]</span><br><span class="line">const router = new VueRouter(&#123;</span><br><span class="line">routes</span><br><span class="line">&#125;)</span><br><span class="line">export default router</span><br></pre></td></tr></table></figure>
+
+<p>App.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//路由容器</span><br><span class="line">&lt;router-view&gt;&lt;/router-view&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>声明式导航</strong></p>
+<p>相对于a链接，声明式导航可以做到每一次选中都是高亮显示，或者改变路径（loaction.hash）的时候就高亮。</p>
+<p>如果自己写的话要监听路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=&quot;film&quot; tag=&quot;li&quot;&gt;电影&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+
+<p>高亮</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=&quot;film&quot; tag=&quot;li&quot; active-class=&quot;eosqaqActive&quot;&gt;电影&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped&gt;</span><br><span class="line">eosqaqActive:&#123;</span><br><span class="line">color:red</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>重定向</strong></p>
+<p>redirect关键字。</p>
+<p>index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const routes=[</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/film&#x27;,</span><br><span class="line">component:Film</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/center&#x27;,</span><br><span class="line">component:Center</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/&#x27;,</span><br><span class="line">redirect:&#x27;/film&#x27;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;*&#x27;,//通配符，如果用户随便输入那么就可以用通配符对应，并且通配符的优先级是最低的</span><br><span class="line">redirect:&#x27;/film&#x27;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>嵌套路由</strong></p>
+<p>在film里面留一个路由容器，这样子加载路由的时候会留下film除了路由容器以外的部分，只取代router-view的部分。</p>
+<p>film.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;1234&lt;/div&gt;</span><br><span class="line">&lt;router-view&gt;&lt;/router-view&gt;</span><br></pre></td></tr></table></figure>
+
+<p>index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">const routes=[</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/film&#x27;,</span><br><span class="line">component:Film,</span><br><span class="line">children:[</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;nowplaying&#x27;,//简写</span><br><span class="line">component:Nowplaying</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;film/comingsoon&#x27;,</span><br><span class="line">component:Comingsoon</span><br><span class="line">&#125;,</span><br><span class="line">path:&#x27;&#x27;,</span><br><span class="line">redirect:&#x27;/film/nowplaying&#x27;</span><br><span class="line">]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/center&#x27;,</span><br><span class="line">component:Center</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/&#x27;,</span><br><span class="line">redirect:&#x27;/film&#x27;</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;*&#x27;,//通配符，如果用户随便输入那么就可以用通配符对应，并且通配符的优先级是最低的</span><br><span class="line">redirect:&#x27;/film&#x27;</span><br><span class="line">&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>编程式导航</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">handleClick(id)&#123;</span><br><span class="line">//在main.js中初始化了router，所以this上又$router</span><br><span class="line">//编程时导航</span><br><span class="line">this.$router.push( `/detail/$&#123;id&#125;`)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>动态路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const routes=[</span><br><span class="line">&#123;</span><br><span class="line">path:&#x27;/detail/:myid&#x27;,</span><br><span class="line">component:Detail</span><br><span class="line">&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>detail.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">//console.log(location.hash)</span><br><span class="line">//this.$route只是当前匹配的路由信息</span><br><span class="line">console.log(this.$route.params.myid)</span><br><span class="line">//利用合适的后端接口，使用myid把数据请求回来</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>命名路由</strong></p>
+<p>路由名字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">handleClick(id)&#123;</span><br><span class="line">this.$router.push(&#123;</span><br><span class="line">name:&#x27;eosqaqdetail&#x27;,</span><br><span class="line">params:&#123;</span><br><span class="line">myid:id</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>index.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">path:&#x27;/detail/:myid&#x27;,</span><br><span class="line">component:Detail,</span><br><span class="line">name:&#x27;eosqaqdetail&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>query传参</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">handleClick(id)&#123;</span><br><span class="line">this.$router.push(`/detail?id=$&#123;id&#125;`)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>detail.vue</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted()&#123;</span><br><span class="line">console.log(this.$route.query.id)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/25/vue-router/" data-id="cl4twte5f0002ywfo0dm7h0iq" data-title="vue-router" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-单页面vs多页面" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/25/%E5%8D%95%E9%A1%B5%E9%9D%A2vs%E5%A4%9A%E9%A1%B5%E9%9D%A2/" class="article-date">
@@ -535,181 +749,6 @@
 
 
   
-    <article id="post-slot" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/24/slot/" class="article-date">
-  <time class="dt-published" datetime="2022-06-24T08:30:12.000Z" itemprop="datePublished">2022-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/24/slot/">slot</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>slot插槽</p>
-<p>div不会显示，因为child会被整个替换</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;child&gt;</span><br><span class="line">&lt;div slot=&quot;b&quot;&gt;1234</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div slot=&quot;a&quot;&gt;12345678</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/child&gt;</span><br></pre></td></tr></table></figure>
-
-<p>如果定义child地时候留下了插槽slot，那么就不会整个替换，而是把插槽内部的东西替换为调用时写入在child中间的内容，有几次渲染几次</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;child&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">child</span><br><span class="line">&lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>通过name属性可以选定在某一个插槽中插入内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;child&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;slot name=&quot;a&quot;&gt;&lt;/slot&gt;</span><br><span class="line">child</span><br><span class="line">&lt;slot name=&quot;b&quot;&gt;&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">`</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>父组件模板的内容在父组件作用域内编译，所以可以直接访问到父组件模板中的内容，子组件模板在子组件作用域内编译</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;child&gt;</span><br><span class="line">&lt;div @click=&quot;isShow=!isShow&quot;&gt;1234</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/child&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>新插槽</strong></p>
-<p>使用v-slot来使用插槽，要和template包装元素一起使用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;child&gt;</span><br><span class="line">//把节点插到name为a的插槽中</span><br><span class="line">&lt;template v-slot:a&gt;</span><br><span class="line">&lt;div&gt;1234</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;/child&gt;</span><br></pre></td></tr></table></figure>
-
-<p>v-slot可以省略成#</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;child&gt;</span><br><span class="line">//把节点插到name为a的插槽中</span><br><span class="line">&lt;template #a&gt;</span><br><span class="line">&lt;div&gt;1234</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;/child&gt;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/24/slot/" data-id="cl4sf5rtu0003hsfocpt683ni" data-title="slot" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-动态组件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/24/%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/" class="article-date">
-  <time class="dt-published" datetime="2022-06-24T08:20:19.000Z" itemprop="datePublished">2022-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/24/%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/">动态组件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>动态组件<component>元素，动态地绑定多个组件到他的is属性上</p>
-<p>相当于v-if，组件切换了以后就不在了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;component :is=&quot;isWitch&quot;&gt;&lt;/component&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">//注意！:后面相当于js语句，所以要想使用字符串home需要在&quot;&quot;中再增加一个&#x27;&#x27;</span><br><span class="line">&lt;li @click=&quot;isWitch=&#x27;home&#x27;&quot;&gt;home&lt;/li&gt;</span><br><span class="line">&lt;li @click=&quot;isWitch=&#x27;list&#x27;&quot;&gt;list&lt;/li&gt;</span><br><span class="line">&lt;li @click=&quot;isWitch=&#x27;shop&#x27;&quot;&gt;shop&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
-
-<p><keepalive>保留状态，避免重新渲染</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;keepalive&gt;</span><br><span class="line">&lt;component :is=&quot;isWitch&quot;&gt;&lt;/component&gt;</span><br><span class="line">&lt;ul&gt;</span><br><span class="line">//注意！:后面相当于js语句，所以要想使用字符串home需要在&quot;&quot;中再增加一个&#x27;&#x27;</span><br><span class="line">&lt;li @click=&quot;isWitch=&#x27;home&#x27;&quot;&gt;home&lt;/li&gt;</span><br><span class="line">&lt;li @click=&quot;isWitch=&#x27;list&#x27;&quot;&gt;list&lt;/li&gt;</span><br><span class="line">&lt;li @click=&quot;isWitch=&#x27;shop&#x27;&quot;&gt;shop&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/keepalive&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data:&#123;</span><br><span class="line">return&#123;</span><br><span class="line">isWitch:&quot;home&quot;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/24/%E5%8A%A8%E6%80%81%E7%BB%84%E4%BB%B6/" data-id="cl4sf5rtx0008hsfo7h9yhr04" data-title="动态组件" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-bus通信" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/" class="article-date">
-  <time class="dt-published" datetime="2022-06-24T06:33:13.000Z" itemprop="datePublished">2022-06-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/24/bus%E9%80%9A%E4%BF%A1/">bus通信</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>bus通信</p>
-<p>中央事件总线方式，不在组件内部，二是在组件外部。</p>
-<p>$on:监听</p>
-<p>$emit:触发</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bus = new Vue()</span><br></pre></td></tr></table></figure>
-
-<p>*mounted生命周期中进行监听，在mounted挂载完的时候让child2立即成为订阅者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;child1&gt;&lt;/child1&gt;</span><br><span class="line">&lt;child2&gt;&lt;/child2&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var bus = new Vue()//空的vue实例</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;child1&quot;,&#123;</span><br><span class="line">template:`&lt;button @click=&quot;handleClick&quot;&gt;&lt;/button&gt;`,</span><br><span class="line">methods:&#123;</span><br><span class="line">handleClick()&#123;</span><br><span class="line">bus.$emit(&#x27;myevent&#x27;,&quot;要传递的参数&quot;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;child2&quot;,&#123;</span><br><span class="line">template:``,</span><br><span class="line">data:&#123;return()&#123;</span><br><span class="line">info:&#x27;&#x27;</span><br><span class="line">&#125;&#125;</span><br><span class="line">mounted()&#123;</span><br><span class="line">bus.$on(&quot;myevent&quot;,(data)=&gt;&#123;</span><br><span class="line">console.log(&quot;订阅者获取参数&quot;,data)</span><br><span class="line">this.info=data</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><em>data和props的区别，props是父组件传递给子组件的，子组件是不能去修改的，data是自己的状态，可以修改，赋值</em></p>
-<p>v-model也可以用在组件通信上，类似于组件之间的双向绑定</p>
-<p>在子组件被父组件调用的时候使用v-model相当于父组件使用了:value，可以在子组件的props里面接收到value值</p>
-<p>v-model&#x3D;”username”相当于:value&#x3D;”username” @input&#x3D;”…”</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;child v-model=&quot;username&quot;&gt;&lt;child&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">props:[&quot;value&quot;]</span><br></pre></td></tr></table></figure>
-
-<p>在子组件内部使用，在input框中定义以下函数emit input</p>
-<p>可以把父组件中v-model对应的值给修改了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleInput(evt) &#123;</span><br><span class="line">this.$emit(&#x27;input&#x27;, evt.target.value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这时候父组件的username就是你在input框中的值，value和input是固定的不能修改</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/24/bus%E9%80%9A%E4%BF%A1/" data-id="cl4sf5rtk0000hsfo7cgb91j0" data-title="bus通信" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -746,23 +785,23 @@
       <ul>
         
           <li>
+            <a href="/2022/07/19/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">数组方法</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/09/css/">css</a>
+          </li>
+        
+          <li>
+            <a href="/2022/07/09/html/">html</a>
+          </li>
+        
+          <li>
             <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
           </li>
         
           <li>
             <a href="/2022/07/04/git/">git</a>
-          </li>
-        
-          <li>
-            <a href="/2022/07/02/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">项目复盘</a>
-          </li>
-        
-          <li>
-            <a href="/2022/07/02/Vuex/">Vuex</a>
-          </li>
-        
-          <li>
-            <a href="/2022/06/26/%E8%BD%AE%E6%92%AD%E7%BB%84%E4%BB%B6/">轮播组件</a>
           </li>
         
       </ul>
