@@ -71,6 +71,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Vue基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/22/Vue%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2022-06-22T05:09:44.000Z" itemprop="datePublished">2022-06-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/22/Vue%E5%9F%BA%E7%A1%80/">Vue基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>Vue安装方式</strong></p>
+<p> 第一种是创建一个.html文件，然后使用script标签进行引入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdn.jsdeliver.net/npm/vue&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>第二种是直接使用vue-cli模块化的方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vue-cli</span><br></pre></td></tr></table></figure>
+
+<p><strong>Vue原理</strong></p>
+<p>el是element的缩写，初始化el中的标签作为vue的地盘。</p>
+<p>在el初始化了以后的地方，<code>&#123;&#123; &#125;&#125;</code>就是模板语法-表达式（三目运算符也算是表达式）</p>
+<p>通过data属性可以把状态挂载到vue实例上，状态改变页面也会自动更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div id=&quot;box&quot;&gt;</span><br><span class="line">&#123;&#123;10+20&#125;&#125;</span><br><span class="line">&#123;&#123;10&gt;20?&quot;aaa&quot;:&quot;bbb&quot;&#125;&#125;</span><br><span class="line">&#123;&#123;myname&#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var vm = new Vue(&#123;</span><br><span class="line">	el:&quot;#box&quot;,</span><br><span class="line">	data:&#123;</span><br><span class="line">		myname:&quot;kerwin&quot;//状态</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在vue中有方法监听到了状态被修改了，在这个方法中把dom也给修改了，但是这整个的过程是在vue内部执行的。所以Vue的原理是通过使用Object.defineProperty这个方法中的get方法和set方法的拦截去实现的。</p>
+<p>每个组件实例都对应一个watcher实例，它会在组件渲染的过程中把接触过的数据property记录为依赖，把节点和状态进行一一的关联，之后当依赖项的setter触发时，它会通知watcher，从而使他关联的组件重新渲染。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var mybox = document.getElementById(&#x27;box&#x27;)</span><br><span class="line">var obj = &#123;&#125;</span><br><span class="line">Object.defineProperty(obj,&quot;myname&quot;,&#123;</span><br><span class="line">	set(value)&#123;</span><br><span class="line">	console.log(&#x27;修改以后的值&#x27;,value)</span><br><span class="line">    mybox.innerHTML = value</span><br><span class="line">    &#125;,</span><br><span class="line">	get()&#123;</span><br><span class="line">	console.log(&#x27;有人访问了&#x27;,obox.innerHTML)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Vue会根据新老dom生成新老虚拟dom树进行比较找到最优解，然后去更新真实dom，从而尽量减少dom操作</p>
+<p><strong>mvvm架构模式</strong></p>
+<p>model：数据层</p>
+<p>view：视图层</p>
+<p>viewmodel：</p>
+<p>view层数据改变—&gt;通知viewmodel—&gt;model数据改变</p>
+<p>model数据改变—&gt;viewmodel做了getset拦截，自动得到通知，自动通知view层修改—&gt;view层修改数据</p>
+<p>解决了mvp大量的手动view和model同步的问题，提供了双向绑定机制，提高了代码的可维护性，对于大型的图形应用程序，视图状态较多，viewmodel的构建和维护的成本可能会比较高。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/22/Vue%E5%9F%BA%E7%A1%80/" data-id="cl4pmln400000z4fo06imdwu4" data-title="Vue基础" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-class" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/21/class/" class="article-date">
@@ -701,71 +766,6 @@
 
 
   
-    <article id="post-let-const-var暂时性死区" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/" class="article-date">
-  <time class="dt-published" datetime="2022-06-20T07:34:34.000Z" itemprop="datePublished">2022-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/">let,const var暂时性死区</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>let，const声明的变量不会发生变量提升，但var声明的变量就可以，变量在声明前就可以使用，值为undefined，原因是因为预编译的时候就已经把变量存入变量对象中。</p>
-<p><strong>暂时性死区</strong></p>
-<p>在代码块内使用let命令声明变量之前，变量时不能被使用的，在语法上称为暂时性死区TDZ</p>
-<p>let是不能被重复声明的。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(b)&#123;</span><br><span class="line">let b</span><br><span class="line">&#125;</span><br><span class="line">//报错</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>块级作用域</strong></p>
-<p>允许块级作用域的任意嵌套，但是每一层都是一个单独的作用域，每一层中的数据不互通。</p>
-<p>应用场景：</p>
-<p>内层变量可能会覆盖外面的变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var date= new Date()</span><br><span class="line">function f()&#123;</span><br><span class="line">//var date</span><br><span class="line">console.log(date)</span><br><span class="line">if(true)&#123;</span><br><span class="line">var date=&#x27;1&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
-
-<p>循环内部的计数变量泄露为全局变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4]</span><br><span class="line">for(var i = 0;i&lt;arr.length;i++)&#123;</span><br><span class="line">console.log(arr[i])</span><br><span class="line">&#125;</span><br><span class="line">console.log(i)</span><br><span class="line">---</span><br><span class="line">1 2 3 4 4</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>const特殊之处</strong></p>
-<p>const一旦声明就不能被改变，并且必须要给一个初始值。</p>
-<p>但如果const后面是一个引用数据类型，那么地址是在栈里面不能够改变，但是真正的数据是存放在堆里面的，也就可以改变。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const obj=&#123;&#125;</span><br><span class="line">obj.name=&#x27;123&#x27;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><em>for循环内部变量 i 和循环变量 i 不在同一个作用域中。</em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/" data-id="cl4mp48jj0003c0fobzjv39im" data-title="let,const var暂时性死区" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -802,6 +802,10 @@
       <ul>
         
           <li>
+            <a href="/2022/07/20/1/">1</a>
+          </li>
+        
+          <li>
             <a href="/2022/07/19/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">数组方法</a>
           </li>
         
@@ -815,10 +819,6 @@
         
           <li>
             <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
-          </li>
-        
-          <li>
-            <a href="/2022/07/04/git/">git</a>
           </li>
         
       </ul>

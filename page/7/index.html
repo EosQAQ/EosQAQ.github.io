@@ -71,6 +71,81 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-深拷贝和浅拷贝" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="article-date">
+  <time class="dt-published" datetime="2022-06-18T10:31:51.501Z" itemprop="datePublished">2022-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">深拷贝和浅拷贝</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>js的数据类型</strong></p>
+<p>基本数据类型：</p>
+<p>string,number,boolean,null,undefined</p>
+<p>引用数据类型</p>
+<p>object(Array,Object,Function,Map,Set)</p>
+<p>堆内存：</p>
+<p>在堆内存中开辟一块空间专门存放引用数据类型具体的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0x123=&gt;&#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>栈内存：</p>
+<p>基本数据类型存在栈内存中，变量：a  值： 1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a=1</span><br></pre></td></tr></table></figure>
+
+<p>引用数据类型的变量名存放在栈内存中，变量：obj  值：0x123(地址)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj= &#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>深浅拷贝的实现</strong></p>
+<p>浅拷贝指挥拷贝引用数据类型的地址，当某个数据被修改以后，也会影响到另一个拷贝的数据</p>
+<p>实例：obj和obj1都指向同一个堆内存内的地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=obj</span><br><span class="line">obj1.name=&#x27;ls&#x27;</span><br><span class="line">console.log(obj.name)</span><br><span class="line">console.log(obj1.name)</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">ls</span><br><span class="line">ls</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
+
+<p>深拷贝会拷贝多层，对于每一级数据都会拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=&#123;&#125;</span><br><span class="line">for(var i in obj)&#123;</span><br><span class="line">obj1[i]=pbj[i]</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>实现深拷贝的库</strong></p>
+<p>lodash库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var deep=_.cloneDeep(obj1)</span><br><span class="line">console.log(deep===obj1)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
+
+
+
+<p>使用js原生写深拷贝</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json.parse(json.stringfy.parse(obj))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="cl4ju2jzk0000jwfodjd0eufq" data-title="深拷贝和浅拷贝" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-预编译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/18/%E9%A2%84%E7%BC%96%E8%AF%91/" class="article-date">
@@ -388,6 +463,10 @@
       <ul>
         
           <li>
+            <a href="/2022/07/20/1/">1</a>
+          </li>
+        
+          <li>
             <a href="/2022/07/19/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">数组方法</a>
           </li>
         
@@ -401,10 +480,6 @@
         
           <li>
             <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
-          </li>
-        
-          <li>
-            <a href="/2022/07/04/git/">git</a>
           </li>
         
       </ul>

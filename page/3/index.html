@@ -71,6 +71,79 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-transition" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/24/transition/" class="article-date">
+  <time class="dt-published" datetime="2022-06-24T10:41:50.000Z" itemprop="datePublished">2022-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/24/transition/">transition</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>transition过渡</strong></p>
+<p>Vue在插入，更新或者移除dom的时候提供了多种不同方式的应用过渡效果</p>
+<ol>
+<li>单元素&#x2F;组件过渡：CSS过渡 CSS动画 结合animation.css动画库                                                                                   先使用css3写出关键帧动画，class名一定要是【自定义名-enter&#x2F;leave-active】，然后在调用的时候把组件外部套一个transition标签，并把自定义名作为name属性传递进去。</li>
+<li>name可以动态绑定为一个状态 :name&#x3D;”动态的自定义的名字”</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.eosqaq-enter-active&#123;</span><br><span class="line">animation: a 1.5s;</span><br><span class="line">&#125;</span><br><span class="line">.eosqaq-leave-active&#123;</span><br><span class="line">animation: a 1.5s reverse;</span><br><span class="line">&#125;</span><br><span class="line">@keyframe a&#123;</span><br><span class="line">0%&#123;</span><br><span class="line">opacity:0;</span><br><span class="line">transform:translateX(100px);</span><br><span class="line">&#125;</span><br><span class="line">100%&#123;</span><br><span class="line">opacity:0;</span><br><span class="line">transform:translateX(0px);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;isShow=!isShow&quot;&gt;&lt;button&gt;</span><br><span class="line">&lt;transition name=&quot;eosqaq&quot; appear&gt;</span><br><span class="line">&lt;div v-show=&quot;isShow&quot;&gt;1234&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br></pre></td></tr></table></figure>
+
+<p>appear：自动进行一次动画</p>
+<p><em>transition内部只能放一个根标签</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;isShow=!isShow&quot;&gt;&lt;button&gt;</span><br><span class="line">&lt;transition name=&quot;eosqaq&quot; appear&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;div v-show=&quot;isShow&quot;&gt;1234&lt;/div&gt;</span><br><span class="line">&lt;div v-show=&quot;isShow&quot;&gt;1234&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>多个元素过渡</strong></p>
+<p>相同标签的时候，vue为了性能会保留这个标签但是替换内容，所以只会看到内容改变了，但是没有过渡的效果。</p>
+<p>对于vue来说，数据改变了以后会根据新老状态生成虚拟dom树，然后使用diff算法进行比较生成patchs补丁加到真实dom上。可以使用key来区分标签，这样即使是同标签也不会复用。</p>
+<p>mode支持两种属性：in-out：先走再来  out-in：先来再走</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&quot;isShow=!isShow&quot;&gt;&lt;button&gt;</span><br><span class="line">&lt;transition name=&quot;eosqaq&quot; mode=&quot;in-out&quot;&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;div v-if=&quot;isShow&quot; key=&quot;1&quot;&gt;1234&lt;/div&gt;</span><br><span class="line">&lt;div v-else key=&quot;0&quot;&gt;1234&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>列表过渡</strong></p>
+<p>transition内部只能包含互斥的元素，也就是单个元素，有她没我，有我没她，但是列表里面一般包含多个元素，所以可以使用transition-group，必须要带上key值来区分每一个li,key值不能是索引，最好是每一个li所独有的。如果要用index做key的话，就删最后一个。</p>
+<p>transition-group不同于transition，会以一个真实元素呈现，默认是一个span，可以自己加tag，并把自己渲染成这个tag，如果tag是ul的话外面的ul就可以省略，如果是div的话就是渲染成一个div</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//&lt;ul&gt;</span><br><span class="line">&lt;transition-group :key=&quot;data&quot; name=&quot;eosqaq&quot; tag=&quot;ul&quot;&gt;</span><br><span class="line">&lt;li v-for=&quot;data in datalist&quot;&gt;&#123;&#123;data&#125;&#125;</span><br><span class="line">&lt;/li&gt;</span><br><span class="line">&lt;/transition-group&gt;</span><br><span class="line">//&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>可复用过渡</strong></p>
+<p>把transition标签放到组件内部的话，那么这个组件复用的时候这个过渡的效果也会复用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(&quot;siderbar&quot;,&#123;</span><br><span class="line">template:`</span><br><span class="line">&lt;transition name=&quot;eosqaq&quot; appear&gt;</span><br><span class="line">&lt;div v-show=&quot;isShow&quot;&gt;1234&lt;/div&gt;</span><br><span class="line">&lt;/transition&gt;</span><br><span class="line">`</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/24/transition/" data-id="cl4sf5rtu0004hsfocvgc4nen" data-title="transition" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-slot" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/24/slot/" class="article-date">
@@ -561,68 +634,6 @@
 
 
   
-    <article id="post-计算属性" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/23/%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" class="article-date">
-  <time class="dt-published" datetime="2022-06-23T11:08:32.000Z" itemprop="datePublished">2022-06-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/23/%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">计算属性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>计算属性</p>
-<p>复杂逻辑，模板难以维护，使用计算属性可以简化逻辑。</p>
-<p>计算缓存vsmethods</p>
-<ul>
-<li>计算属性是基于它们的依赖进行缓存的</li>
-<li>计算属性只有在它的相关依赖性发生改变的时候才会重新求值</li>
-</ul>
-<p>dom节点中不适合放一串长代码，容易产生模板过重，难以维护</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;myname.toUpperCase()&#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>计算属性的用法</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;mytext&#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>在调用的时候不要加（），同时在定义的时候就是一个有return值的函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">mytext()&#123;</span><br><span class="line">//基于依赖的改变会重新执行一次</span><br><span class="line">return this.myname.toUpperCase()</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但还是有区别的</p>
-<p>一个是methods可以不用return</p>
-<p>第二个即使多个地方使用计算属性，第一次以后计算属性就会存在缓存中而不会重复加载，而方法就是有几次加载几次，是没有缓存的。</p>
-<p>计算属性一般是不可以被赋值的，要在定义的时候自己定义一下set()，这时候传值也不会隐形mytext，但是可以找一个状态来改变这个计算属性。所以可以被赋值，但是几乎没有应用场景。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">mytext:&#123;</span><br><span class="line">get()&#123;</span><br><span class="line">return &quot;1234&quot;+myname</span><br><span class="line">&#125;,</span><br><span class="line">set(data)&#123;</span><br><span class="line">console.log(&quot;计算属性被赋值&quot;，data)</span><br><span class="line">this.name = data</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/23/%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" data-id="cl4sf5ru0000chsfobu3a2bz5" data-title="计算属性" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -659,6 +670,10 @@
       <ul>
         
           <li>
+            <a href="/2022/07/20/1/">1</a>
+          </li>
+        
+          <li>
             <a href="/2022/07/19/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">数组方法</a>
           </li>
         
@@ -672,10 +687,6 @@
         
           <li>
             <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
-          </li>
-        
-          <li>
-            <a href="/2022/07/04/git/">git</a>
           </li>
         
       </ul>

@@ -71,6 +71,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-let-const-var暂时性死区" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/" class="article-date">
+  <time class="dt-published" datetime="2022-06-20T07:34:34.000Z" itemprop="datePublished">2022-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/">let,const var暂时性死区</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>let，const声明的变量不会发生变量提升，但var声明的变量就可以，变量在声明前就可以使用，值为undefined，原因是因为预编译的时候就已经把变量存入变量对象中。</p>
+<p><strong>暂时性死区</strong></p>
+<p>在代码块内使用let命令声明变量之前，变量时不能被使用的，在语法上称为暂时性死区TDZ</p>
+<p>let是不能被重复声明的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function(b)&#123;</span><br><span class="line">let b</span><br><span class="line">&#125;</span><br><span class="line">//报错</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>块级作用域</strong></p>
+<p>允许块级作用域的任意嵌套，但是每一层都是一个单独的作用域，每一层中的数据不互通。</p>
+<p>应用场景：</p>
+<p>内层变量可能会覆盖外面的变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var date= new Date()</span><br><span class="line">function f()&#123;</span><br><span class="line">//var date</span><br><span class="line">console.log(date)</span><br><span class="line">if(true)&#123;</span><br><span class="line">var date=&#x27;1&#x27;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>循环内部的计数变量泄露为全局变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3,4]</span><br><span class="line">for(var i = 0;i&lt;arr.length;i++)&#123;</span><br><span class="line">console.log(arr[i])</span><br><span class="line">&#125;</span><br><span class="line">console.log(i)</span><br><span class="line">---</span><br><span class="line">1 2 3 4 4</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>const特殊之处</strong></p>
+<p>const一旦声明就不能被改变，并且必须要给一个初始值。</p>
+<p>但如果const后面是一个引用数据类型，那么地址是在栈里面不能够改变，但是真正的数据是存放在堆里面的，也就可以改变。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const obj=&#123;&#125;</span><br><span class="line">obj.name=&#x27;123&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><em>for循环内部变量 i 和循环变量 i 不在同一个作用域中。</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/20/let-const-var%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA/" data-id="cl4mp48jj0003c0fobzjv39im" data-title="let,const var暂时性死区" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-web性能优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/06/19/web%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="article-date">
@@ -690,81 +755,6 @@
 
 
   
-    <article id="post-深拷贝和浅拷贝" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" class="article-date">
-  <time class="dt-published" datetime="2022-06-18T10:31:51.501Z" itemprop="datePublished">2022-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/">深拷贝和浅拷贝</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>js的数据类型</strong></p>
-<p>基本数据类型：</p>
-<p>string,number,boolean,null,undefined</p>
-<p>引用数据类型</p>
-<p>object(Array,Object,Function,Map,Set)</p>
-<p>堆内存：</p>
-<p>在堆内存中开辟一块空间专门存放引用数据类型具体的值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0x123=&gt;&#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>栈内存：</p>
-<p>基本数据类型存在栈内存中，变量：a  值： 1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a=1</span><br></pre></td></tr></table></figure>
-
-<p>引用数据类型的变量名存放在栈内存中，变量：obj  值：0x123(地址)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj= &#123;</span><br><span class="line">name:&#x27;&#x27;,</span><br><span class="line">age:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>深浅拷贝的实现</strong></p>
-<p>浅拷贝指挥拷贝引用数据类型的地址，当某个数据被修改以后，也会影响到另一个拷贝的数据</p>
-<p>实例：obj和obj1都指向同一个堆内存内的地址</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=obj</span><br><span class="line">obj1.name=&#x27;ls&#x27;</span><br><span class="line">console.log(obj.name)</span><br><span class="line">console.log(obj1.name)</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">ls</span><br><span class="line">ls</span><br><span class="line">true</span><br></pre></td></tr></table></figure>
-
-<p>深拷贝会拷贝多层，对于每一级数据都会拷贝</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var obj=&#123;</span><br><span class="line">name:&#x27;zs&#x27;,</span><br><span class="line">age:&#x27;18&#x27;</span><br><span class="line">&#125;</span><br><span class="line">var obj1=&#123;&#125;</span><br><span class="line">for(var i in obj)&#123;</span><br><span class="line">obj1[i]=pbj[i]</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj===obj1)</span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>实现深拷贝的库</strong></p>
-<p>lodash库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var deep=_.cloneDeep(obj1)</span><br><span class="line">console.log(deep===obj1)</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">false</span><br></pre></td></tr></table></figure>
-
-
-
-<p>使用js原生写深拷贝</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json.parse(json.stringfy.parse(obj))</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/18/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/" data-id="cl4ju2jzk0000jwfodjd0eufq" data-title="深拷贝和浅拷贝" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -801,6 +791,10 @@
       <ul>
         
           <li>
+            <a href="/2022/07/20/1/">1</a>
+          </li>
+        
+          <li>
             <a href="/2022/07/19/%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">数组方法</a>
           </li>
         
@@ -814,10 +808,6 @@
         
           <li>
             <a href="/2022/07/04/nginx%E6%9C%8D%E5%8A%A1%E5%99%A8/">nginx服务器</a>
-          </li>
-        
-          <li>
-            <a href="/2022/07/04/git/">git</a>
           </li>
         
       </ul>
